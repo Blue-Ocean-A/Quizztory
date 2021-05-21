@@ -1,6 +1,6 @@
 # Quizztory
 
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![alt text](https://github.com/Blue-Ocean-A/Quizztory/blob/main/quizztoryLogo.jpg?raw=true)
 
 ## Test your history knowledge and compare quiz scores with friends in the wildly popular new app, Quizztory!
 
