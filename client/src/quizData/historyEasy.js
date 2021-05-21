@@ -49,5 +49,7 @@ const historyEasy = {
         { text: 'Blue', isCorrect: false },
       ]
     }
-}
+};
+
+module.exports = historyEasy;
 // SOURCE: https://www.beano.com/posts/the-ultimate-easy-history-quiz
