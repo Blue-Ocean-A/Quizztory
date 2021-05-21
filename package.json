@@ -1,0 +1,43 @@
+{
+  "name": "quizztory",
+  "version": "1.0.0",
+  "description": "Blue Ocean quizztory project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blue-Ocean-A/Quizztory.git"
+  },
+  "author": "Julian Bomwan, Kim Schaefer, Jenna Groth, Tamir Amitai, Matthew Salmons",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Blue-Ocean-A/Quizztory/issues"
+  },
+  "homepage": "https://github.com/Blue-Ocean-A/Quizztory#readme",
+  "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/styles": "^4.11.4",
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jest": "^26.6.3",
+    "mongoose": "^5.12.10",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.5",
+    "file-loader": "^6.2.0",
+    "nodemon": "^2.0.7",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0"
+  }
+}
