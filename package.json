@@ -4,10 +4,7 @@
   "description": "Blue Ocean quizztory project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
-    "react-dev": "webpack --config ./webpack.config.js --mode development --watch",
-    "react-prod": "webpack --config ./webpack.config.js --mode production",
-    "test": "jest"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
