@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
-// import QuizztoryLogo from 'QuizztoryLogo.png';
+import QuizztoryLogo from '../../../QuizztoryLogo.png';
 import Login from './Login.jsx';
 import Create from './Create.jsx';
 import Friends from './Friends.jsx';
@@ -27,8 +27,10 @@ const App = () => {
       )}
       {display === 'home' && (
       <Grid>
-        <QuizList allQuizzes={allQuizzes} />
-        <Friends />
+        <Grid item>
+          <QuizList allQuizzes={allQuizzes} />
+          {/* <Friends /> */}
+        </Grid>
       </Grid>
       )}
     </Grid>

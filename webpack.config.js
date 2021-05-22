@@ -1,5 +1,7 @@
 module.exports = {
+  mode: 'development',
   entry: `${__dirname}/client/src/index.js`,
+  watch: true,
   module: {
     rules: [
       {
@@ -13,7 +15,7 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: [/\.(js|jsx)?/],
+        test: /\.(js|jsx)/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
