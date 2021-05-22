@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
   nested: {
     paddingLeft: theme.spacing(4),
     backgroundColor: theme.palette.secondary.light,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.main,
+    },
   },
   row: {
     backgroundColor: theme.palette.primary.light,
@@ -31,6 +34,7 @@ function createData(quizName, topic, difficulty) {
 }
 
 const rows = [
+  // map over array of quizzes and invoke create data on each
   createData('The easiest history quiz in the world', 'History', 'Easy'),
   createData('The history quiz only a teacher can pass', 'History', 'Hard'),
   createData('American History Quiz', 'History', 'Medium'),
@@ -48,8 +52,8 @@ const QuizList = () => {
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
-            <TableRow>
-              <Typography align="right">Take A Quiz</Typography>
+            <TableRow align="center">
+              <Typography component="h5" variant="h5">Take A Quiz</Typography>
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>Quiz Name</TableCell>

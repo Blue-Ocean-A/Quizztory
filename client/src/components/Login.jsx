@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   login: {
     backgroundColor: theme.palette.secondary.dark,
+    borderRadius: 16,
   },
   input: {
     backgroundColor: theme.palette.primary.light,
@@ -43,7 +44,7 @@ const Login = ({ setDisplay, setCurrentUser }) => {
   return (
     <Container className={classes.login} maxWidth="xs">
       <div>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" style={{ marginTop: 15 }}>
           Sign in
         </Typography>
         <form noValidate>
@@ -79,11 +80,12 @@ const Login = ({ setDisplay, setCurrentUser }) => {
             fullWidth
             variant="contained"
             color="primary"
+            style={{ marginTop: 10 }}
             onClick={submit}
           >
             Login
           </Button>
-          <Grid container>
+          <Grid container style={{ marginTop: 10 }}>
             <Grid item>
               <Link href="#" variant="body2">
                 Sign up for an account

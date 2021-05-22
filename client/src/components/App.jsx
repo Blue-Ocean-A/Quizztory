@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import React, { useState } from 'react';
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 import QuizztoryLogo from '../../../QuizztoryLogo.png';
 import Login from './Login.jsx';
 import Create from './Create.jsx';
@@ -10,13 +10,17 @@ import FriendsResults from './FriendsResults.jsx';
 import Quiz from './Quiz.jsx';
 import Results from './Results.jsx';
 import QuizList from './QuizList.jsx';
+import Score from './Score.jsx';
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    marginLeft: 200,
+  },
   root: {
     backgroundColor: theme.palette.primary.light,
   },
   image: {
-    height: 200,
+    height: 150,
     width: '100%',
     marginLeft: 500,
     marginRight: 500,
@@ -33,20 +37,28 @@ const App = () => {
   const classes = useStyles();
 
   return (
-    <Grid container>
-      <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" justifyContent="center" />
+    <Grid
+      container
+      direction="row"
+      justify="space-around"
+      alignItems="flex-start"
+    >
+      <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
       {display === 'login' && (
         <Login setDisplay={setDisplay} setCurrentUser={setCurrentUser} />
       )}
       {display === 'home' && (
-        <Grid>
+        <>
           <Grid item>
             <QuizList allQuizzes={allQuizzes} />
+          </Grid>
             {/* <Friends />
             <Results />
             <Quiz /> */}
+          <Grid item style={{ textAlign: 'right' }}>
+            <Score />
           </Grid>
-        </Grid>
+        </>
       )}
     </Grid>
   );
