@@ -31,13 +31,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function createData(quizName, topic, difficulty) {
+  // map over array of quizzes and invoke create data on each
+  // /api/quizzes
   return {
     quizName, topic, difficulty,
   };
 }
 
 const rows = [
-  // map over array of quizzes and invoke create data on each
   createData('The easiest history quiz in the world', 'History', 'Easy'),
   createData('The history quiz only a teacher can pass', 'History', 'Hard'),
   createData('American History Quiz', 'History', 'Medium'),

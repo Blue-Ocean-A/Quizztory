@@ -33,6 +33,7 @@ const SignUp = ({
   };
 
   const submit = () => {
+    // post request to /api/userProfile
     if (userName !== '' && password !== '') {
       // set current user
       setCurrentUser(userName);

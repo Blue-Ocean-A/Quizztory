@@ -73,12 +73,18 @@ const App = () => {
             <QuizList allQuizzes={allQuizzes} />
           </Grid>
             {/* <Friends />
-            <Results />
-            <Quiz /> */}
+            <Results /> */}
           <Grid item style={{ textAlign: 'right' }}>
             <Score />
           </Grid>
         </>
+      )}
+      {display === 'quiz' && (
+        <Quiz
+          currentQuiz={currentQuiz}
+          display={display}
+          setDisplay={setDisplay}
+        />
       )}
     </Grid>
   );
