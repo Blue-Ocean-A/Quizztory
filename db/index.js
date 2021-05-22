@@ -11,4 +11,3 @@ const db = mongoose.connect(mongoURI, {
   console.log(`There was a problem connecting to mongo at: ${mongoURI}`);
   console.log(err);
 });
-

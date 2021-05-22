@@ -18,10 +18,3 @@ for(let i = 0; i < dbs.length; i++) {
 }
 
 db = conn.getDB(dbName);
-
-
-
-
-
-
-

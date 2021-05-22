@@ -1,3 +1,8 @@
 node_modules
+<<<<<<< HEAD
 data
 
+=======
+bundle.js
+bundle.js.LICENSE.txt
+>>>>>>> 4cca5a0d0315aededaf2af69d844cfa8221efc26
