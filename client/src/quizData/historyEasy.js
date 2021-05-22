@@ -2,7 +2,7 @@ const historyEasy = {
   _id:
   name: 'The easiest history quiz in the world',
   topic: 'History',
-  difficult: 'Easy',
+  difficulty: 'Easy',
   questions: [
     {
       text: 'What happened in 1066?',
