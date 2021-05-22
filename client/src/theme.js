@@ -15,12 +15,27 @@ const theme = createMuiTheme({
       dark: '#789697',
       light: '#D3E7D8',
     },
+    text: {
+      primary: '#5B685E',
+      secondary: '#F2EECA',
+    },
   },
   typography: {
     fontFamily: [
       cinzel,
       mont,
     ].join(','),
+    h2: {
+      fontSize: '1.4rem',
+      fontWeight: 'bold',
+      color: '#F2EECA',
+    },
+    h3: {
+      fontSize: '1.2rem',
+      fontWeight: 'bold',
+      fontFamily: mont,
+      color: '#5B685E',
+    },
   },
 });
 
