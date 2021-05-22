@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const User = require('./models/User');
+const models = require('./models');
 const mongoURI = 'mongodb://localhost:27017/quizztory';
 
 const db = mongoose.connect(mongoURI, { 
