@@ -1,7 +1,8 @@
 const express = require('express');
+
 const app = express();
-const queries = require('../db/controllers.js');
 const cors = require('cors');
+const queries = require('../db/controllers.js');
 
 // serve static files from dist dir
 app.use(express.static(__dirname + '/../client/dist'));
@@ -13,9 +14,21 @@ app.use(express.json());
 app.use(cors());
 
 ///// GET REQUESTS ////
+//see if a user has correct password
+app.get('/api/user', (req, res) => {
+  queries.getUser(req.query.name, req.query.password, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      console.log(data);
+      res.send(data);
+    }
+  });
+});
+
 //get a specific user's profile
 app.get('/api/userProfile', (req, res) => {
-  queries.getUser(req.query.name, (err, data) => {
+  queries.getUserProfile(req.query.name, (err, data) => {
     if (err) {
       res.status(404).send(err);
     } else {
@@ -50,7 +63,7 @@ app.get('/api/quizzData', (req, res) => {
 });
 
 ///// POST REQUESTS ////
-//post a new user and password to credentials collection
+//post a new user and password to credentials collection, make new profile
 app.post('/api/userProfile', (req, res) => {
   queries.postUser(req.body, (err, response) => {
     if (err) {
@@ -64,7 +77,7 @@ app.post('/api/userProfile', (req, res) => {
 
 //post new quiz to quizzes and quiz data collections
 app.post('/api/newQuiz', (req, res) => {
-  queries.getUser(req.body, (err, response) => {
+  queries.postQuiz(req.body, (err, response) => {
     if (err) {
       res.status(404).send(err);
     } else {
@@ -75,7 +88,19 @@ app.post('/api/newQuiz', (req, res) => {
 });
 
 ///// PUT REQUESTS ////
-//adds requester to incoming of requestee, vice versa
+//adds quiz name and score to profile
+app.put('/api/userProfile/score', (req, res) => {
+  queries.putQuizResult(req.body, (err, response) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      console.log(response);
+      res.end('Successfully added quiz score!');
+    }
+  });
+});
+
+//adds requester to incoming of requestee, adds requestee to outgoing of requester
 app.put('/api/userProfile/request', (req, res) => {
   queries.putFriendRequest(req.body, (err, response) => {
     if (err) {
@@ -99,7 +124,7 @@ app.put('/api/userProfile/accept', (req, res) => {
   });
 });
 
-//adds requester to incoming of requestee, vice versa
+//removes requester from requestee's incoming, does NOT remove requestee from requester's outgoing
 app.put('/api/userProfile/deny', (req, res) => {
   queries.putFriendReject(req.body, (err, response) => {
     if (err) {
