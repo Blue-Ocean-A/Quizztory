@@ -1,12 +1,13 @@
 module.exports = {
+  mode: 'development',
   entry: `${__dirname}/client/src/index.jsx`,
+  watch: true,
   module: {
     rules: [
       {
         test: /\.(png|jpeg|gif|svg)$/i,
         use: [{
           loader: 'file-loader',
-          options: {},
         }],
       },
       {
@@ -14,7 +15,7 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: [/\.(js|jsx)?/],
+        test: /\.(js|jsx)/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
