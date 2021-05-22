@@ -1,10 +1,10 @@
+/* eslint-disable import/extensions */
 import React from 'react';
-import { ThemeProvider, Button } from '@material-ui/core';
-import theme from '../theme';
+import Quiz from './Quiz.jsx';
 
 function App() {
   return (
-    <Button variant="contained" color="secondary" />
+    <Quiz variant="contained" />
   );
 }
 
