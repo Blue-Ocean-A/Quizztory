@@ -70,7 +70,11 @@ const App = () => {
       {display === 'home' && (
         <>
           <Grid item>
-            <QuizList allQuizzes={allQuizzes} />
+            <QuizList
+              allQuizzes={allQuizzes}
+              setDisplay={setDisplay}
+              setCurrentQuiz={setCurrentQuiz}
+            />
           </Grid>
             {/* <Friends />
             <Results /> */}
