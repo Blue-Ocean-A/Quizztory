@@ -1,4 +1,5 @@
 import React from 'react';
+import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,11 +12,15 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   table: {
+    backgroundColor: theme.palette.primary.dark,
     minWidth: 650,
   },
   nested: {
     paddingLeft: theme.spacing(4),
-    backgroundColor: theme.palette.action.selected,
+    backgroundColor: theme.palette.secondary.light,
+  },
+  row: {
+    backgroundColor: theme.palette.primary.light,
   },
 }));
 
@@ -39,29 +44,31 @@ const QuizList = () => {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <Typography>Take A Quiz</Typography>
-          <TableRow>
-            <TableCell>Quiz Name</TableCell>
-            <TableCell align="right">Topic</TableCell>
-            <TableCell align="right">Difficulty</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow className={classes.nested} key={row.quizName}>
-              <TableCell component="th" scope="row">
-                {row.quizName}
-              </TableCell>
-              <TableCell align="right">{row.topic}</TableCell>
-              <TableCell align="right">{row.difficulty}</TableCell>
+    <Grid>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <Typography style={{ position: 400 }}>Take A Quiz</Typography>
+            <TableRow className={classes.row}>
+              <TableCell>Quiz Name</TableCell>
+              <TableCell align="right">Topic</TableCell>
+              <TableCell align="right">Difficulty</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow className={classes.nested} key={row.quizName}>
+                <TableCell component="th" scope="row">
+                  {row.quizName}
+                </TableCell>
+                <TableCell align="right">{row.topic}</TableCell>
+                <TableCell align="right">{row.difficulty}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Grid>
   );
 };
 

@@ -4,10 +4,24 @@ import React, { useState } from 'react';
 import {
   Grid, Container, Typography, TextField, Button, Link,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  login: {
+    backgroundColor: theme.palette.secondary.dark,
+  },
+  input: {
+    backgroundColor: theme.palette.primary.light,
+  },
+  button: {
+    backgroundColor: theme.palette.secondary.light,
+  },
+}));
 
 const Login = ({ setDisplay, setCurrentUser }) => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const classes = useStyles();
 
   const handlePassword = (e) => {
     setPassword(e.target.value);
@@ -25,14 +39,15 @@ const Login = ({ setDisplay, setCurrentUser }) => {
   };
 
   return (
-    <Container maxWidth="xs">
+    <Container className={classes.login} maxWidth="xs">
       <div>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
         <form noValidate>
           <TextField
-            variant="outlined"
+            className={classes.input}
+            variant="filled"
             margin="normal"
             required
             fullWidth
@@ -44,7 +59,8 @@ const Login = ({ setDisplay, setCurrentUser }) => {
             onChange={handleUserName}
           />
           <TextField
-            variant="outlined"
+            className={classes.input}
+            variant="filled"
             margin="normal"
             required
             fullWidth
@@ -56,6 +72,7 @@ const Login = ({ setDisplay, setCurrentUser }) => {
             onChange={handlePassword}
           />
           <Button
+            className={classes.button}
             type="submit"
             fullWidth
             variant="contained"
@@ -65,11 +82,6 @@ const Login = ({ setDisplay, setCurrentUser }) => {
             Login
           </Button>
           <Grid container>
-            <Grid item xs>
-              {/* <Link href="#" variant="body2">
-                Forgot password?
-              </Link> */}
-            </Grid>
             <Grid item>
               <Link href="#" variant="body2">
                 Sign up for an account
