@@ -1,7 +1,8 @@
 /* eslint-disable import/extensions */
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
+import theme from '../theme.js';
 import QuizztoryLogo from '../../../QuizztoryLogo.png';
 import Login from './Login.jsx';
 import Create from './Create.jsx';
@@ -20,20 +21,22 @@ const App = () => {
   const [display, setDisplay] = useState('login');
 
   return (
-    <Grid container>
-      {/* <img src={QuizztoryLogo} alt="Quizztory" /> */}
-      {display === 'login' && (
-      <Login setDisplay={setDisplay} setCurrentUser={setCurrentUser} />
-      )}
-      {display === 'home' && (
-      <Grid>
-        <Grid item>
-          <QuizList allQuizzes={allQuizzes} />
-          {/* <Friends /> */}
+    <ThemeProvider theme={theme}>
+      <Grid container>
+        {/* <img src={QuizztoryLogo} alt="Quizztory" /> */}
+        {display === 'login' && (
+        <Login setDisplay={setDisplay} setCurrentUser={setCurrentUser} />
+        )}
+        {display === 'home' && (
+        <Grid>
+          <Grid item>
+            <QuizList allQuizzes={allQuizzes} />
+            {/* <Friends /> */}
+          </Grid>
         </Grid>
+        )}
       </Grid>
-      )}
-    </Grid>
+    </ThemeProvider>
   );
 };
 

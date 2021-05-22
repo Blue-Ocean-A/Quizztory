@@ -1,5 +1,7 @@
 module.exports = {
+  mode: 'development',
   entry: `${__dirname}/client/src/index.jsx`,
+  watch: true,
   module: {
     rules: [
       {
