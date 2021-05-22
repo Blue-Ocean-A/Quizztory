@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 const Credential = require('./models/Credential.js');
 const Profile = require('./models/Profile.js');
 const Quiz = require('./models/Quiz.js');
@@ -16,7 +18,7 @@ const getUser = (name, password, cb) => {
 
 //get a specific user's profile
 const getUserProfile = (name, cb) => {
-  Profile.findOne({ name }, (error, results) => {
+  Profile.find({ name }, (error, results) => {
     if (error) {
       cb(error, null);
     } else {
@@ -49,29 +51,41 @@ const getQuizzData = (name, cb) => {
 
 //post a new user and password to credentials collection, make new profile
 const postUser = (body, cb) => {
-  Credential.create({ body }, (error, results) => {
+  Credential.create({ body }, (error) => {
     if (error) {
       cb(error, null);
     } else {
-      cb(null, results);
+      Profile.create({ name: body.name }, (err, results) => {
+        if (error) {
+          cb(err, null);
+        } else {
+          cb(null, results);
+        }
+      });
     }
   });
 };
 
 //post new quiz to quizzes and quiz data collections
 const postQuiz = (body, cb) => {
-  Quiz, QuizData.find({ body }, (error, results) => {
+  QuizData.create({ body }, (error) => {
     if (error) {
       cb(error, null);
     } else {
-      cb(null, results);
+      Quiz.create({ name: body.name, topic: body.topic, difficulty: body.difficulty }, (err, results) => {
+        if (error) {
+          cb(err, null);
+        } else {
+          cb(null, results);
+        }
+      });
     }
   });
 };
 
 //adds quiz name and score to profile
 const putQuizResult = (body, cb) => {
-  Profile.find({ body }, (error, results) => {
+  Profile.updateOne({ name: body.userName }, { $push: { results: { quizName: body.quizName, score: body.score } } }, (error, results) => {
     if (error) {
       cb(error, null);
     } else {
@@ -82,29 +96,41 @@ const putQuizResult = (body, cb) => {
 
 //adds requester to incoming of requestee, adds requestee to outgoing of requester
 const putFriendRequest = (body, cb) => {
-  Profile.find({ body }, (error, results) => {
+  Profile.updateOne({ name: body.requestee }, { $push: { incoming: body.requester } }, (error) => {
     if (error) {
       cb(error, null);
     } else {
-      cb(null, results);
+      Profile.updateOne({ name: body.requester }, { $push: { outgoing: body.requestee } }, (err, results) => {
+        if (err) {
+          cb(err, null);
+        } else {
+          cb(null, results);
+        }
+      });
     }
   });
 };
 
 //adds both users to the other’s friend list and removes request
 const putFriendAccept = (body, cb) => {
-  Profile.find({ body }, (error, results) => {
+  Profile.updateOne({ name: body.requestee }, { $push: { friends: body.requester }, $pull: { incoming: body.requester } }, (error) => {
     if (error) {
       cb(error, null);
     } else {
-      cb(null, results);
+      Profile.updateOne({ name: body.requester }, { $push: { friends: body.requestee }, $pull: { incoming: body.requestee } }, (err, results) => {
+        if (error) {
+          cb(err, null);
+        } else {
+          cb(null, results);
+        }
+      });
     }
   });
 };
 
 //removes requester from requestee's incoming, does NOT remove requestee from requester's outgoing
 const putFriendReject = (body, cb) => {
-  Profile.find({ body }, (error, results) => {
+  Profile.updateOne({ name: body.name }, { $pull: { incoming: body.requester } }, (error, results) => {
     if (error) {
       cb(error, null);
     } else {
