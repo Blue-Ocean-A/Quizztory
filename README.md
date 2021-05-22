@@ -56,9 +56,10 @@ git push origin new-feature
 
 ## Database Initialization
 1. Download data folder from google drive and place in root directory.
-2. Log into mongo shell( ~: mongo ).
-3. Create new quizztory database ( > use quizztory).
+2. Log into mongo shell( ~:  mongo ).
+3. Create new quizztory database ( >  use quizztory ).
+     !!!If you already have data in quizztory empty it first to ensure we dont have duplicate data. ( >  db.dropDatabase() )
 4. From root project directory terminal run db init file with node 
-   (~/Quizztory: node db.init.js).
+   (~/Quizztory:  node db.init.js ).
 5. You should see a message indicating that seeding the database was succesful.
 
