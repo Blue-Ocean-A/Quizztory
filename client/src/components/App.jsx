@@ -11,6 +11,7 @@ import Quiz from './Quiz.jsx';
 import Results from './Results.jsx';
 import QuizList from './QuizList.jsx';
 import Score from './Score.jsx';
+import SignUp from './SignUp.jsx';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -33,6 +34,8 @@ const App = () => {
   const [allQuizzes, setAllQuizzes] = useState([]);
   const [currentQuiz, setCurrentQuiz] = useState();
   const [currentUser, setCurrentUser] = useState();
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
   const [display, setDisplay] = useState('login');
   const classes = useStyles();
 
@@ -45,7 +48,24 @@ const App = () => {
     >
       <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
       {display === 'login' && (
-        <Login setDisplay={setDisplay} setCurrentUser={setCurrentUser} />
+        <Login
+          setDisplay={setDisplay}
+          setCurrentUser={setCurrentUser}
+          userName={userName}
+          setUserName={setUserName}
+          password={password}
+          setPassword={setPassword}
+        />
+      )}
+      {display === 'SignUp' && (
+        <SignUp
+          setDisplay={setDisplay}
+          setCurrentUser={setCurrentUser}
+          userName={userName}
+          setUserName={setUserName}
+          password={password}
+          setPassword={setPassword}
+        />
       )}
       {display === 'home' && (
         <>

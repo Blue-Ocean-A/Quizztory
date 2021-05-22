@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = ({
+const SignUp = ({
   setDisplay, setCurrentUser, userName, setUserName, password, setPassword,
 }) => {
   const classes = useStyles();
@@ -45,7 +45,7 @@ const Login = ({
     <Container className={classes.login} maxWidth="xs">
       <div>
         <Typography component="h1" variant="h5" style={{ marginTop: 15 }}>
-          Login
+          Sign Up
         </Typography>
         <form noValidate>
           <TextField
@@ -83,12 +83,12 @@ const Login = ({
             style={{ marginTop: 10 }}
             onClick={submit}
           >
-            Login
+            Join
           </Button>
           <Grid container style={{ marginTop: 10 }}>
             <Grid item>
-              <Link href="#" variant="body2" onClick={() => setDisplay('SignUp')}>
-                Sign up for an account
+              <Link href="#" variant="body2" onClick={() => setDisplay('login')}>
+                Already have an account?
               </Link>
             </Grid>
           </Grid>
@@ -98,4 +98,4 @@ const Login = ({
   );
 };
 
-export default Login;
+export default SignUp;
