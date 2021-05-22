@@ -22,7 +22,7 @@ app.get('/api/userProfile', (req, res) => {
       console.log(data);
       res.send(data);
     }
-  })
+  });
 });
 
 //get a list of all quiz names, topics, and difficulty levels
@@ -34,7 +34,7 @@ app.get('/api/quizzes', (req, res) => {
       console.log(data);
       res.send(data);
     }
-  })
+  });
 });
 
 //get a specific quiz's Q's and A's
@@ -46,7 +46,7 @@ app.get('/api/quizzData', (req, res) => {
       console.log(data);
       res.send(data);
     }
-  })
+  });
 });
 
 ///// POST REQUESTS ////
@@ -59,7 +59,7 @@ app.post('/api/userProfile', (req, res) => {
       console.log(response);
       res.end('Successfully added user!');
     }
-  })
+  });
 });
 
 //post new quiz to quizzes and quiz data collections
@@ -71,7 +71,7 @@ app.post('/api/newQuiz', (req, res) => {
       console.log(response);
       res.end('Successfully added new quiz!');
     }
-  })
+  });
 });
 
 ///// PUT REQUESTS ////
@@ -84,7 +84,7 @@ app.put('/api/userProfile/request', (req, res) => {
       console.log(response);
       res.end('Successfully added friend request!');
     }
-  })
+  });
 });
 
 //adds both users to the other’s friend list and removes request
@@ -96,7 +96,7 @@ app.put('/api/userProfile/accept', (req, res) => {
       console.log(response);
       res.end('Successfully added friend!');
     }
-  })
+  });
 });
 
 //adds requester to incoming of requestee, vice versa
@@ -108,7 +108,7 @@ app.put('/api/userProfile/deny', (req, res) => {
       console.log(response);
       res.end('Successfully deleted friend request!');
     }
-  })
+  });
 });
 
 // set port where server will listen
