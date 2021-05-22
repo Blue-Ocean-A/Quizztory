@@ -6,7 +6,7 @@ import theme from '../theme.js';
 import QuizztoryLogo from '../../../QuizztoryLogo.png';
 import Login from './Login.jsx';
 import Create from './Create.jsx';
-import FriendsList from './Friends.jsx';
+import Friends from './Friends.jsx';
 import FriendsResults from './FriendsResults.jsx';
 import Quiz from './Quiz.jsx';
 import Results from './Results.jsx';
@@ -44,9 +44,7 @@ const App = () => {
         <Grid>
           <Grid item>
             <QuizList allQuizzes={allQuizzes} />
-            {/* <FriendsList />
-            <Results />
-            <Quiz /> */}
+            <Friends />
           </Grid>
         </Grid>
         )}
