@@ -1,11 +1,11 @@
 import React from 'react';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider, Button } from '@material-ui/core';
 import theme from '../theme';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <Component />
-    </ThemeProvider>
+    <Button variant="contained" color="secondary" />
   );
 }
+
+export default App;
