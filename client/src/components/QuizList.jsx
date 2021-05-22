@@ -25,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
   row: {
     backgroundColor: theme.palette.primary.light,
   },
+  text: {
+    color: theme.palette.primary.light,
+  },
 }));
 
 function createData(quizName, topic, difficulty) {
@@ -52,8 +55,8 @@ const QuizList = () => {
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
-            <TableRow align="center">
-              <Typography component="h5" variant="h5">Take A Quiz</Typography>
+            <TableRow>
+              <Typography component="h5" variant="h5" align="right" className={classes.text}>Take A Quiz</Typography>
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>Quiz Name</TableCell>
