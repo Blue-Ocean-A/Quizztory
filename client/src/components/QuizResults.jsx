@@ -1,6 +1,7 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-import { Container, Typography, Button } from '@material-ui/core';
+import React from 'react';
+import { Container, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -31,16 +32,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const QuizResults = ({ currentQuiz, score, setDisplay }) => {
+  const classes = useStyles();
+  const { questions } = currentQuiz;
+
   const percentScore = (score) => {
-    const number = (score / (currentQuiz.questions.length)) * 100;
+    const number = (score / (questions.length)) * 100;
     const percent = number.toString().concat('%');
     return percent;
   };
 
-  const classes = useStyles();
-  const { questions } = currentQuiz;
-
-  const handleClick = (isCorrect) => {
+  const handleClick = () => {
     setDisplay('home');
   };
 
@@ -60,7 +61,7 @@ const QuizResults = ({ currentQuiz, score, setDisplay }) => {
           )
         </Typography>
       </Container>
-      <button id="quiz-over-button" onClick={handleClick}>Choose another quiz</button>
+      <button type="button" id="quiz-over-button" onClick={handleClick}>Choose another quiz</button>
     </Container>
   );
 };

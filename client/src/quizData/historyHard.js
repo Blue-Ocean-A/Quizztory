@@ -1,5 +1,5 @@
 const historyHard = {
-  _id:
+  _id: {},
   name: 'The history quiz only a teacher can pass',
   topic: 'History',
   difficulty: 'Hard',
@@ -11,7 +11,7 @@ const historyHard = {
         { text: 'Greece', isCorrect: false },
         { text: 'Ukraine', isCorrect: false },
         { text: 'Germany', isCorrect: false },
-      ]
+      ],
     },
     {
       text: 'In which year did the US Civil War begin?',
@@ -20,7 +20,7 @@ const historyHard = {
         { text: '1865', isCorrect: false },
         { text: '1876', isCorrect: false },
         { text: '1881', isCorrect: false },
-      ]
+      ],
     },
     {
       text: 'Who was the first monarch to reside in Buckingham Palace?',
@@ -29,7 +29,7 @@ const historyHard = {
         { text: 'Queen Elizabeth I', isCorrect: false },
         { text: 'Queen Victoria', isCorrect: true },
         { text: 'King George', isCorrect: false },
-      ]
+      ],
     },
     {
       text: 'Which President of the United States was John F. Kennedy?',
@@ -38,7 +38,7 @@ const historyHard = {
         { text: '30th', isCorrect: false },
         { text: '35th', isCorrect: true },
         { text: '40th', isCorrect: false },
-      ]
+      ],
     },
     {
       text: 'Who was the founder of the Ottaman Empire?',
@@ -47,7 +47,7 @@ const historyHard = {
         { text: 'Murad I', isCorrect: false },
         { text: 'Orhan', isCorrect: false },
         { text: 'Osman I', isCorrect: true },
-      ]
+      ],
     },
     {
       text: 'Which was the first country to allow women to vote?',
@@ -56,7 +56,7 @@ const historyHard = {
         { text: 'Finland', isCorrect: false },
         { text: 'Switzerland', isCorrect: false },
         { text: 'Malaysia', isCorrect: false },
-      ]
+      ],
     },
     {
       text: 'In which year did Napolean Bonaparte become the first Emperor of France?',
@@ -65,7 +65,10 @@ const historyHard = {
         { text: '1804', isCorrect: true },
         { text: '1814', isCorrect: false },
         { text: '1894', isCorrect: false },
-      ]
+      ],
     },
-}
+  ],
+};
+
+module.exports = historyHard;
 // SOURCE: https://quizly.co/only-a-history-teacher-will-pass-this/

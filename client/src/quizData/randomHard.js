@@ -1,5 +1,5 @@
- const randomHard = {
-  _id:
+const randomHard = {
+  _id: {},
   name: 'Name that country',
   topic: 'Random',
   difficulty: 'Hard',
@@ -11,7 +11,7 @@
         { text: 'France', isCorrect: true },
         { text: 'Gernmany', isCorrect: false },
         { text: 'Netherlands', isCorrect: false },
-      ]
+      ],
     },
     {
       text: 'Who came second in the FIFA Women\'s World Cup in 2019?',
@@ -20,7 +20,7 @@
         { text: 'France', isCorrect: false },
         { text: 'Costa Rica', isCorrect: false },
         { text: 'Netherlands', isCorrect: true },
-      ]
+      ],
     },
     {
       text: 'Where was the mojito cocktail created?',
@@ -29,7 +29,7 @@
         { text: 'Cuba', isCorrect: true },
         { text: 'Puerto Rico', isCorrect: false },
         { text: 'Spain', isCorrect: false },
-      ]
+      ],
     },
     {
       text: 'Which country hosted the first even fashion week?',
@@ -38,7 +38,7 @@
         { text: 'Milan, Italy', isCorrect: false },
         { text: 'London, England', isCorrect: false },
         { text: 'New York, USA', isCorrect: true },
-      ]
+      ],
     },
     {
       text: 'What is the largest country in the world?',
@@ -47,7 +47,10 @@
         { text: 'USA', isCorrect: false },
         { text: 'Australia', isCorrect: false },
         { text: 'Russia', isCorrect: true },
-      ]
+      ],
     },
- }
+  ],
+};
+
+module.exports = randomHard;
 // QUESTIONS AND CORRECT ANSWER DATA FROM: https://www.cosmopolitan.com/uk/worklife/a32388181/best-general-knowledge-quiz-questions/
