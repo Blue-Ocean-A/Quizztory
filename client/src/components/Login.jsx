@@ -32,10 +32,12 @@ const Login = ({ setDisplay, setCurrentUser }) => {
   };
 
   const submit = () => {
-    // set current user
-    setCurrentUser(userName);
-    // switch display to home page
-    setDisplay('home');
+    if (userName !== '' && password !== '') {
+      // set current user
+      setCurrentUser(userName);
+      // switch display to home page
+      setDisplay('home');
+    }
   };
 
   return (

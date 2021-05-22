@@ -48,7 +48,9 @@ const QuizList = () => {
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
-            <Typography style={{ position: 400 }}>Take A Quiz</Typography>
+            <TableRow>
+              <Typography align="right">Take A Quiz</Typography>
+            </TableRow>
             <TableRow className={classes.row}>
               <TableCell>Quiz Name</TableCell>
               <TableCell align="right">Topic</TableCell>

@@ -1,10 +1,11 @@
 const express = require('express');
+
 const app = express();
-const queries = require('../db/controllers.js');
+// const queries = require('../db/controllers.js');
 const cors = require('cors');
 
 // serve static files from dist dir
-app.use(express.static(__dirname + '/../client/dist'));
+app.use(express.static(`${__dirname}/../client/dist`));
 
 // middleware
 // use express.json for parsing JSON
@@ -12,8 +13,8 @@ app.use(express.json());
 // use cors middleware for enabling CORS with various options
 app.use(cors());
 
-///// GET REQUESTS ////
-//get a specific user's profile
+/// // GET REQUESTS ////
+// get a specific user's profile
 app.get('/api/userProfile', (req, res) => {
   queries.getUser(req.query.name, (err, data) => {
     if (err) {
@@ -25,7 +26,7 @@ app.get('/api/userProfile', (req, res) => {
   });
 });
 
-//get a list of all quiz names, topics, and difficulty levels
+// get a list of all quiz names, topics, and difficulty levels
 app.get('/api/quizzes', (req, res) => {
   queries.getQuizzes((err, data) => {
     if (err) {
@@ -37,7 +38,7 @@ app.get('/api/quizzes', (req, res) => {
   });
 });
 
-//get a specific quiz's Q's and A's
+// get a specific quiz's Q's and A's
 app.get('/api/quizzData', (req, res) => {
   queries.getQuizzData(req.query.name, (err, data) => {
     if (err) {
@@ -49,8 +50,8 @@ app.get('/api/quizzData', (req, res) => {
   });
 });
 
-///// POST REQUESTS ////
-//post a new user and password to credentials collection
+/// // POST REQUESTS ////
+// post a new user and password to credentials collection
 app.post('/api/userProfile', (req, res) => {
   queries.postUser(req.body, (err, response) => {
     if (err) {
@@ -62,7 +63,7 @@ app.post('/api/userProfile', (req, res) => {
   });
 });
 
-//post new quiz to quizzes and quiz data collections
+// post new quiz to quizzes and quiz data collections
 app.post('/api/newQuiz', (req, res) => {
   queries.getUser(req.body, (err, response) => {
     if (err) {
@@ -74,8 +75,8 @@ app.post('/api/newQuiz', (req, res) => {
   });
 });
 
-///// PUT REQUESTS ////
-//adds requester to incoming of requestee, vice versa
+/// // PUT REQUESTS ////
+// adds requester to incoming of requestee, vice versa
 app.put('/api/userProfile/request', (req, res) => {
   queries.putFriendRequest(req.body, (err, response) => {
     if (err) {
@@ -87,7 +88,7 @@ app.put('/api/userProfile/request', (req, res) => {
   });
 });
 
-//adds both users to the other’s friend list and removes request
+// adds both users to the other’s friend list and removes request
 app.put('/api/userProfile/accept', (req, res) => {
   queries.putFriendAccept(req.body, (err, response) => {
     if (err) {
@@ -99,7 +100,7 @@ app.put('/api/userProfile/accept', (req, res) => {
   });
 });
 
-//adds requester to incoming of requestee, vice versa
+// adds requester to incoming of requestee, vice versa
 app.put('/api/userProfile/deny', (req, res) => {
   queries.putFriendReject(req.body, (err, response) => {
     if (err) {

@@ -2,11 +2,10 @@
 import React, { useState } from 'react';
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
-import theme from '../theme.js';
 import QuizztoryLogo from '../../../QuizztoryLogo.png';
 import Login from './Login.jsx';
 import Create from './Create.jsx';
-import FriendsList from './Friends.jsx';
+import Friends from './Friends.jsx';
 import FriendsResults from './FriendsResults.jsx';
 import Quiz from './Quiz.jsx';
 import Results from './Results.jsx';
@@ -34,24 +33,22 @@ const App = () => {
   const classes = useStyles();
 
   return (
-    <ThemeProvider theme={theme}>
-      <Grid container>
-        <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
-        {display === 'login' && (
+    <Grid container>
+      <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" justifyContent="center" />
+      {display === 'login' && (
         <Login setDisplay={setDisplay} setCurrentUser={setCurrentUser} />
-        )}
-        {display === 'home' && (
+      )}
+      {display === 'home' && (
         <Grid>
           <Grid item>
             <QuizList allQuizzes={allQuizzes} />
-            {/* <FriendsList />
+            {/* <Friends />
             <Results />
             <Quiz /> */}
           </Grid>
         </Grid>
-        )}
-      </Grid>
-    </ThemeProvider>
+      )}
+    </Grid>
   );
 };
 
