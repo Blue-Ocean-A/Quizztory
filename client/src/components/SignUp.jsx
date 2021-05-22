@@ -8,14 +8,17 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   login: {
-    backgroundColor: theme.palette.secondary.dark,
+    backgroundColor: theme.palette.primary.dark,
     borderRadius: 16,
   },
   input: {
     backgroundColor: theme.palette.primary.light,
   },
   button: {
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: theme.palette.secondary.main,
+  },
+  link: {
+    color: theme.palette.primary.light,
   },
 }));
 
@@ -88,7 +91,7 @@ const SignUp = ({
           </Button>
           <Grid container style={{ marginTop: 10 }}>
             <Grid item>
-              <Link href="#" variant="body2" onClick={() => setDisplay('login')}>
+              <Link className={classes.link} href="#" variant="body2" onClick={() => setDisplay('login')}>
                 Already have an account?
               </Link>
             </Grid>
