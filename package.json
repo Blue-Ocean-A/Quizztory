@@ -27,6 +27,7 @@
     "express": "^4.17.1",
     "jest": "^26.6.3",
     "mongoose": "^5.12.10",
+    "package.json": "^2.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
