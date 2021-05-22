@@ -2,7 +2,7 @@ const natureEasy = {
   _id:
   name: 'Animals for the whole family quiz',
   topic: 'Nature',
-  difficult: 'Easy',
+  difficulty: 'Easy',
   questions: [
     {
       text: 'What is the fastest animal in the world?',

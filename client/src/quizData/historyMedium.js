@@ -2,7 +2,7 @@ const historyEasy = {
   _id:
   name: 'American History Quiz',
   topic: 'History',
-  difficult: 'Medium',
+  difficulty: 'Medium',
   questions: [
     {
       text: 'Indepenence day was first established as a holiday by Congress in what year?',

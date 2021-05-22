@@ -2,7 +2,7 @@ const historyHard = {
   _id:
   name: 'The history quiz only a teacher can pass',
   topic: 'History',
-  difficult: 'Hard',
+  difficulty: 'Hard',
   questions: [
     {
       text: 'What country was Alexander the Great the king of?',

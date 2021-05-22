@@ -2,7 +2,7 @@
   _id:
   name: 'Name that country',
   topic: 'Random',
-  difficult: 'Hard',
+  difficulty: 'Hard',
   questions: [
     {
       text: 'Which country is brie cheese from originally?',
