@@ -15,59 +15,54 @@ const useStyles = makeStyles((theme) => ({
     margin: '20px',
     width: '92%',
   },
-  questionTitle: {
+  resultsTitle: {
     backgroundColor: theme.palette.secondary.light,
     padding: '20px',
+    margin: '50px 0 0 0',
   },
   button: {
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: 'none',
     width: '150px',
     height: '50px',
     padding: '10px',
     margin: '20px',
+    color: '#F2EECA',
   },
 }));
 
-const QuizResults = ({ currentQuiz, display, setDisplay }) => {
-  const [index, setIndex] = useState(0);
-  const [score, setScore] = useState(0);
+const QuizResults = ({ currentQuiz, score, setDisplay }) => {
+  const percentScore = (score) => {
+    const number = (score / (currentQuiz.questions.length)) * 100;
+    const percent = number.toString().concat('%');
+    return percent;
+  };
 
   const classes = useStyles();
   const { questions } = currentQuiz;
 
   const handleClick = (isCorrect) => {
-    if (isCorrect === true) {
-      setScore(score + 1);
-    }
-    let oldIndex = index;
-    if (oldIndex === questions.length - 1) {
-      setDisplay('quizResults');
-    } else {
-      oldIndex += 1;
-      setIndex(oldIndex);
-    }
+    setDisplay('home');
   };
 
   return (
     <Container className={classes.quizDiv} maxWidth="sm">
       <Typography variant="h2" component="h2" align="center" gutterBottom="true">{currentQuiz.name}</Typography>
-      <Container className={classes.resultsDiv}>
-        <Container className={classes.questionTitle}>
-          <Typography variant="h3" component="h3">{questions[index].text}</Typography>
-        </Container>
-        {questions[index].answers.map((answer) => (
-          <Button
-            key={answer.text}
-            className={classes.button}
-            onClick={() => handleClick(answer.isCorrect)}
-          >
-            {answer.text}
-          </Button>
-        ))}
-
+      <Container className={classes.resultsTitle}>
+        <Typography variant="h3" component="h3">You Scored</Typography>
+        <Typography variant="h1" component="h1">{percentScore(score)}</Typography>
+        <Typography variant="body1" component="body1">
+          (
+          {score}
+          {' '}
+          /
+          {' '}
+          {currentQuiz.questions.length}
+          )
+        </Typography>
       </Container>
+      <button id="quiz-over-button" onClick={handleClick}>Choose another quiz</button>
     </Container>
   );
 };
 
-export default QuizResults.jsx;
+export default QuizResults;

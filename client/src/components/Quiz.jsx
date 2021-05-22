@@ -1,7 +1,10 @@
+/* eslint-disable import/extensions */
+/* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { Container, Typography, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 import QuizResults from './QuizResults.jsx';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,12 +32,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Quiz = ({ currentQuiz, display, setDisplay }) => {
+const Quiz = ({
+  currentQuiz, currentUser, display, setDisplay,
+}) => {
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
 
   const classes = useStyles();
   const { questions } = currentQuiz;
+
+  const updateScore = (score) => {
+    const body = {
+      username: currentUser,
+      quiz: currentQuiz.name,
+      score,
+    };
+    axios.put('/quiz', body);
+  };
 
   const handleClick = (isCorrect) => {
     if (isCorrect === true) {
@@ -42,6 +56,7 @@ const Quiz = ({ currentQuiz, display, setDisplay }) => {
     }
     let oldIndex = index;
     if (oldIndex === questions.length - 1) {
+      updateScore(score);
       setDisplay('quizResults');
     } else {
       oldIndex += 1;
@@ -50,9 +65,10 @@ const Quiz = ({ currentQuiz, display, setDisplay }) => {
   };
 
   return (
-    <Container className={classes.quizDiv} maxWidth="sm">
+    <div>
       {display === 'quiz' && (
-        <>
+        <Container className={classes.quizDiv} maxWidth="sm">
+
           <Typography variant="h2" component="h2" align="center" gutterBottom="true">{currentQuiz.name}</Typography>
           <Typography variant="body2" component="body2" color="textSecondary" align="center" gutterBottom="true">
             Question
@@ -76,17 +92,17 @@ const Quiz = ({ currentQuiz, display, setDisplay }) => {
                 {answer.text}
               </Button>
             ))}
-
           </Container>
-        </>
+        </Container>
       )}
       {display === 'quizResults' && (
         <QuizResults
           score={score}
           setDisplay={setDisplay}
+          currentQuiz={currentQuiz}
         />
       )}
-    </Container>
+    </div>
   );
 };
 
