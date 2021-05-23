@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import SearchBar from 'material-ui-search-bar';
 
 import Friend from './Friend.jsx';
+import FriendRequest from './FriendRequest.jsx';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -18,12 +19,16 @@ const useStyles = makeStyles((theme) => ({
   searchBar: {
     backgroundColor: theme.palette.primary.light,
   },
-  list: {
+  fullList: {
     margin: '10px',
     height: '90%',
     overflow: 'scroll',
   },
-
+  partialList: {
+    margin: '50 10 10 10',
+    height: '50%',
+    overflow: 'scroll',
+  },
 }));
 
 export default function Friends() {
@@ -31,6 +36,7 @@ export default function Friends() {
 
   const [friends, setFriends] = useState(['Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew', 'Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew', 'Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew', 'Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew', 'Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew', 'Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew', 'Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew']);
   const [search, setSearch] = useState(['']);
+  const [pending, setPending] = useState(['Esteban']);
 
   const handleSearchChange = (searchValue) => {
     setSearch(searchValue);
@@ -43,10 +49,20 @@ export default function Friends() {
           FRIENDS
         </Typography>
       </div>
-      <div className={classes.list}>
-        {friends.sort().map((friend, index) => <Friend key={index} name={friend} />)}
-      </div>
+      {pending.length ? (
+        <>
+          <FriendRequest request={pending[0]} />
+          <div className={classes.fullList}>
+            {friends.sort().map((friend, index) => <Friend key={index} name={friend} />)}
+          </div>
+        </>
+      ) : (
+        <div className={classes.fullList}>
+          {friends.sort().map((friend, index) => <Friend key={index} name={friend} />)}
+        </div>
+      )}
       <SearchBar
+        placeholder="Find New"
         className={classes.searchBar}
         onChange={handleSearchChange}
       />
