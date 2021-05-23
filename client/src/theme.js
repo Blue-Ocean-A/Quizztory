@@ -25,6 +25,9 @@ const theme = createMuiTheme({
       cinzel,
       mont,
     ].join(','),
+    h1: {
+      fontSize: '4rem',
+    },
     h2: {
       fontSize: '1.4rem',
       fontWeight: 'bold',

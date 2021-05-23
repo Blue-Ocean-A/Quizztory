@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import SearchBar from 'material-ui-search-bar';
 
 import Friend from './Friend.jsx';
+import Score from './Score.jsx';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -37,6 +38,10 @@ export default function Friends() {
   };
 
   return (
+    <>
+    <Container>
+      <Score />
+    </Container>
     <Container component={Paper} className={classes.container}>
       <div>
         <Typography variant="h3">
@@ -51,5 +56,6 @@ export default function Friends() {
         onChange={handleSearchChange}
       />
     </Container>
+    </>
   );
 }

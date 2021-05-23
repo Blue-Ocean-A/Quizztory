@@ -9,7 +9,6 @@ import Create from './Create.jsx';
 import Friends from './Friends.jsx';
 import FriendsResults from './FriendsResults.jsx';
 import Quiz from './Quiz.jsx';
-import Results from './Results.jsx';
 import QuizList from './QuizList.jsx';
 
 const useStyles = makeStyles((theme) => ({
