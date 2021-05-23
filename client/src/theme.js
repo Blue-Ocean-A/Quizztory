@@ -40,6 +40,11 @@ const theme = createMuiTheme({
       color: '#5B685E',
       fontFamily: 'Montserrat, san-serif',
     },
+    h5: {
+      fontSize: '0.8rem',
+      color: '#5B685E',
+      fontFamily: 'Montserrat, san-serif',
+    },
   },
 });
 

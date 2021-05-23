@@ -34,12 +34,24 @@ const useStyles = makeStyles((theme) => ({
 export default function Friends() {
   const classes = useStyles();
 
-  const [friends, setFriends] = useState(['Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew', 'Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew', 'Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew', 'Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew', 'Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew', 'Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew', 'Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew']);
+  const [friends, setFriends] = useState(['Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew']);
   const [search, setSearch] = useState(['']);
-  const [pending, setPending] = useState(['Esteban']);
+  const [pending, setPending] = useState(['Esteban', 'Bob', 'Sara']);
 
   const handleSearchChange = (searchValue) => {
     setSearch(searchValue);
+  };
+
+  const handleAcceptClick = () => {
+    friends.push(pending[0]);
+    const pendingRequests = pending.slice(1);
+    setPending(pendingRequests);
+    // console.log(pending.length);
+  };
+
+  const handleDenyClick = () => {
+    const pendingRequests = pending.slice(1);
+    setPending(pendingRequests);
   };
 
   return (
@@ -51,7 +63,11 @@ export default function Friends() {
       </div>
       {pending.length ? (
         <>
-          <FriendRequest request={pending[0]} />
+          <FriendRequest
+            request={pending[0]}
+            handleAcceptClick={handleAcceptClick}
+            handleDenyClick={handleDenyClick}
+          />
           <div className={classes.fullList}>
             {friends.sort().map((friend, index) => <Friend key={index} name={friend} />)}
           </div>

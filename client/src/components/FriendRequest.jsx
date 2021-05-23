@@ -1,25 +1,26 @@
 import React from 'react';
 import {
-  Typography, ButtonGroup, Button, makeStyles, Box
+  Typography, ButtonGroup, Button, makeStyles, Box,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   textAlign: 'center',
 }));
 
-export default function FriendRequest({ request }) {
+export default function FriendRequest({ request, handleAcceptClick, handleDenyClick }) {
   const classes = useStyles();
   return (
     <>
-      <Box className={classes} border={1} borderRadius={10} borderColor="primary.main" padding={1} margin={1}>
+      <Box border={1} borderLeft={0} borderRight={0} borderColor="primary.main" padding={1} margin={1}>
         <Typography variant="h4">
-          {request}
+          {request.toUpperCase()}
         </Typography>
-        {' '}
-        would like to be your Friend!
-        <ButtonGroup>
-          <Button>Accept</Button>
-          <Button>Deny</Button>
+        <Typography variant="h5">
+          would like to be your friend!
+        </Typography>
+        <ButtonGroup style={{ display: 'flex' }}>
+          <Button onClick={handleAcceptClick}>Accept</Button>
+          <Button onClick={handleDenyClick}>Deny</Button>
         </ButtonGroup>
       </Box>
     </>
