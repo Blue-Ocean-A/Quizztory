@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import React, { useState } from 'react';
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
+import { Grid, Container } from '@material-ui/core';
 import theme from '../theme.js';
 import QuizztoryLogo from '../../../QuizztoryLogo.png';
 import Login from './Login.jsx';
@@ -15,12 +15,17 @@ import QuizList from './QuizList.jsx';
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.primary.light,
+    dispay: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'no-wrap',
+    height: '60%',
   },
   image: {
-    height: 200,
-    width: '100%',
-    marginLeft: 500,
-    marginRight: 500,
+    display: 'flex',
+    width: '30%',
+    margin: '25 auto 20 auto',
+  },
+  quizzList: {
   },
 }));
 
@@ -31,26 +36,33 @@ const App = () => {
   const [currentQuiz, setCurrentQuiz] = useState();
   const [currentUser, setCurrentUser] = useState();
   const [display, setDisplay] = useState('login');
+
   const classes = useStyles();
 
-  return (
-    <ThemeProvider theme={theme}>
-      <Grid container>
+  if (display === 'login') {
+    return (
+      <>
         <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
-        {display === 'login' && (
         <Login setDisplay={setDisplay} setCurrentUser={setCurrentUser} />
-        )}
-        {display === 'home' && (
-        <Grid>
-          <Grid item>
+      </>
+    );
+  }
+
+  if (display === 'home') {
+    return (
+      <>
+        <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
+        <Grid container spacing={2} className={classes.root}>
+          <Grid item xs={6}>
             <QuizList allQuizzes={allQuizzes} />
+          </Grid>
+          <Grid item xs={2}>
             <Friends />
           </Grid>
         </Grid>
-        )}
-      </Grid>
-    </ThemeProvider>
-  );
+      </>
+    );
+  }
 };
 
 export default App;

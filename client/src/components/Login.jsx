@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     backgroundColor: theme.palette.primary.light,
+    color: theme.palette.primary.dark,
   },
   button: {
     backgroundColor: theme.palette.secondary.light,
