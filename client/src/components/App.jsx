@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import React, { useState } from 'react';
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
-import { Grid, Box } from '@material-ui/core';
+import { Grid, Box, Button } from '@material-ui/core';
 import QuizztoryLogo from '../../../QuizztoryLogo.png';
 import Login from './Login.jsx';
 import Create from './Create.jsx';
@@ -31,6 +31,13 @@ const useStyles = makeStyles((theme) => ({
   },
   quizzList: {
   },
+  createButton: {
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.primary.light,
+    dispay: 'flex',
+    justifyContent: 'center',
+    width: '100%',
+  },
 }));
 
 const App = () => {
@@ -41,10 +48,9 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState();
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [display, setDisplay] = useState('login');
+  const [display, setDisplay] = useState('create');
 
   const classes = useStyles();
-
   if (display === 'login') {
     return (
       <>
@@ -68,6 +74,14 @@ const App = () => {
         <Grid container spacing={2} className={classes.root}>
           <Grid item xs={6}>
             <QuizList allQuizzes={allQuizzes} />
+            <Button
+              variant="contained"
+              aria-label="create"
+              className={classes.createButton}
+              onClick={() => { setDisplay('create'); }}
+            >
+              Create A Quiz
+            </Button>
           </Grid>
           <Grid item xs={2}>
             <Friends />
@@ -101,6 +115,19 @@ const App = () => {
           <Quiz
             currentQuiz={currentQuiz}
             display={display}
+            setDisplay={currentUser}
+          />
+        </Grid>
+      </>
+    );
+  }
+
+  if (display === 'create') {
+    return (
+      <>
+        <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
+        <Grid container spacing={2} className={classes.root}>
+          <Create
             setDisplay={currentUser}
           />
         </Grid>
