@@ -31,7 +31,7 @@ const App = () => {
   const [allQuizzes, setAllQuizzes] = useState([historyEasy]);
   const [currentQuiz, setCurrentQuiz] = useState(historyEasy);
   const [currentUser, setCurrentUser] = useState();
-  const [display, setDisplay] = useState('quiz');
+  const [display, setDisplay] = useState('login');
   const classes = useStyles();
 
   return (
