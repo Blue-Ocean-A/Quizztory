@@ -90,6 +90,14 @@ const App = () => {
           setDisplay={setDisplay}
         />
       )}
+      {display === 'quizResults' && (
+      <Quiz
+        currentQuiz={currentQuiz}
+        display={display}
+        setDisplay={setDisplay}
+        currentUser={currentUser}
+      />
+      )}
     </Grid>
   );
 };
