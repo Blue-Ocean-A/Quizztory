@@ -60,7 +60,7 @@ export default function Friends() {
       <Container>
         <Score />
       </Container>
-      <Container className={classes.container}>
+      <Container component={Paper} className={classes.container}>
         <div>
           <Typography variant="h3">
             FRIENDS
