@@ -41,7 +41,7 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState('Matt');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [display, setDisplay] = useState('login');
+  const [display, setDisplay] = useState('home');
 
   const classes = useStyles();
 

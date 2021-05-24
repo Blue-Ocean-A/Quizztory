@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import { Container, Typography } from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -32,28 +34,62 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Friends() {
+export default function Friends({ currentUser }) {
   const classes = useStyles();
 
-  const [friends, setFriends] = useState(['Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew']);
+  const [friends, setFriends] = useState([]);
   const [search, setSearch] = useState(['']);
-  const [pending, setPending] = useState(['Esteban', 'Bob', 'Sara']);
+  const [incoming, setIncoming] = useState([]);
+  const [outgoing, setOutgoing] = useState([]);
 
   const handleSearchChange = (searchValue) => {
     setSearch(searchValue);
+    if (searchValue.length > 2) {
+      axios.get();
+    }
+  };
+
+  const getUserInfo = () => {
+    axios.get(`/api/userProfile?name=${currentUser}`)
+      .then((res) => {
+        setFriends(res.data[0].friends);
+        setIncoming(res.data[0].incoming);
+        setOutgoing(res.data[0].outgoing);
+      })
+      .catch((err) => {
+        console.log('err:', err);
+      });
   };
 
   const handleAcceptClick = () => {
-    friends.push(pending[0]);
-    const pendingRequests = pending.slice(1);
-    setPending(pendingRequests);
-    // console.log(pending.length);
+    axios.put('/api/userProfile/accept', {
+      requester: incoming[0],
+      requestee: currentUser,
+    })
+      .then(() => {
+        friends.push(incoming[0]);
+        const incomingRequests = incoming.slice(1);
+        setIncoming(incomingRequests);
+      })
+      .catch((err) => {
+        console.log('err:', err);
+      });
   };
 
   const handleDenyClick = () => {
-    const pendingRequests = pending.slice(1);
-    setPending(pendingRequests);
+    axios.put(('/api/userProfile/deny'), {
+      requester: incoming[0],
+      requestee: currentUser,
+    })
+      .then(() => {
+        const incomingRequests = incoming.slice(1);
+        setIncoming(incomingRequests);
+      });
   };
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
 
   return (
     <>
@@ -66,20 +102,20 @@ export default function Friends() {
             FRIENDS
           </Typography>
         </div>
-        {pending.length ? (
+        {incoming.length ? (
           <>
             <FriendRequest
-              request={pending[0]}
+              request={incoming[0]}
               handleAcceptClick={handleAcceptClick}
               handleDenyClick={handleDenyClick}
             />
             <div className={classes.fullList}>
-              {friends.sort().map((friend, index) => <Friend key={index} name={friend} />)}
+              {friends.map((friend, index) => <Friend key={index} name={friend} />)}
             </div>
           </>
         ) : (
           <div className={classes.fullList}>
-            {friends.sort().map((friend, index) => <Friend key={index} name={friend} />)}
+            {friends.map((friend, index) => <Friend key={index} name={friend} />)}
           </div>
         )}
         <SearchBar
