@@ -16,12 +16,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.light,
     dispay: 'flex',
     justifyContent: 'center',
-    flexWrap: 'no-wrap',
+    flexWrap: 'wrap',
     height: '60%',
   },
   image: {
     display: 'flex',
-    width: '30%',
+    width: '30vw',
     margin: '25 auto 20 auto',
   },
   quizzList: {

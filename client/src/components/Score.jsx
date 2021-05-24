@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Typography, Container } from '@material-ui/core/';
+import Results from './Results.jsx';
 
 const styles = {
   container: {
@@ -11,7 +12,12 @@ const styles = {
   },
 };
 
+const handleScoreClick = () => {
+  setClicked(true);
+};
+
 export default function Score() {
+  const [clicked, setClicked] = useState(false);
   return (
     <div style={styles.container}>
       <Typography variant="h1" color="primary">

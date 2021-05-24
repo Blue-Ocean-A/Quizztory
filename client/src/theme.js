@@ -36,8 +36,17 @@ const theme = createMuiTheme({
     h3: {
       fontSize: '1.2rem',
       fontWeight: 'bold',
-      fontFamily: mont,
       color: '#5B685E',
+    },
+    h4: {
+      fontSize: '1rem',
+      color: '#5B685E',
+      fontFamily: 'Montserrat, san-serif',
+    },
+    h5: {
+      fontSize: '0.8rem',
+      color: '#5B685E',
+      fontFamily: 'Montserrat, san-serif',
     },
   },
 });
