@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -31,9 +31,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const QuizResults = ({ currentQuiz, score, setDisplay }) => {
+const QuizResults = ({
+  currentQuiz, score, setScore, setDisplay,
+}) => {
   const classes = useStyles();
   const { questions } = currentQuiz;
+  console.log('This is score in global QuizResults ', score);
+
+  useEffect(() => {
+    console.log('score in useEffect ', score);
+  }, [score]);
 
   const percentScore = (score) => {
     const number = (score / (questions.length)) * 100;
@@ -47,6 +54,7 @@ const QuizResults = ({ currentQuiz, score, setDisplay }) => {
 
   return (
     <Container className={classes.quizDiv} maxWidth="sm">
+      {console.log('This is score in jsx ', score)}
       <Typography variant="h2" component="h2" align="center" gutterBottom="true">{currentQuiz.name}</Typography>
       <Container className={classes.resultsTitle}>
         <Typography variant="h3" component="h3">You Scored</Typography>

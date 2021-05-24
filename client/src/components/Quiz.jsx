@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Typography, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
@@ -41,6 +41,10 @@ const Quiz = ({
   const classes = useStyles();
   const { questions } = currentQuiz;
 
+  useEffect(() => {
+    console.log('Quiz rendered');
+  }, [score]);
+
   const updateScore = (score) => {
     const body = {
       username: currentUser,
@@ -52,12 +56,15 @@ const Quiz = ({
 
   const handleClick = (isCorrect) => {
     if (isCorrect === true) {
+      console.log('Score changed in Quiz ', score);
       setScore(score + 1);
     }
     let oldIndex = index;
     if (oldIndex === questions.length - 1) {
-      updateScore(score);
+      // updateScore(score);
+      console.log('This is FINAL score in Quiz ', score);
       setDisplay('quizResults');
+      // setIndex(0);
     } else {
       oldIndex += 1;
       setIndex(oldIndex);
@@ -66,42 +73,43 @@ const Quiz = ({
 
   return (
     <div>
-      {display === 'quiz' && (
-        <Container className={classes.quizDiv} maxWidth="sm">
+      {/* {display === 'quiz' && ( */}
+      <Container className={classes.quizDiv} maxWidth="sm">
 
-          <Typography variant="h2" component="h2" align="center" gutterBottom="true">{currentQuiz.name}</Typography>
-          <Typography variant="body2" component="body2" color="textSecondary" align="center" gutterBottom="true">
-            Question
-            {' '}
-            {index + 1}
-            {' '}
-            /
-            {' '}
-            {questions.length}
-          </Typography>
-          <Container className={classes.questionDiv}>
-            <Container className={classes.questionTitle}>
-              <Typography variant="h3" component="h3">{questions[index].text}</Typography>
-            </Container>
-            {questions[index].answers.map((answer) => (
-              <Button
-                key={answer.text}
-                className={classes.button}
-                onClick={() => handleClick(answer.isCorrect)}
-              >
-                {answer.text}
-              </Button>
-            ))}
+        <Typography variant="h2" component="h2" align="center" gutterBottom="true">{currentQuiz.name}</Typography>
+        <Typography variant="body2" component="body2" color="textSecondary" align="center" gutterBottom="true">
+          Question
+          {' '}
+          {index + 1}
+          {' '}
+          /
+          {' '}
+          {questions.length}
+        </Typography>
+        <Container className={classes.questionDiv}>
+          <Container className={classes.questionTitle}>
+            <Typography variant="h3" component="h3">{questions[index].text}</Typography>
           </Container>
+          {questions[index].answers.map((answer) => (
+            <Button
+              key={answer.text}
+              className={classes.button}
+              onClick={() => handleClick(answer.isCorrect)}
+            >
+              {answer.text}
+            </Button>
+          ))}
         </Container>
-      )}
-      {display === 'quizResults' && (
-        <QuizResults
-          score={score}
-          setDisplay={setDisplay}
-          currentQuiz={currentQuiz}
-        />
-      )}
+      </Container>
+      {/* )} */}
+      {/* {display === 'quizResults' && ( */}
+      <QuizResults
+        score={score}
+        setScore={setScore}
+        setDisplay={setDisplay}
+        currentQuiz={currentQuiz}
+      />
+      {/* )} */}
     </div>
   );
 };
