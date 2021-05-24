@@ -1,5 +1,5 @@
 const express = require('express');
-
+const db = require('../db/index.js');
 const app = express();
 const cors = require('cors');
 const queries = require('../db/controllers.js');
@@ -18,6 +18,7 @@ app.use(cors());
 app.get('/api/user', (req, res) => {
   queries.getUser(req.query.name, req.query.password, (err, data) => {
     if (err) {
+      console.log('err: ', err);
       res.status(404).send(err);
     } else {
       console.log(data);
