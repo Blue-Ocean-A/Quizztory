@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import React, { useState } from 'react';
-import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import theme from '../theme.js';
 import QuizztoryLogo from '../../../QuizztoryLogo.png';
@@ -11,6 +11,7 @@ import FriendsResults from './FriendsResults.jsx';
 import Quiz from './Quiz.jsx';
 import Results from './Results.jsx';
 import QuizList from './QuizList.jsx';
+import historyEasy from '../quizData/historyEasy.js';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,31 +28,45 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const [showBack, setShowBack] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
-  const [allQuizzes, setAllQuizzes] = useState([]);
-  const [currentQuiz, setCurrentQuiz] = useState();
+  const [allQuizzes, setAllQuizzes] = useState([historyEasy]);
+  const [currentQuiz, setCurrentQuiz] = useState(historyEasy);
   const [currentUser, setCurrentUser] = useState();
-  const [display, setDisplay] = useState('login');
+  const [display, setDisplay] = useState('quiz');
   const classes = useStyles();
 
   return (
-    <ThemeProvider theme={theme}>
-      <Grid container>
-        <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
-        {display === 'login' && (
+
+    <Grid container>
+      <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
+      {display === 'login' && (
         <Login setDisplay={setDisplay} setCurrentUser={setCurrentUser} />
-        )}
-        {display === 'home' && (
+      )}
+      {display === 'home' && (
         <Grid>
           <Grid item>
             <QuizList allQuizzes={allQuizzes} />
-            {/* <FriendsList />
+            <FriendsList />
             <Results />
-            <Quiz /> */}
           </Grid>
         </Grid>
-        )}
-      </Grid>
-    </ThemeProvider>
+      )}
+      {display === 'quiz' && (
+        <Quiz
+          currentQuiz={currentQuiz}
+          display={display}
+          setDisplay={setDisplay}
+        />
+      )}
+      {display === 'quizResults' && (
+        <Quiz
+          currentQuiz={currentQuiz}
+          display={display}
+          setDisplay={setDisplay}
+          currentUser={currentUser}
+        />
+      )}
+    </Grid>
+
   );
 };
 
