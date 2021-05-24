@@ -116,6 +116,7 @@ const App = () => {
         <Grid container spacing={2} className={classes.root}>
           <Quiz
             currentQuiz={currentQuiz}
+            currentUser={currentUser}
             display={display}
             setDisplay={setDisplay}
           />

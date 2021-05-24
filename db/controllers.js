@@ -7,7 +7,7 @@ const QuizData = require('./models/QuizData.js');
 
 //see if a user has correct password
 const getUser = (name, password, cb) => {
-  Credential.find({ name, password }, (error, results) => {
+  Credential.find({ name: name, password: password }, (error, results) => {
     if (error) {
       cb(error, null);
     } else {
@@ -51,7 +51,7 @@ const getQuizzData = (name, cb) => {
 
 //post a new user and password to credentials collection, make new profile
 const postUser = (body, cb) => {
-  Credential.create({ body }, (error) => {
+  Credential.create({ name: body.name, password: body.password }, (error) => {
     if (error) {
       cb(error, null);
     } else {
@@ -68,7 +68,9 @@ const postUser = (body, cb) => {
 
 //post new quiz to quizzes and quiz data collections
 const postQuiz = (body, cb) => {
-  QuizData.create({ body }, (error) => {
+  QuizData.create({
+    name: body.name, topic: body.topic, difficulty: body.difficulty, questions: body.questions,
+  }, (error) => {
     if (error) {
       cb(error, null);
     } else {
@@ -130,7 +132,7 @@ const putFriendAccept = (body, cb) => {
 
 //removes requester from requestee's incoming, does NOT remove requestee from requester's outgoing
 const putFriendReject = (body, cb) => {
-  Profile.updateOne({ name: body.name }, { $pull: { incoming: body.requester } }, (error, results) => {
+  Profile.updateOne({ name: body.requestee }, { $pull: { incoming: body.requester } }, (error, results) => {
     if (error) {
       cb(error, null);
     } else {
