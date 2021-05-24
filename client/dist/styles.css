@@ -8,3 +8,12 @@ body {
   background-color: #F2EECA;
   height: 90%;
 }
+
+#quiz-over-button {
+  background-color: #5B685E;
+  border: none;
+  font-family: 'Cinzel', serif;
+  color: #D3E7D8;
+  font-size: 18px;
+  margin-top: 30px;
+}

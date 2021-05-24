@@ -10,7 +10,6 @@ Jenna Groth, Tamir Amitai, Kim Schaefer, Matt Salmons, and Julian Bowman
 ## Project Timeline:
 This phase of Quizztory was implemented in a 9 day timeframe.
 
-
 ## Git Workflow
 1) Switch the repo to the master branch, pull the latest commits and resets the repo's local copy of master to match the latest version
 ```
@@ -44,7 +43,6 @@ git pull origin new-feature
 <resolve conflicts>
 git push origin new-feature
 ```
-
 ## Dependencies
 - Styling framework: Material UI
 - Testing: Jest, enzyme
@@ -54,3 +52,14 @@ git push origin new-feature
 - Front-End MVC: ReactJS with hooks for state management
 - Server MVC: Express
 - HTTP client: Axios
+- Database connection: Mongoose
+
+## Database Initialization
+1. Download data folder from google drive and place in root directory.
+2. Log into mongo shell( ~:  mongo ).
+3. Create new quizztory database ( >  use quizztory ).
+     !!!If you already have data in quizztory empty it first to ensure we dont have duplicate data. ( >  db.dropDatabase() )
+4. From root project directory terminal run db init file with node 
+   (~/Quizztory:  node db.init.js ).
+5. You should see a message indicating that seeding the database was succesful.
+
