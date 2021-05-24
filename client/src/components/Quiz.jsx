@@ -73,7 +73,7 @@ const Quiz = ({
 
   return (
     <div>
-      {/* {display === 'quiz' && ( */}
+      {display === 'quiz' && (
       <Container className={classes.quizDiv} maxWidth="sm">
 
         <Typography variant="h2" component="h2" align="center" gutterBottom="true">{currentQuiz.name}</Typography>
@@ -101,15 +101,15 @@ const Quiz = ({
           ))}
         </Container>
       </Container>
-      {/* )} */}
-      {/* {display === 'quizResults' && ( */}
+      )}
+      {display === 'quizResults' && (
       <QuizResults
         score={score}
         setScore={setScore}
         setDisplay={setDisplay}
         currentQuiz={currentQuiz}
       />
-      {/* )} */}
+      )}
     </div>
   );
 };

@@ -101,7 +101,7 @@ const App = () => {
           <Quiz
             currentQuiz={currentQuiz}
             display={display}
-            setDisplay={currentUser}
+            setDisplay={setDisplay}
           />
         </Grid>
       </>
