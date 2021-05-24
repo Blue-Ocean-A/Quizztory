@@ -1,4 +1,7 @@
+/* eslint-disable no-console */
+/* eslint-disable react/prop-types */
 import React from 'react';
+import axios from 'axios';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -30,26 +33,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function createData(quizName, topic, difficulty) {
-  // map over array of quizzes and invoke create data on each
-  // /api/quizzes
-  return {
-    quizName, topic, difficulty,
-  };
-}
-
-const rows = [
-  createData('The easiest history quiz in the world', 'History', 'Easy'),
-  createData('The history quiz only a teacher can pass', 'History', 'Hard'),
-  createData('American History Quiz', 'History', 'Medium'),
-  createData('Animals for the whole family quiz', 'Nature', 'Easy'),
-  createData('Name that country', 'Random', 'Hard'),
-  createData('The Berry Best fruits', 'Nature', 'Easy'),
-  createData('Am I a person, place or thing?', 'History', 'Middle'),
-];
-
-const QuizList = () => {
+const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
   const classes = useStyles();
+
+  const handleQuizClick = (quizName) => {
+    axios.get(`/api/quizzData?name=${quizName}`)
+      .then((response) => {
+        setCurrentQuiz(response.data[0]);
+        setDisplay('quiz');
+      })
+      .catch((error) => {
+        console.log('Error getting quiz data: ', error);
+      });
+    // setCurrentQuiz(quiz);
+    // setDisplay('quiz');
+  };
 
   return (
     <Grid>
@@ -66,10 +64,11 @@ const QuizList = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow className={classes.nested} key={row.quizName}>
+            {allQuizzes.map((row) => (
+              // eslint-disable-next-line max-len
+              <TableRow className={classes.nested} key={row.name} onClick={() => handleQuizClick(row.name)}>
                 <TableCell component="th" scope="row">
-                  {row.quizName}
+                  {row.name}
                 </TableCell>
                 <TableCell align="right">{row.topic}</TableCell>
                 <TableCell align="right">{row.difficulty}</TableCell>
