@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const mongoURI = 'mongodb://localhost:27017/quizztory';
 
-const db = mongoose.connect(mongoURI, { 
-  useUnifiedTopology: true, 
-  useNewUrlParser: true 
+const db = mongoose.connect(mongoURI, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true
 })
 .then(db => console.log(`Connected to: ${mongoURI}`))
 .catch(err => {
