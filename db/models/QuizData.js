@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const quizdataSchema = new mongoose.Schema({
-  name: String,
+  name: { type: String, index: true },
   topic: String,
   difficulty: String,
   questions: Array,
