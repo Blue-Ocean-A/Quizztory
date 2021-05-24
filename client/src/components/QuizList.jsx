@@ -57,7 +57,7 @@ const QuizList = () => {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <Typography component="h5" variant="h5" align="right" className={classes.text}>Take A Quiz</Typography>
+              <Typography component="h3" variant="h3" align="right" className={classes.text}>Take A Quiz</Typography>
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>Quiz Name</TableCell>

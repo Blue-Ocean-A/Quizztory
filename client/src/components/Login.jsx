@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     backgroundColor: theme.palette.primary.light,
+    color: theme.palette.primary.dark,
   },
   button: {
     backgroundColor: theme.palette.secondary.main,
@@ -47,7 +48,7 @@ const Login = ({
   return (
     <Container className={classes.login} maxWidth="xs">
       <div>
-        <Typography component="h1" variant="h5" style={{ marginTop: 15 }}>
+        <Typography component="h5" variant="h5" style={{ marginTop: 15 }}>
           Login
         </Typography>
         <form noValidate>
@@ -90,7 +91,7 @@ const Login = ({
           </Button>
           <Grid container style={{ marginTop: 10 }}>
             <Grid item>
-              <Link className={classes.link} href="#" variant="body2" onClick={() => setDisplay('SignUp')}>
+              <Link className={classes.link} href="#" variant="body2" onClick={() => setDisplay('signUp')}>
                 Sign up for an account
               </Link>
             </Grid>
