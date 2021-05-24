@@ -1,8 +1,7 @@
 const express = require('express');
-
+const db = require('../db/index.js');
 const app = express();
 const cors = require('cors');
-const db = require('../db/index.js');
 const queries = require('../db/controllers.js');
 
 // serve static files from dist dir
@@ -19,6 +18,7 @@ app.use(cors());
 app.get('/api/user', (req, res) => {
   queries.getUser(req.query.name, req.query.password, (err, data) => {
     if (err) {
+      console.log('err: ', err);
       res.status(404).send(err);
     } else {
       console.log(data);
@@ -31,6 +31,7 @@ app.get('/api/user', (req, res) => {
 app.get('/api/userProfile', (req, res) => {
   queries.getUserProfile(req.query.name, (err, data) => {
     if (err) {
+      console.log('error: ', err);
       res.status(404).send(err);
     } else {
       console.log(data);
