@@ -10,10 +10,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 const axios = require('axios');
 
-
-export default function StickyHeadTable (props) {
-  const currentUser = props.user;
-  const comparedUserName = props.friend;
+export default function StickyHeadTable({user, friend}) {
+  const currentUser = user;
+  const comparedUserName = friend;
   const comparedUser = axios.get(`http://localhost:3000/api/userProfile?name=${comparedUserName}`);
 
   const columns = [
@@ -24,9 +23,9 @@ export default function StickyHeadTable (props) {
 
   const rows = [];
 
-  function createData(currentUser, comparedUser) {
-    currentUser.map((score) => {
-      comparedUser.map((item) => {
+  function createData(currentResults, comparedResults) {
+    currentResults.map((score) => {
+      comparedResults.map((item) => {
         if (score.quizName === item.quizName) {
           rows.push({ currentUserScores: score.score, quizName: score.quizName, comparedUserScores: item.score });
         }
