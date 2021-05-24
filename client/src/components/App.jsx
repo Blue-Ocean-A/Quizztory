@@ -10,6 +10,7 @@ import Friends from './Friends.jsx';
 import FriendsResults from './FriendsResults.jsx';
 import Quiz from './Quiz.jsx';
 import QuizList from './QuizList.jsx';
+import SignUp from './SignUp.jsx';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,6 +35,8 @@ const App = () => {
   const [allQuizzes, setAllQuizzes] = useState([]);
   const [currentQuiz, setCurrentQuiz] = useState();
   const [currentUser, setCurrentUser] = useState();
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
   const [display, setDisplay] = useState('login');
 
   const classes = useStyles();
@@ -42,7 +45,14 @@ const App = () => {
     return (
       <>
         <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
-        <Login setDisplay={setDisplay} setCurrentUser={setCurrentUser} />
+        <Login
+          setDisplay={setDisplay}
+          setCurrentUser={setCurrentUser}
+          userName={userName}
+          setUserName={setUserName}
+          password={password}
+          setPassword={setPassword}
+        />
       </>
     );
   }
@@ -58,6 +68,32 @@ const App = () => {
           <Grid item xs={2}>
             <Friends />
           </Grid>
+        </Grid>
+      </>
+    );
+  }
+
+  if (display === 'signUp') {
+    <SignUp
+      setDisplay={setDisplay}
+      setCurrentUser={setCurrentUser}
+      userName={userName}
+      setUserName={setUserName}
+      password={password}
+      setPassword={setPassword}
+    />;
+  }
+
+  if (display === 'quiz' || display === 'quizResults') {
+    return (
+      <>
+        <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
+        <Grid container spacing={2} className={classes.root}>
+          <Quiz
+            currentQuiz={currentQuiz}
+            display={display}
+            setDisplay={currentUser}
+          />
         </Grid>
       </>
     );
