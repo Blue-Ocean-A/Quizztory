@@ -12,6 +12,7 @@ import Results from './Results.jsx';
 import QuizList from './QuizList.jsx';
 import Score from './Score.jsx';
 import SignUp from './SignUp.jsx';
+import historyEasy from '../quizData/historyEasy.js';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -31,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const [showBack, setShowBack] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
-  const [allQuizzes, setAllQuizzes] = useState([]);
-  const [currentQuiz, setCurrentQuiz] = useState();
+  const [allQuizzes, setAllQuizzes] = useState([historyEasy]);
+  const [currentQuiz, setCurrentQuiz] = useState(historyEasy);
   const [currentUser, setCurrentUser] = useState();
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');

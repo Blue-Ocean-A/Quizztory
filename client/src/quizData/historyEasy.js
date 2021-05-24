@@ -52,5 +52,5 @@ const historyEasy = {
   ],
 };
 
-export default historyEasy;
+module.exports = historyEasy;
 // SOURCE: https://www.beano.com/posts/the-ultimate-easy-history-quiz
