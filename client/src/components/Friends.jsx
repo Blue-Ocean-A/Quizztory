@@ -53,7 +53,7 @@ export default function Friends({ currentUser }) {
     axios.get(`/api/userProfile?name=${currentUser}`)
       .then((res) => {
         setFriends(res.data[0].friends);
-        setIncoming(res.data[0].incoming);
+        // setIncoming(res.data[0].incoming);
         setOutgoing(res.data[0].outgoing);
       })
       .catch((err) => {
@@ -72,7 +72,7 @@ export default function Friends({ currentUser }) {
         setIncoming(incomingRequests);
       })
       .catch((err) => {
-        console.log('err:', err);
+        console.log('err accept incoming req:', err);
       });
   };
 
@@ -84,6 +84,9 @@ export default function Friends({ currentUser }) {
       .then(() => {
         const incomingRequests = incoming.slice(1);
         setIncoming(incomingRequests);
+      })
+      .catch((err) => {
+        console.log('err denying req', err);
       });
   };
 
