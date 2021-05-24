@@ -3,7 +3,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { Container, Typography, Button } from '@material-ui/core';
+import { Container, Typography, Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
@@ -19,9 +19,10 @@ const useStyles = makeStyles((theme) => ({
     margin: '20px',
     width: '92%',
   },
-  questionText: {
+  inputDiv: {
     backgroundColor: theme.palette.secondary.light,
     padding: '20px',
+    width: '90%',
   },
   button: {
     backgroundColor: theme.palette.primary.light,
@@ -40,11 +41,11 @@ const Create = ({ setDisplay }) => {
   const [question, setQuestion] = useState({
     text: '',
     answers: [
-      {text: '', isCorrect: false},
-      {text: '', isCorrect: false},
-      {text: '', isCorrect: false},
-      {text: '', isCorrect: false},
-    ]
+      { text: '', isCorrect: false },
+      { text: '', isCorrect: false },
+      { text: '', isCorrect: false },
+      { text: '', isCorrect: false },
+    ],
   });
 
   const classes = useStyles();
@@ -61,11 +62,12 @@ const Create = ({ setDisplay }) => {
         {questions.length + 1}
       </Typography>
       <Container className={classes.questionDiv}>
-        <Container className={classes.questionText}>
-          <Typography variant="h3" component="h3">Question Text:</Typography>
-          
+        <Container className={classes.inputDiv}>
+          <TextField id="filled-basic" label="Question Text" variant="filled" />
         </Container>
-          <h1>Im a container</h1>
+          <Button>Cancel</Button>
+          <Button>Previous</Button>
+          <Button>Next</Button>
       </Container>
     </Container>
   );
