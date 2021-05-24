@@ -21,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: theme.palette.primary.light,
   },
+  text: {
+    paddingTop: 15,
+    color: theme.palette.primary.light,
+  },
 }));
 
 const Login = ({
@@ -48,7 +52,7 @@ const Login = ({
   return (
     <Container className={classes.login} maxWidth="xs">
       <div>
-        <Typography component="h5" variant="h5" style={{ marginTop: 15 }}>
+        <Typography component="h3" variant="h3" className={classes.text}>
           Login
         </Typography>
         <form noValidate>

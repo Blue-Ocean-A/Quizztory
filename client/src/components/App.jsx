@@ -1,7 +1,8 @@
+/* eslint-disable consistent-return */
 /* eslint-disable import/extensions */
 import React, { useState } from 'react';
-import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
-import { Grid, Box } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { Grid } from '@material-ui/core';
 import QuizztoryLogo from '../../../QuizztoryLogo.png';
 import Login from './Login.jsx';
 import Create from './Create.jsx';
