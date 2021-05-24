@@ -10,7 +10,7 @@ import QuizResults from './QuizResults.jsx';
 const useStyles = makeStyles((theme) => ({
   quizDiv: {
     backgroundColor: theme.palette.primary.dark,
-    height: '450px',
+    margin: '5rem',
     padding: '30px',
   },
   questionDiv: {
@@ -25,10 +25,18 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     backgroundColor: theme.palette.primary.light,
-    width: '150px',
+    '&:hover': {
+      backgroundColor: '#D3E7D8',
+    },
+    fontFamily: 'Montserrat, san-serif',
+    width: '175px',
     height: '50px',
     padding: '10px',
     margin: '20px',
+    lineHeight: '1.4',
+  },
+  questionTracker: {
+    width: '100%',
   },
 }));
 
@@ -42,74 +50,86 @@ const Quiz = ({
   const { questions } = currentQuiz;
 
   useEffect(() => {
-    console.log('Quiz rendered');
   }, [score]);
 
   const updateScore = (score) => {
+    const percentScore = (score / (currentQuiz.questions.length - 1)) * 100;
+
     const body = {
-      username: currentUser,
-      quiz: currentQuiz.name,
-      score,
+      userName: currentUser,
+      quizName: currentQuiz.name,
+      score: percentScore.toString(),
     };
-    axios.put('/quiz', body);
+    axios.put('/api/userProfile/score', body)
+      .then((response) => {
+        console.log(`${currentUser}'s score of ${percentScore} for ${currentQuiz.name} has been updated: `, response.data);
+      })
+      .catch((err) => {
+        console.log(`ERROR updating ${currentUser.name}'s score: `, err);
+      });
   };
 
   const handleClick = (isCorrect) => {
     if (isCorrect === true) {
-      console.log('Score changed in Quiz ', score);
       setScore(score + 1);
     }
     let oldIndex = index;
     if (oldIndex === questions.length - 1) {
-      // updateScore(score);
-      console.log('This is FINAL score in Quiz ', score);
+      updateScore(score);
       setDisplay('quizResults');
-      // setIndex(0);
+      setIndex(0);
     } else {
       oldIndex += 1;
       setIndex(oldIndex);
     }
   };
 
+  const handleBack = () => {
+    setDisplay('home');
+  };
+
   return (
     <div>
-      {/* {display === 'quiz' && ( */}
-      <Container className={classes.quizDiv} maxWidth="sm">
+      {display === 'quiz' && (
+        <>
+          <Container className={classes.quizDiv} maxWidth="sm">
+            <Typography variant="h2" component="h2" align="center" gutterBottom="true">{currentQuiz.name}</Typography>
+            <Typography variant="h4" component="h4" color="textSecondary" align="center" gutterBottom="true">
+              Question
+              {' '}
+              {index + 1}
+              {' '}
+              /
+              {' '}
+              {questions.length}
+            </Typography>
+            <Container className={classes.questionDiv}>
+              <Container className={classes.questionTitle}>
+                <Typography variant="h3" component="h3">{questions[index].text}</Typography>
+              </Container>
+              {questions[index].answers.map((answer) => (
+                <Button
+                  key={answer.text}
+                  className={classes.button}
+                  onClick={() => handleClick(answer.isCorrect)}
+                >
+                  {answer.text}
+                </Button>
+              ))}
+            </Container>
 
-        <Typography variant="h2" component="h2" align="center" gutterBottom="true">{currentQuiz.name}</Typography>
-        <Typography variant="body2" component="body2" color="textSecondary" align="center" gutterBottom="true">
-          Question
-          {' '}
-          {index + 1}
-          {' '}
-          /
-          {' '}
-          {questions.length}
-        </Typography>
-        <Container className={classes.questionDiv}>
-          <Container className={classes.questionTitle}>
-            <Typography variant="h3" component="h3">{questions[index].text}</Typography>
           </Container>
-          {questions[index].answers.map((answer) => (
-            <Button
-              key={answer.text}
-              className={classes.button}
-              onClick={() => handleClick(answer.isCorrect)}
-            >
-              {answer.text}
-            </Button>
-          ))}
-        </Container>
-      </Container>
-      {/* )} */}
-      {/* {display === 'quizResults' && ( */}
-      <QuizResults
-        score={score}
-        setScore={setScore}
-        setDisplay={setDisplay}
-        currentQuiz={currentQuiz}
-      />
-      {/* )} */}
+          <button type="button" id="quiz-back-button" onClick={handleBack}>Back to Home</button>
+        </>
+      )}
+      {display === 'quizResults' && (
+        <QuizResults
+          score={score}
+          setScore={setScore}
+          setDisplay={setDisplay}
+          currentQuiz={currentQuiz}
+        />
+      )}
     </div>
   );
 };

@@ -16,4 +16,17 @@ body {
   color: #D3E7D8;
   font-size: 18px;
   margin-top: 30px;
+  width: 100%;
+  text-align: center;
+}
+
+#quiz-back-button {
+  border: none;
+  background-color: #F2EECA;
+  font-family: 'Cinzel', serif;
+  color: #5B685E;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 30px;
+  width: 100%;
 }
