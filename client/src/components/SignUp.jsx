@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     backgroundColor: theme.palette.primary.light,
-    color: theme.palette.primary.dark,
   },
   button: {
     backgroundColor: theme.palette.secondary.main,
@@ -23,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = ({
+const SignUp = ({
   setDisplay, setCurrentUser, userName, setUserName, password, setPassword,
 }) => {
   const classes = useStyles();
@@ -37,6 +36,7 @@ const Login = ({
   };
 
   const submit = () => {
+    // post request to /api/userProfile
     if (userName !== '' && password !== '') {
       // set current user
       setCurrentUser(userName);
@@ -48,8 +48,8 @@ const Login = ({
   return (
     <Container className={classes.login} maxWidth="xs">
       <div>
-        <Typography component="h5" variant="h5" style={{ marginTop: 15 }}>
-          Login
+        <Typography component="h1" variant="h5" style={{ marginTop: 15 }}>
+          Sign Up
         </Typography>
         <form noValidate>
           <TextField
@@ -87,12 +87,12 @@ const Login = ({
             style={{ marginTop: 10 }}
             onClick={submit}
           >
-            Login
+            Join
           </Button>
           <Grid container style={{ marginTop: 10 }}>
             <Grid item>
-              <Link className={classes.link} href="#" variant="body2" onClick={() => setDisplay('signUp')}>
-                Sign up for an account
+              <Link className={classes.link} href="#" variant="body2" onClick={() => setDisplay('login')}>
+                Already have an account?
               </Link>
             </Grid>
           </Grid>
@@ -102,4 +102,4 @@ const Login = ({
   );
 };
 
-export default Login;
+export default SignUp;
