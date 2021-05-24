@@ -2,6 +2,7 @@ const express = require('express');
 
 const app = express();
 const cors = require('cors');
+const db = require('../db/index.js');
 const queries = require('../db/controllers.js');
 
 // serve static files from dist dir
