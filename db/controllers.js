@@ -51,7 +51,7 @@ const getQuizzData = (name, cb) => {
 
 //post a new user and password to credentials collection, make new profile
 const postUser = (body, cb) => {
-  Credential.create({ body }, (error) => {
+  Credential.create({ name: body.name, password: body.password }, (error) => {
     if (error) {
       cb(error, null);
     } else {
