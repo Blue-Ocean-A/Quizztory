@@ -1,8 +1,8 @@
 const natureEasy = {
-  _id:
+  _id: {},
   name: 'Animals for the whole family quiz',
   topic: 'Nature',
-  difficult: 'Easy',
+  difficulty: 'Easy',
   questions: [
     {
       text: 'What is the fastest animal in the world?',
@@ -11,7 +11,7 @@ const natureEasy = {
         { text: 'cheetah', isCorrect: false },
         { text: 'ant', isCorrect: false },
         { text: 'human', isCorrect: false },
-      ]
+      ],
     },
     {
       text: 'What sea creature is a blue whale\'s favorite meal?',
@@ -20,7 +20,7 @@ const natureEasy = {
         { text: 'dolphin', isCorrect: false },
         { text: 'fish', isCorrect: false },
         { text: 'krill', isCorrect: true },
-      ]
+      ],
     },
     {
       text: 'Which mamal has the most powerful bite in the world?',
@@ -29,7 +29,7 @@ const natureEasy = {
         { text: 'wolf', isCorrect: false },
         { text: 'hippopotamous', isCorrect: true },
         { text: 'lion', isCorrect: false },
-      ]
+      ],
     },
     {
       text: 'What nickname do adult male gorrilas have due to their hair?',
@@ -38,7 +38,7 @@ const natureEasy = {
         { text: 'silverback', isCorrect: true },
         { text: 'baldy', isCorrect: false },
         { text: 'blue bonnets', isCorrect: false },
-      ]
+      ],
     },
     {
       text: 'How many wolves did the largest recorded pack have?',
@@ -47,8 +47,10 @@ const natureEasy = {
         { text: 'up to 100', isCorrect: false },
         { text: 'up to 200', isCorrect: false },
         { text: 'up to 400', isCorrect: true },
-      ]
-    }
-  ]
-}
+      ],
+    },
+  ],
+};
+
+module.exports = natureEasy;
 // BASED ON DATA FROM: https://www.mylondon.news/whats-on/20-animal-quiz-questions-answers-18155363
