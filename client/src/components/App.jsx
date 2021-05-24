@@ -11,7 +11,7 @@ import Quiz from './Quiz.jsx';
 import QuizList from './QuizList.jsx';
 // import Score from './Score.jsx';
 import SignUp from './SignUp.jsx';
-import historyEasy from '../quizData/historyEasy.js';
+import historyMedium from '../quizData/historyMedium.js';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -36,12 +36,12 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const [showBack, setShowBack] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
-  const [allQuizzes, setAllQuizzes] = useState([historyEasy]);
-  const [currentQuiz, setCurrentQuiz] = useState(historyEasy);
+  const [allQuizzes, setAllQuizzes] = useState([historyMedium]);
+  const [currentQuiz, setCurrentQuiz] = useState(historyMedium);
   const [currentUser, setCurrentUser] = useState('Kim');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [display, setDisplay] = useState('quiz');
+  const [display, setDisplay] = useState('home');
 
   const classes = useStyles();
 
