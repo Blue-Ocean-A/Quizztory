@@ -45,10 +45,10 @@ const App = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [allQuizzes, setAllQuizzes] = useState([historyEasy]);
   const [currentQuiz, setCurrentQuiz] = useState(historyEasy);
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState('Kim');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [display, setDisplay] = useState('create');
+  const [display, setDisplay] = useState('quiz');
 
   const classes = useStyles();
   if (display === 'login') {
@@ -114,8 +114,9 @@ const App = () => {
         <Grid container spacing={2} className={classes.root}>
           <Quiz
             currentQuiz={currentQuiz}
+            currentUser={currentUser}
             display={display}
-            setDisplay={currentUser}
+            setDisplay={setDisplay}
           />
         </Grid>
       </>
