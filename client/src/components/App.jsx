@@ -10,7 +10,7 @@ import FriendsResults from './FriendsResults.jsx';
 import Quiz from './Quiz.jsx';
 import Results from './Results.jsx';
 import QuizList from './QuizList.jsx';
-import Score from './Score.jsx';
+// import Score from './Score.jsx';
 import SignUp from './SignUp.jsx';
 import historyEasy from '../quizData/historyEasy.js';
 
@@ -80,7 +80,7 @@ const App = () => {
             {/* <Friends />
             <Results /> */}
           <Grid item style={{ textAlign: 'right' }}>
-            <Score />
+            {/* <Score /> */}
           </Grid>
         </>
       )}

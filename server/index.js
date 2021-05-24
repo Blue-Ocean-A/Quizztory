@@ -13,8 +13,8 @@ app.use(express.json());
 // use cors middleware for enabling CORS with various options
 app.use(cors());
 
-///// GET REQUESTS ////
-//see if a user has correct password
+/// // GET REQUESTS ////
+// see if a user has correct password
 app.get('/api/user', (req, res) => {
   queries.getUser(req.query.name, req.query.password, (err, data) => {
     if (err) {
@@ -26,7 +26,7 @@ app.get('/api/user', (req, res) => {
   });
 });
 
-//get a specific user's profile
+// get a specific user's profile
 app.get('/api/userProfile', (req, res) => {
   queries.getUserProfile(req.query.name, (err, data) => {
     if (err) {
@@ -62,8 +62,8 @@ app.get('/api/quizzData', (req, res) => {
   });
 });
 
-///// POST REQUESTS ////
-//post a new user and password to credentials collection, make new profile
+/// // POST REQUESTS ////
+// post a new user and password to credentials collection, make new profile
 app.post('/api/userProfile', (req, res) => {
   queries.postUser(req.body, (err, response) => {
     if (err) {
@@ -87,8 +87,8 @@ app.post('/api/newQuiz', (req, res) => {
   });
 });
 
-///// PUT REQUESTS ////
-//adds quiz name and score to profile
+/// // PUT REQUESTS ////
+// adds quiz name and score to profile
 app.put('/api/userProfile/score', (req, res) => {
   queries.putQuizResult(req.body, (err, response) => {
     if (err) {
@@ -100,7 +100,7 @@ app.put('/api/userProfile/score', (req, res) => {
   });
 });
 
-//adds requester to incoming of requestee, adds requestee to outgoing of requester
+// adds requester to incoming of requestee, adds requestee to outgoing of requester
 app.put('/api/userProfile/request', (req, res) => {
   queries.putFriendRequest(req.body, (err, response) => {
     if (err) {
