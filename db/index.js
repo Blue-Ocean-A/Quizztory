@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// const models = require('./models');
 const mongoURI = 'mongodb://localhost:27017/quizztory';
 
 const db = mongoose.connect(mongoURI, {
@@ -11,3 +10,5 @@ const db = mongoose.connect(mongoURI, {
   console.log(`There was a problem connecting to mongo at: ${mongoURI}`);
   console.log(err);
 });
+
+module.exports = db;

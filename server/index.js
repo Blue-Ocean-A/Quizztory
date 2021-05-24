@@ -2,10 +2,11 @@ const express = require('express');
 const db = require('../db/index.js');
 const app = express();
 const cors = require('cors');
+const db = require('../db/index.js');
 const queries = require('../db/controllers.js');
 
 // serve static files from dist dir
-app.use(express.static(__dirname + '/../client/dist'));
+app.use(express.static(`${__dirname}/../client/dist`));
 
 // middleware
 // use express.json for parsing JSON
@@ -13,8 +14,8 @@ app.use(express.json());
 // use cors middleware for enabling CORS with various options
 app.use(cors());
 
-///// GET REQUESTS ////
-//see if a user has correct password
+/// // GET REQUESTS ////
+// see if a user has correct password
 app.get('/api/user', (req, res) => {
   queries.getUser(req.query.name, req.query.password, (err, data) => {
     if (err) {
@@ -27,7 +28,7 @@ app.get('/api/user', (req, res) => {
   });
 });
 
-//get a specific user's profile
+// get a specific user's profile
 app.get('/api/userProfile', (req, res) => {
   queries.getUserProfile(req.query.name, (err, data) => {
     if (err) {
@@ -39,7 +40,7 @@ app.get('/api/userProfile', (req, res) => {
   });
 });
 
-//get a list of all quiz names, topics, and difficulty levels
+// get a list of all quiz names, topics, and difficulty levels
 app.get('/api/quizzes', (req, res) => {
   queries.getQuizzes((err, data) => {
     if (err) {
@@ -51,7 +52,7 @@ app.get('/api/quizzes', (req, res) => {
   });
 });
 
-//get a specific quiz's Q's and A's
+// get a specific quiz's Q's and A's
 app.get('/api/quizzData', (req, res) => {
   queries.getQuizzData(req.query.name, (err, data) => {
     if (err) {
@@ -63,8 +64,8 @@ app.get('/api/quizzData', (req, res) => {
   });
 });
 
-///// POST REQUESTS ////
-//post a new user and password to credentials collection, make new profile
+/// // POST REQUESTS ////
+// post a new user and password to credentials collection, make new profile
 app.post('/api/userProfile', (req, res) => {
   queries.postUser(req.body, (err, response) => {
     if (err) {
@@ -76,7 +77,7 @@ app.post('/api/userProfile', (req, res) => {
   });
 });
 
-//post new quiz to quizzes and quiz data collections
+// post new quiz to quizzes and quiz data collections
 app.post('/api/newQuiz', (req, res) => {
   queries.postQuiz(req.body, (err, response) => {
     if (err) {
@@ -88,8 +89,8 @@ app.post('/api/newQuiz', (req, res) => {
   });
 });
 
-///// PUT REQUESTS ////
-//adds quiz name and score to profile
+/// // PUT REQUESTS ////
+// adds quiz name and score to profile
 app.put('/api/userProfile/score', (req, res) => {
   queries.putQuizResult(req.body, (err, response) => {
     if (err) {
@@ -101,7 +102,7 @@ app.put('/api/userProfile/score', (req, res) => {
   });
 });
 
-//adds requester to incoming of requestee, adds requestee to outgoing of requester
+// adds requester to incoming of requestee, adds requestee to outgoing of requester
 app.put('/api/userProfile/request', (req, res) => {
   queries.putFriendRequest(req.body, (err, response) => {
     if (err) {
@@ -113,7 +114,7 @@ app.put('/api/userProfile/request', (req, res) => {
   });
 });
 
-//adds both users to the other’s friend list and removes request
+// adds both users to the other’s friend list and removes request
 app.put('/api/userProfile/accept', (req, res) => {
   queries.putFriendAccept(req.body, (err, response) => {
     if (err) {
@@ -125,7 +126,7 @@ app.put('/api/userProfile/accept', (req, res) => {
   });
 });
 
-//removes requester from requestee's incoming, does NOT remove requestee from requester's outgoing
+// removes requester from requestee's incoming, does NOT remove requestee from requester's outgoing
 app.put('/api/userProfile/deny', (req, res) => {
   queries.putFriendReject(req.body, (err, response) => {
     if (err) {

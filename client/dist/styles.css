@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@100;200;300;400;500;600;700&display=swap");
 
+body {
+  background-color: #F2EECA;
+}
+
+#app {
+  background-color: #F2EECA;
+  height: 90%;
+}
+
 #quiz-over-button {
   background-color: #5B685E;
   border: none;
