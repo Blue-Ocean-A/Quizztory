@@ -41,7 +41,7 @@ const QuizResults = ({
 
   const percentScore = (score) => {
     const number = (score / (questions.length)) * 100;
-    const percent = number.toString().concat('%');
+    const percent = number.toFixed().toString().concat('%');
     return percent;
   };
 

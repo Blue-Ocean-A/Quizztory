@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
     fontFamily: 'Montserrat, san-serif',
     width: '175px',
-    height: '50px',
+    height: '100px',
     padding: '10px',
     margin: '20px',
     lineHeight: '1.4',
@@ -45,21 +45,19 @@ const Quiz = ({
 }) => {
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
+  const [isFinal, setIsFinal] = useState(false);
 
   const classes = useStyles();
   const { questions } = currentQuiz;
 
-  useEffect(() => {
-  }, [score]);
-
   const updateScore = (score) => {
-    const percentScore = (score / (currentQuiz.questions.length - 1)) * 100;
-
+    const percentScore = ((score / (currentQuiz.questions.length)) * 100).toFixed().toString();
     const body = {
       userName: currentUser,
       quizName: currentQuiz.name,
-      score: percentScore.toString(),
+      score: percentScore,
     };
+
     axios.put('/api/userProfile/score', body)
       .then((response) => {
         console.log(`${currentUser}'s score of ${percentScore} for ${currentQuiz.name} has been updated: `, response.data);
@@ -69,13 +67,19 @@ const Quiz = ({
       });
   };
 
+  useEffect(() => {
+    if (isFinal === true) {
+      updateScore(score);
+    }
+  }, [isFinal]);
+
   const handleClick = (isCorrect) => {
     if (isCorrect === true) {
       setScore(score + 1);
     }
     let oldIndex = index;
     if (oldIndex === questions.length - 1) {
-      updateScore(score);
+      setIsFinal(true);
       setDisplay('quizResults');
       setIndex(0);
     } else {
