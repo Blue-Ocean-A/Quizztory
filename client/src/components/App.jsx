@@ -38,7 +38,7 @@ const App = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [allQuizzes, setAllQuizzes] = useState([historyEasy]);
   const [currentQuiz, setCurrentQuiz] = useState(historyEasy);
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState('Matt');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [display, setDisplay] = useState('login');
@@ -70,7 +70,7 @@ const App = () => {
             <QuizList allQuizzes={allQuizzes} />
           </Grid>
           <Grid item xs={2}>
-            <Friends />
+            <Friends currentUser={currentUser} />
           </Grid>
         </Grid>
       </>
