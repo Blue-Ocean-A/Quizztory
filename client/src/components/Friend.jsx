@@ -4,7 +4,9 @@ import { Typography, Container } from '@material-ui/core';
 
 export default function Friend({ name }) {
   return (
-    <Typography style={{ fontFamily: 'Montserrat' }}>
+    <Typography
+      style={{ fontFamily: 'Montserrat' }}
+    >
       {name}
     </Typography>
   );

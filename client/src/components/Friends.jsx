@@ -41,12 +41,17 @@ export default function Friends({ currentUser }) {
   const [search, setSearch] = useState(['']);
   const [incoming, setIncoming] = useState([]);
   const [outgoing, setOutgoing] = useState([]);
+  const [clickedFriend, setClickedFriend] = useState('');
 
   const handleSearchChange = (searchValue) => {
     setSearch(searchValue);
     if (searchValue.length > 2) {
       axios.get();
     }
+  };
+
+  const handleFriendClick = (e) => {
+    setClickedFriend(e.target.outerText);
   };
 
   const getUserInfo = () => {
@@ -113,12 +118,24 @@ export default function Friends({ currentUser }) {
               handleDenyClick={handleDenyClick}
             />
             <div className={classes.fullList}>
-              {friends.map((friend, index) => <Friend key={index} name={friend} />)}
+              {friends.map((friend, index) => (
+                <Friend
+                  key={index}
+                  name={friend}
+                  onClick={handleFriendClick}
+                />
+              ))}
             </div>
           </>
         ) : (
           <div className={classes.fullList}>
-            {friends.map((friend, index) => <Friend key={index} name={friend} />)}
+            {friends.map((friend, index) => (
+              <Friend
+                key={index}
+                name={friend}
+                handleFriendClick={handleFriendClick}
+              />
+            ))}
           </div>
         )}
         <SearchBar
