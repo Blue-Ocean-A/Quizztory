@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Grid, Container, Typography, TextField, Button, Link,
 } from '@material-ui/core';
@@ -8,20 +8,24 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   login: {
-    backgroundColor: theme.palette.secondary.dark,
+    backgroundColor: theme.palette.primary.dark,
+    borderRadius: 16,
   },
   input: {
     backgroundColor: theme.palette.primary.light,
     color: theme.palette.primary.dark,
   },
   button: {
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: theme.palette.secondary.main,
+  },
+  link: {
+    color: theme.palette.primary.light,
   },
 }));
 
-const Login = ({ setDisplay, setCurrentUser }) => {
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+const Login = ({
+  setDisplay, setCurrentUser, userName, setUserName, password, setPassword,
+}) => {
   const classes = useStyles();
 
   const handlePassword = (e) => {
@@ -33,17 +37,19 @@ const Login = ({ setDisplay, setCurrentUser }) => {
   };
 
   const submit = () => {
-    // set current user
-    setCurrentUser(userName);
-    // switch display to home page
-    setDisplay('home');
+    if (userName !== '' && password !== '') {
+      // set current user
+      setCurrentUser(userName);
+      // switch display to home page
+      setDisplay('home');
+    }
   };
 
   return (
     <Container className={classes.login} maxWidth="xs">
       <div>
-        <Typography component="h1" variant="h5">
-          Sign in
+        <Typography component="h5" variant="h5" style={{ marginTop: 15 }}>
+          Login
         </Typography>
         <form noValidate>
           <TextField
@@ -78,13 +84,14 @@ const Login = ({ setDisplay, setCurrentUser }) => {
             fullWidth
             variant="contained"
             color="primary"
+            style={{ marginTop: 10 }}
             onClick={submit}
           >
             Login
           </Button>
-          <Grid container>
+          <Grid container style={{ marginTop: 10 }}>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link className={classes.link} href="#" variant="body2" onClick={() => setDisplay('signUp')}>
                 Sign up for an account
               </Link>
             </Grid>

@@ -1,8 +1,7 @@
 /* eslint-disable import/extensions */
 import React, { useState } from 'react';
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
-import { Grid, Container } from '@material-ui/core';
-import theme from '../theme.js';
+import { Grid, Box } from '@material-ui/core';
 import QuizztoryLogo from '../../../QuizztoryLogo.png';
 import Login from './Login.jsx';
 import Create from './Create.jsx';
@@ -10,9 +9,14 @@ import Friends from './Friends.jsx';
 import FriendsResults from './FriendsResults.jsx';
 import Quiz from './Quiz.jsx';
 import QuizList from './QuizList.jsx';
+// import Score from './Score.jsx';
 import SignUp from './SignUp.jsx';
+import historyEasy from '../quizData/historyEasy.js';
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    marginLeft: 200,
+  },
   root: {
     backgroundColor: theme.palette.primary.light,
     dispay: 'flex',
@@ -74,14 +78,19 @@ const App = () => {
   }
 
   if (display === 'signUp') {
-    <SignUp
-      setDisplay={setDisplay}
-      setCurrentUser={setCurrentUser}
-      userName={userName}
-      setUserName={setUserName}
-      password={password}
-      setPassword={setPassword}
-    />;
+    return (
+      <>
+        <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
+        <SignUp
+          setDisplay={setDisplay}
+          setCurrentUser={setCurrentUser}
+          userName={userName}
+          setUserName={setUserName}
+          password={password}
+          setPassword={setPassword}
+        />
+      </>
+    );
   }
 
   if (display === 'quiz' || display === 'quizResults') {

@@ -18,13 +18,21 @@ const useStyles = makeStyles((theme) => ({
   nested: {
     paddingLeft: theme.spacing(4),
     backgroundColor: theme.palette.secondary.light,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.main,
+    },
   },
   row: {
     backgroundColor: theme.palette.primary.light,
   },
+  text: {
+    color: theme.palette.primary.light,
+  },
 }));
 
 function createData(quizName, topic, difficulty) {
+  // map over array of quizzes and invoke create data on each
+  // /api/quizzes
   return {
     quizName, topic, difficulty,
   };
@@ -48,7 +56,9 @@ const QuizList = () => {
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
-            <Typography style={{ position: 400 }}>Take A Quiz</Typography>
+            <TableRow>
+              <Typography component="h3" variant="h3" align="right" className={classes.text}>Take A Quiz</Typography>
+            </TableRow>
             <TableRow className={classes.row}>
               <TableCell>Quiz Name</TableCell>
               <TableCell align="right">Topic</TableCell>
