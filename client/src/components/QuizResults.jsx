@@ -15,10 +15,10 @@ const useStyles = makeStyles((theme) => ({
   },
   resultsTitle: {
     backgroundColor: theme.palette.secondary.light,
-    padding: '20px',
-    margin: '80px',
-    width: '50%',
+    padding: '80px',
     justify: 'center',
+    alignItem: 'center',
+    margin: '50px',
   },
   button: {
     backgroundColor: 'none',
@@ -53,9 +53,9 @@ const QuizResults = ({
   return (
     <Grid className={classes.quizDiv} maxWidth="sm">
       <Typography variant="h2" component="h2" align="center" gutterBottom="true">{currentQuiz.name}</Typography>
-      <Container className={classes.resultsTitle}>
+      <Grid className={classes.resultsTitle}>
         <Typography variant="h3" component="h3" align="center">You Scored</Typography>
-        <Typography variant="h1" component="h1" align="center">{percentScore(score)}</Typography>
+        <Typography variant="h1" component="h1" align="center" margin="20px">{percentScore(score)}</Typography>
         <Typography variant="h4" component="h4" align="center">
           (
           {score}
@@ -65,7 +65,7 @@ const QuizResults = ({
           {currentQuiz.questions.length}
           )
         </Typography>
-      </Container>
+      </Grid>
       <button type="button" id="quiz-over-button" onClick={handleClick}>Choose another quiz</button>
     </Grid>
   );
