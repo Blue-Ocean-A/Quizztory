@@ -65,6 +65,18 @@ app.get('/api/quizzData', (req, res) => {
   });
 });
 
+// get a list of all usernames
+app.get('/api/allUsers', (req, res) => {
+  queries.getAllUsers((err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      console.log(data);
+      res.send(data);
+    }
+  });
+});
+
 /// // POST REQUESTS ////
 // post a new user and password to credentials collection, make new profile
 app.post('/api/userProfile', (req, res) => {
