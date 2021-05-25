@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
   text: {
-    // marginTop: '-10px',
+    marginTop: '-10px',
   },
   modalText: {
     textAlign: 'center',

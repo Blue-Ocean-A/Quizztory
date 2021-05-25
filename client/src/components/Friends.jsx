@@ -55,7 +55,7 @@ export default function Friends({ currentUser }) {
     let total = 0;
     results.forEach((result) => {
       // console.log(result);
-      total = total + Number(result.score);
+      total += Number(result.score);
     });
     // console.log(total);
     setAverage(total / results.length);
@@ -131,9 +131,7 @@ export default function Friends({ currentUser }) {
 
   return (
     <>
-      <Container>
-        <Score average={average} results={results} />
-      </Container>
+      <Score average={average} results={results} />
       <Container component={Paper} className={classes.container}>
         <div>
           <Typography variant="h3" onClick={handleFriendClick}>
