@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,13 +7,21 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { v4 as uuidv4 } from 'uuid';
-
-const axios = require('axios');
+import axios from 'axios';
 
 export default function StickyHeadTable({user, friend}) {
+  const [comparedUser, setComparedUser] = useState({});
   const currentUser = user;
   const comparedUserName = friend;
-  const comparedUser = axios.get(`http://localhost:3000/api/userProfile?name=${comparedUserName}`);
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/userProfile?name=${comparedUserName}`)
+      .then((response) => {
+        setComparedUser(response.data);
+      })
+      .catch((error) => {
+        console.log('error fetching friend: ', error);
+      });
+  });
 
   const columns = [
     { id: 'currentUserScores', label: `${currentUser.name}`, minWidth: 170 },
