@@ -132,7 +132,7 @@ export default function Friends({ currentUser }) {
   return (
     <>
       <Container>
-        <Score average={average}/>
+        <Score average={average} results={results} />
       </Container>
       <Container component={Paper} className={classes.container}>
         <div>
