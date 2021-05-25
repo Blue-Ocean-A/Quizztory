@@ -7,8 +7,7 @@ import config from './testConfig.js';
 import App from '../client/src/components/App.jsx';
 
 describe('App.jsx', () => {
-  const wrapper = shallow(<App />);
   it('Renders without crashing', () => {
-    expect(wrapper).toHaveLength(1);
+    shallow(<App />);
   });
 });
