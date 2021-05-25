@@ -38,7 +38,7 @@ const App = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [allQuizzes, setAllQuizzes] = useState([historyEasy]);
   const [currentQuiz, setCurrentQuiz] = useState(historyEasy);
-  const [currentUser, setCurrentUser] = useState('Jenna');
+  const [currentUser, setCurrentUser] = useState('Matt');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [display, setDisplay] = useState('home');

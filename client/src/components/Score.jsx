@@ -1,8 +1,28 @@
 import React, { useState } from 'react';
-import { Typography, Container } from '@material-ui/core/';
-import Results from './Results.jsx';
+import { makeStyles } from '@material-ui/core/styles';
+import {
+  Typography, Container, Paper, Modal, Button,
+} from '@material-ui/core/';
 
-const styles = {
+function getModalStyle() {
+  return {
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'right',
+    outline: 0,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: '20%',
+    margin: '0 auto',
+    width: 370,
+    backgroundColor: theme.palette.primary.main,
+    border: '1px solid #333333',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
   container: {
     marginTop: '-10px',
     textAlign: 'center',
@@ -10,22 +30,48 @@ const styles = {
   text: {
     marginTop: '-10px',
   },
-};
+  modalText: {
+    color: theme.palette.primary.light,
+  },
+}));
 
-const handleScoreClick = () => {
-  setClicked(true);
-};
+export default function Score({ average }) {
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const [modalStyle] = useState(getModalStyle);
+  const [score, setScore] = useState('');
 
-export default function Score() {
-  const [clicked, setClicked] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const body = (
+    <div
+      style={modalStyle}
+      className={classes.paper}
+    >
+      <Button className={classes.modalText} onClick={handleClose}>Back</Button>
+    </div>
+  );
+
   return (
-    <div style={styles.container}>
-      <Typography variant="h1" color="primary">
-        92%
+    <div role="button" className={classes.container}>
+      <Typography variant="h1" color="primary" onClick={handleOpen}>
+        {average + "%"}
       </Typography>
-      <Typography variant="body1" color="primary" style={styles.text}>
+      <Typography variant="body1" color="primary" className={classes.text} onClick={handleOpen}>
         Your Average Score
       </Typography>
+      <Modal
+        open={open}
+        onClose={handleClose}
+      >
+        {body}
+      </Modal>
     </div>
   );
 }
