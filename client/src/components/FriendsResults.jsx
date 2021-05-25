@@ -16,7 +16,8 @@ export default function StickyHeadTable({user, friend}) {
   useEffect(() => {
     axios.get(`http://localhost:3000/api/userProfile?name=${comparedUserName}`)
       .then((response) => {
-        setComparedUser(response.data);
+        console.log(response.data);
+        setComparedUser(response.data[0]);
       })
       .catch((error) => {
         console.log('error fetching friend: ', error);
