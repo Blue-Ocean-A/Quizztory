@@ -14,7 +14,6 @@ const clientId = '92870217008-h9091it2nl99pja28dl9rfa5lpecdeng.apps.googleuserco
 function GoogleLogin({ setDisplay }) {
   const onSuccess = (res) => {
     setDisplay('home');
-    console.log('Login Success: currentUser:', res.profileObj);
     alert(
       `Logged in successfully welcome ${res.profileObj.name}.`,
     );
