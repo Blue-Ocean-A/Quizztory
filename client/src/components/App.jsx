@@ -13,7 +13,7 @@ import FriendsResults from './FriendsResults.jsx';
 import Quiz from './Quiz.jsx';
 import QuizList from './QuizList.jsx';
 import SignUp from './SignUp.jsx';
-import historyMedium from '../quizData/historyMedium.js';
+import GoogleLogout from './GoogleLogout.jsx';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -76,6 +76,7 @@ const App = () => {
   if (display === 'home') {
     return (
       <>
+        <GoogleLogout setDisplay={setDisplay} />
         <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
         <Grid container spacing={2} className={classes.root}>
           <Grid item xs={6}>
