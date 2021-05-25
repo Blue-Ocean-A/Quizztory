@@ -49,6 +49,17 @@ const getQuizzData = (name, cb) => {
   });
 };
 
+// get a list of all usernames
+const getAllUsers = (cb) => {
+  Credential.find({}, 'name', (error, results) => {
+    if (error) {
+      cb(error, null);
+    } else {
+      cb(null, results);
+    }
+  });
+};
+
 //post a new user and password to credentials collection, make new profile
 const postUser = (body, cb) => {
   Credential.create({ name: body.name, password: body.password }, (error) => {
@@ -146,6 +157,7 @@ module.exports = {
   getUserProfile,
   getQuizzes,
   getQuizzData,
+  getAllUsers,
   postUser,
   postQuiz,
   putQuizResult,

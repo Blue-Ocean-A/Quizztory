@@ -1,7 +1,16 @@
+/* eslint-disable no-console */
+/* eslint-disable consistent-return */
 /* eslint-disable import/extensions */
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
 import { Grid, Box, Button } from '@material-ui/core';
+=======
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { makeStyles } from '@material-ui/core/styles';
+import { Grid } from '@material-ui/core';
+>>>>>>> f7a4ef915b734acb330ed82f39e867ec0fd685f4
 import QuizztoryLogo from '../../../QuizztoryLogo.png';
 import Login from './Login.jsx';
 import Create from './Create.jsx';
@@ -9,9 +18,8 @@ import Friends from './Friends.jsx';
 import FriendsResults from './FriendsResults.jsx';
 import Quiz from './Quiz.jsx';
 import QuizList from './QuizList.jsx';
-// import Score from './Score.jsx';
 import SignUp from './SignUp.jsx';
-import historyEasy from '../quizData/historyEasy.js';
+import historyMedium from '../quizData/historyMedium.js';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -43,14 +51,25 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const [showBack, setShowBack] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
-  const [allQuizzes, setAllQuizzes] = useState([historyEasy]);
-  const [currentQuiz, setCurrentQuiz] = useState(historyEasy);
-  const [currentUser, setCurrentUser] = useState('Kim');
+  const [allQuizzes, setAllQuizzes] = useState();
+  const [currentQuiz, setCurrentQuiz] = useState();
+  const [currentUser, setCurrentUser] = useState();
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [display, setDisplay] = useState('create');
-
   const classes = useStyles();
+
+  useEffect(() => {
+    axios.get('/api/quizzes')
+      .then((response) => {
+        setAllQuizzes(response.data);
+        window.history.pushState({}, null, '/');
+      })
+      .catch((error) => {
+        console.log('Error in useEffect: ', error);
+      });
+  }, [display]);
+
   if (display === 'login') {
     return (
       <>
@@ -73,6 +92,7 @@ const App = () => {
         <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
         <Grid container spacing={2} className={classes.root}>
           <Grid item xs={6}>
+<<<<<<< HEAD
             <QuizList allQuizzes={allQuizzes} />
             <Button
               variant="contained"
@@ -82,6 +102,13 @@ const App = () => {
             >
               Create A Quiz
             </Button>
+=======
+            <QuizList
+              allQuizzes={allQuizzes}
+              setCurrentQuiz={setCurrentQuiz}
+              setDisplay={setDisplay}
+            />
+>>>>>>> f7a4ef915b734acb330ed82f39e867ec0fd685f4
           </Grid>
           <Grid item xs={2}>
             <Friends />
