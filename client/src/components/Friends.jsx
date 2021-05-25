@@ -134,7 +134,7 @@ export default function Friends({ currentUser }) {
       <Container>
         <Score average={average}/>
       </Container>
-      <Container component={Paper} className={classes.container} onClick={() => console.log(user)}>
+      <Container component={Paper} className={classes.container}>
         <div>
           <Typography variant="h3" onClick={handleFriendClick}>
             FRIENDS

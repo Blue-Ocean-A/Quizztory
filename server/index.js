@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 const express = require('express');
 const db = require('../db/index.js');
 const app = express();
@@ -21,7 +22,7 @@ app.get('/api/user', (req, res) => {
       console.log('err: ', err);
       res.status(404).send(err);
     } else {
-      console.log(data);
+      // console.log(data);
       res.send(data);
     }
   });
@@ -34,7 +35,7 @@ app.get('/api/userProfile', (req, res) => {
       console.log('error: ', err);
       res.status(404).send(err);
     } else {
-      console.log(data);
+      // console.log(data);
       res.send(data);
     }
   });
@@ -46,7 +47,7 @@ app.get('/api/quizzes', (req, res) => {
     if (err) {
       res.status(404).send(err);
     } else {
-      console.log(data);
+      // console.log(data);
       res.send(data);
     }
   });
@@ -55,6 +56,18 @@ app.get('/api/quizzes', (req, res) => {
 // get a specific quiz's Q's and A's
 app.get('/api/quizzData', (req, res) => {
   queries.getQuizzData(req.query.name, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      // console.log(data);
+      res.send(data);
+    }
+  });
+});
+
+// get a list of all usernames
+app.get('/api/allUsers', (req, res) => {
+  queries.getAllUsers((err, data) => {
     if (err) {
       res.status(404).send(err);
     } else {
