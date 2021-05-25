@@ -55,7 +55,7 @@ const App = () => {
       .catch((error) => {
         console.log('Error in useEffect: ', error);
       });
-  }, [display]);
+  }, []);
 
   if (display === 'login') {
     return (

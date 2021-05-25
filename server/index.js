@@ -22,7 +22,7 @@ app.get('/api/user', (req, res) => {
       console.log('err: ', err);
       res.status(404).send(err);
     } else {
-      console.log(data);
+      // console.log(data);
       res.send(data);
     }
   });
@@ -35,7 +35,7 @@ app.get('/api/userProfile', (req, res) => {
       console.log('error: ', err);
       res.status(404).send(err);
     } else {
-      console.log(data);
+      // console.log(data);
       res.send(data);
     }
   });
@@ -47,7 +47,7 @@ app.get('/api/quizzes', (req, res) => {
     if (err) {
       res.status(404).send(err);
     } else {
-      console.log(data);
+      // console.log(data);
       res.send(data);
     }
   });
@@ -59,7 +59,7 @@ app.get('/api/quizzData', (req, res) => {
     if (err) {
       res.status(404).send(err);
     } else {
-      console.log(data);
+      // console.log(data);
       res.send(data);
     }
   });
