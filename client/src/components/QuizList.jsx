@@ -45,8 +45,6 @@ const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
       .catch((error) => {
         console.log('Error getting quiz data: ', error);
       });
-    // setCurrentQuiz(quiz);
-    // setDisplay('quiz');
   };
 
   return (
@@ -55,7 +53,9 @@ const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <Typography component="h3" variant="h3" align="right" className={classes.text}>Take A Quiz</Typography>
+              <TableCell>
+                <Typography component="h3" variant="h3" align="right" className={classes.text}>Take A Quiz</Typography>
+              </TableCell>
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>Quiz Name</TableCell>
