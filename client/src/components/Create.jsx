@@ -3,7 +3,17 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { Container, Typography, Button, TextField, MenuItem } from '@material-ui/core';
+import { 
+  Container,
+  Typography,
+  Button,
+  TextField,
+  MenuItem,
+  RadioGroup,
+  Radio,
+  FormControlLabel,
+  FormControl,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import { CodeTwoTone } from '@material-ui/icons';
@@ -41,6 +51,21 @@ const useStyles = makeStyles((theme, text) => ({
     lineHeight: '1.4',
   },
 }));
+const page = [
+  'Question 1 / 10',
+  'Question 2 / 10',
+  'Question 3 / 10',
+  'Question 4 / 10',
+  'Question 5 / 10',
+  'Question 6 / 10',
+  'Question 7 / 10',
+  'Question 8 / 10',
+  'Question 9 / 10',
+  'Question 10 / 10',
+];
+const topics = ['History', 'Nature', 'Random'];
+const difficulties = ['Easy', 'Medium', 'Hard'];
+
 
 const Create = ({ setDisplay }) => {
   const [name, setName] = useState('');
@@ -57,21 +82,20 @@ const Create = ({ setDisplay }) => {
     ],
   });
   const [index, setIndex] = useState(1);
-  const page = [
-    'Question 1 / 10',
-    'Question 2 / 10',
-    'Question 3 / 10',
-    'Question 4 / 10',
-    'Question 5 / 10',
-    'Question 6 / 10',
-    'Question 7 / 10',
-    'Question 8 / 10',
-    'Question 9 / 10',
-    'Question 10 / 10',
-  ];
-  const topics = ['History', 'Nature', 'Random'];
-  const difficulties = ['Easy', 'Medium', 'Hard'];
+
   const classes = useStyles();
+
+  const correctAnswer = () => {};
+  const cancel = () => {
+    setDisplay('home');
+  };
+  const previous = () => {};
+  const next = () => {};
+  const submit = () => {
+    axios.post()
+      .then()
+      .catch();
+  };
 
   return (
     <Container className={classes.createDiv} maxWidth="sm">
@@ -91,8 +115,8 @@ const Create = ({ setDisplay }) => {
           className={classes.inputDiv}
           label="Quiz Topic"
           variant="filled"
-          name="topic"
           select
+          name="topic"
         >
           {topics.map((topic) => (
             <MenuItem key={topic} value={topic}>
@@ -104,8 +128,8 @@ const Create = ({ setDisplay }) => {
           className={classes.inputDiv}
           label="Difficulty"
           variant="filled"
-          name="difficulty"
           select
+          name="difficulty"
         >
           {difficulties.map((level) => (
             <MenuItem key={level} value={level}>
@@ -128,36 +152,79 @@ const Create = ({ setDisplay }) => {
           color="black"
           className={classes.inputDiv}
           label="Question Text"
+          variant="filled"
           name="text"
-          variant="filled"
         />
         <TextField
           color="black"
           className={classes.inputDiv}
+          variant="filled"
+          label="Answer A"
           name="a"
-          variant="filled"
         />
         <TextField
           color="black"
           className={classes.inputDiv}
+          label="Answer B"
           variant="filled"
           name="b"
         />
         <TextField
           color="black"
           className={classes.inputDiv}
-          label="Quiz Name"
+          label="Answer C"
           variant="filled"
           name="c"
         />
         <TextField
           color="black"
           className={classes.inputDiv}
-          label="Quiz Name"
+          label="Answer D"
           variant="filled"
           name="d"
         />
       </Container>
+      <Container className={classes.questionDiv}>
+        <Typography variant="h4" component="h4" color="textPrimary" align="center" gutterBottom="true">
+          Correct Answer:
+        </Typography>
+        <FormControl component="fieldset">
+          <RadioGroup aria-label="gender" name="correct" onChange={correctAnswer}>
+            <FormControlLabel label="A" control={<Radio />} value="a" />
+            <FormControlLabel label="B" control={<Radio />} value="b" />
+            <FormControlLabel label="C" control={<Radio />} value="c" />
+            <FormControlLabel label="D" control={<Radio />} value="d" />
+          </RadioGroup>
+        </FormControl>
+      </Container>
+      <Button
+        variant="contained"
+        className={classes.createButton}
+        onClick={cancel}
+      >
+        Cancel
+      </Button>
+      <Button
+        variant="contained"
+        className={classes.createButton}
+        onClick={previous}
+      >
+        Previous
+      </Button>
+      <Button
+        variant="contained"
+        className={classes.createButton}
+        onClick={next}
+      >
+        Next
+      </Button>
+      <Button
+        variant="contained"
+        className={classes.createButton}
+        onClick={submit}
+      >
+        Submit
+      </Button>
     </Container>
   );
 };
