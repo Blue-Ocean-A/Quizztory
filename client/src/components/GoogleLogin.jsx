@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 /* eslint-disable no-alert */
-/* eslint-disable no-console */
 import React from 'react';
 import { useGoogleLogin } from 'react-google-login';
 import { Button } from '@material-ui/core';
@@ -20,8 +19,7 @@ function GoogleLogin({ setDisplay }) {
     refreshTokenSetup(res);
   };
 
-  const onFailure = (res) => {
-    console.log('Login failed: res:', res);
+  const onFailure = () => {
     alert(
       'Failed to login.',
     );
@@ -38,7 +36,13 @@ function GoogleLogin({ setDisplay }) {
   });
 
   return (
-    <Button onClick={signIn} className="button">
+    <Button
+      className="button"
+      type="submit"
+      fullWidth
+      style={{ marginTop: 10 }}
+      onClick={signIn}
+    >
       <img src={image} alt="google login" className="icon" />
     </Button>
   );

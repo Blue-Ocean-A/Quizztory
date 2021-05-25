@@ -103,7 +103,7 @@ const Login = ({
           </Button>
           <GoogleLogin setDisplay={setDisplay} />
           <Grid container style={{ marginTop: 10 }}>
-            <Grid item>
+            <Grid item style={{ marginBottom: 10 }}>
               <Link className={classes.link} href="#" variant="body2" onClick={() => setDisplay('signUp')}>
                 Sign up for an account
               </Link>
