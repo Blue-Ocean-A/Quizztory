@@ -17,10 +17,13 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     backgroundColor: theme.palette.primary.light,
-    color: theme.palette.primary.dark,
+    color: theme.palette.primary.main,
   },
   button: {
     backgroundColor: theme.palette.secondary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.dark,
+    },
   },
   link: {
     color: theme.palette.primary.light,

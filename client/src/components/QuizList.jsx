@@ -54,14 +54,14 @@ const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="left">
+              <TableCell align="left" style={{ borderBottom: 'none' }}>
                 <Typography component="h3" variant="h3" className={classes.text}>Take A Quiz</Typography>
               </TableCell>
             </TableRow>
             <TableRow className={classes.row}>
-              <TableCell>Quiz Name</TableCell>
-              <TableCell align="right">Topic</TableCell>
-              <TableCell align="right">Difficulty</TableCell>
+              <TableCell style={{ borderBottom: 'none' }}>Quiz Name</TableCell>
+              <TableCell style={{ borderBottom: 'none' }} align="right">Topic</TableCell>
+              <TableCell style={{ borderBottom: 'none' }} align="right">Difficulty</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
