@@ -27,6 +27,7 @@ const theme = createMuiTheme({
     ].join(','),
     h1: {
       fontSize: '4rem',
+      color: '#5B685E',
     },
     h2: {
       fontSize: '1.4rem',
