@@ -48,7 +48,7 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState('Kim');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [display, setDisplay] = useState('quiz');
+  const [display, setDisplay] = useState('create');
 
   const classes = useStyles();
   if (display === 'login') {
