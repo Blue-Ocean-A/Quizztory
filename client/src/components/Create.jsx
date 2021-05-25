@@ -2,7 +2,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Container,
   Typography,
@@ -68,33 +68,96 @@ const difficulties = ['Easy', 'Medium', 'Hard'];
 
 
 const Create = ({ setDisplay }) => {
+  const classes = useStyles();
+
   const [name, setName] = useState('');
   const [topic, setTopic] = useState('');
   const [difficulty, setDifficulty] = useState('');
+  const [index, setIndex] = useState(1);
+  const [submit, setSubmit] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [question, setQuestion] = useState({
     text: '',
     answers: [
       { text: '', isCorrect: false },
       { text: '', isCorrect: false },
-      { text: '', isCorrect: false },
+      { text: '', isCorrect: true },
       { text: '', isCorrect: false },
     ],
   });
-  const [index, setIndex] = useState(1);
 
-  const classes = useStyles();
-
+  useEffect(() => {
+    if (submit) {
+      setDisplay('home');
+    }
+  }, [submit]);
+  useEffect(() => {
+    if (questions.length !== 0) {
+      setQuestion(
+        {
+          text: '',
+          answers: [
+            { text: '', isCorrect: false },
+            { text: '', isCorrect: false },
+            { text: '', isCorrect: true },
+            { text: '', isCorrect: false },
+          ],
+        },
+      );
+    }
+  }, [questions]);
+  const validateQuiz = () => {
+    if (name.length === 0) {
+      return false;
+    }
+    if (topic.length === 0) {
+      return false;
+    }
+    if (difficulty.length === 0) {
+      return false;
+    }
+    if (questions.length === 0) {
+      return false;
+    }
+    return true;
+  };
   const correctAnswer = () => {};
   const cancel = () => {
     setDisplay('home');
   };
   const previous = () => {};
-  const next = () => {};
-  const submit = () => {
-    axios.post()
-      .then()
-      .catch();
+  const next = () => {
+    if (question.text.length === 0) {
+      return;
+    }
+    let answerSelected = false;
+    for (let i = 0; i < question.answers.length; i++) {
+      const answer = question.answers[i];
+      if (answer.text.length === 0) {
+        return;
+      }
+      if (answer.isCorrect === true) {
+        answerSelected = true;
+      }
+    }
+    if (answerSelected) {
+      setQuestions(questions.concat(question));
+    }
+  };
+  const submitQuiz = () => {
+    if (validateQuiz()) {
+      setSubmit(true);
+      // axios.post('/api/newQuiz')
+      //   .then(res => {
+      //     console.log("response: ", res);
+      //     setSubmit(true);
+      //   })
+      //   .catch(err => {
+      //     window.alert('Failed to create new quiz:', err);
+      //   });
+    } else {
+      window.alert('NEW QUIZ INCOMPLETE');
+    }
   };
 
   return (
@@ -110,6 +173,8 @@ const Create = ({ setDisplay }) => {
           label="Quiz Name"
           variant="filled"
           name="name"
+          value={name}
+          onChange={(e) => { setName(e.target.value); }}
         />
         <TextField
           className={classes.inputDiv}
@@ -117,6 +182,8 @@ const Create = ({ setDisplay }) => {
           variant="filled"
           select
           name="topic"
+          value={topic}
+          onChange={(e) => { setTopic(e.target.value); }}
         >
           {topics.map((topic) => (
             <MenuItem key={topic} value={topic}>
@@ -129,7 +196,9 @@ const Create = ({ setDisplay }) => {
           label="Difficulty"
           variant="filled"
           select
+          value={difficulty}
           name="difficulty"
+          onChange={(e) => { setDifficulty(e.target.value); }}
         >
           {difficulties.map((level) => (
             <MenuItem key={level} value={level}>
@@ -198,8 +267,8 @@ const Create = ({ setDisplay }) => {
         </FormControl>
       </Container>
       <Button
-        variant="contained"
         className={classes.createButton}
+        variant="contained"
         onClick={cancel}
       >
         Cancel
@@ -221,7 +290,7 @@ const Create = ({ setDisplay }) => {
       <Button
         variant="contained"
         className={classes.createButton}
-        onClick={submit}
+        onClick={submitQuiz}
       >
         Submit
       </Button>
