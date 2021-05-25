@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { Container, Typography } from '@material-ui/core/';
+import { Container, Typography, Modal } from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import SearchBar from 'material-ui-search-bar';
@@ -42,6 +42,7 @@ export default function Friends({ currentUser }) {
   const [incoming, setIncoming] = useState(['sdfsd']);
   const [outgoing, setOutgoing] = useState([]);
   const [clickedFriend, setClickedFriend] = useState([]);
+  const [modalOpen, setModalOpen] = useState([false]);
 
   const handleSearchChange = (searchValue) => {
     setSearch(searchValue);
@@ -92,7 +93,13 @@ export default function Friends({ currentUser }) {
   };
 
   const handleFriendClick = (e) => {
-    console.log(e.target.outerText);
+    setClickedFriend(e.target.outerText);
+    setModalOpen(true);
+    console.log(clickedFriend);
+  };
+
+  const handleModelClose = () => {
+    setModalOpen(false);
   };
 
   useEffect(() => {
@@ -111,33 +118,21 @@ export default function Friends({ currentUser }) {
           </Typography>
         </div>
         {incoming.length ? (
-          <>
-            <FriendRequest
-              request={incoming[0]}
-              handleAcceptClick={handleAcceptClick}
-              handleDenyClick={handleDenyClick}
+          <FriendRequest
+            request={incoming[0]}
+            handleAcceptClick={handleAcceptClick}
+            handleDenyClick={handleDenyClick}
+          />
+        ) : null}
+        <div className={classes.fullList}>
+          {friends.map((friend, index) => (
+            <Friend
+              key={index}
+              name={friend}
+              handleFriendClick={handleFriendClick}
             />
-            <div className={classes.fullList}>
-              {friends.map((friend, index) => (
-                <Friend
-                  key={index}
-                  name={friend}
-                  handleFriendClick={handleFriendClick}
-                />
-              ))}
-            </div>
-          </>
-        ) : (
-          <div className={classes.fullList}>
-            {friends.map((friend, index) => (
-              <Friend
-                key={index}
-                name={friend}
-                handleFriendClick={handleFriendClick}
-              />
-            ))}
-          </div>
-        )}
+          ))}
+        </div>
         <SearchBar
           placeholder="Find New"
           className={classes.searchBar}
