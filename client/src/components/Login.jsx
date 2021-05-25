@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable no-alert */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
@@ -50,8 +50,8 @@ const Login = ({
         setCurrentUser(response.data[0].name);
         setDisplay('home');
       })
-      .catch((error) => {
-        console.log('error fetching user data: ', error);
+      .catch(() => {
+        alert('Invalid Username or password');
       });
   };
 
