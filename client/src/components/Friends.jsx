@@ -39,19 +39,15 @@ export default function Friends({ currentUser }) {
 
   const [friends, setFriends] = useState([]);
   const [search, setSearch] = useState(['']);
-  const [incoming, setIncoming] = useState([]);
+  const [incoming, setIncoming] = useState(['sdfsd']);
   const [outgoing, setOutgoing] = useState([]);
-  const [clickedFriend, setClickedFriend] = useState('');
+  const [clickedFriend, setClickedFriend] = useState([]);
 
   const handleSearchChange = (searchValue) => {
     setSearch(searchValue);
-    if (searchValue.length > 2) {
-      axios.get();
-    }
-  };
-
-  const handleFriendClick = (e) => {
-    setClickedFriend(e.target.outerText);
+    // if (searchValue.length > 2) {
+    //   axios.get();
+    // }
   };
 
   const getUserInfo = () => {
@@ -95,6 +91,10 @@ export default function Friends({ currentUser }) {
       });
   };
 
+  const handleFriendClick = (e) => {
+    console.log(e.target.outerText);
+  };
+
   useEffect(() => {
     getUserInfo();
   }, []);
@@ -106,7 +106,7 @@ export default function Friends({ currentUser }) {
       </Container>
       <Container component={Paper} className={classes.container}>
         <div>
-          <Typography variant="h3">
+          <Typography variant="h3" onClick={handleFriendClick}>
             FRIENDS
           </Typography>
         </div>
@@ -122,7 +122,7 @@ export default function Friends({ currentUser }) {
                 <Friend
                   key={index}
                   name={friend}
-                  onClick={handleFriendClick}
+                  handleFriendClick={handleFriendClick}
                 />
               ))}
             </div>
