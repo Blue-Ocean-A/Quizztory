@@ -1,6 +1,8 @@
+/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import axios from 'axios';
 import {
   Grid, Container, Typography, TextField, Button, Link,
 } from '@material-ui/core';
@@ -20,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: theme.palette.primary.light,
   },
+  text: {
+    paddingTop: 15,
+    color: theme.palette.primary.light,
+  },
 }));
 
 const SignUp = ({
@@ -35,20 +41,26 @@ const SignUp = ({
     setUserName(e.target.value);
   };
 
-  const submit = () => {
-    // post request to /api/userProfile
-    if (userName !== '' && password !== '') {
-      // set current user
-      setCurrentUser(userName);
-      // switch display to home page
-      setDisplay('home');
-    }
+  const submit = (e) => {
+    e.preventDefault();
+
+    axios.post('/api/userProfile', {
+      name: userName,
+      password,
+    })
+      .then((response) => {
+        setCurrentUser(response.data[0].name);
+        setDisplay('home');
+      })
+      .catch((error) => {
+        console.log('Error signing up: ', error);
+      });
   };
 
   return (
     <Container className={classes.login} maxWidth="xs">
       <div>
-        <Typography component="h1" variant="h5" style={{ marginTop: 15 }}>
+        <Typography component="h3" variant="h3" className={classes.text}>
           Sign Up
         </Typography>
         <form noValidate>

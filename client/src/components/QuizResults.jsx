@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
-import React from 'react';
-import { Container, Typography } from '@material-ui/core';
+import React, { useEffect } from 'react';
+import { Grid, Typography, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -9,17 +9,16 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.dark,
     height: '450px',
     padding: '30px',
-  },
-  resultsDiv: {
-    backgroundColor: theme.palette.secondary.main,
-    padding: '30px',
-    margin: '20px',
-    width: '92%',
+    margin: '5rem',
+    alignItems: 'center',
+    justify: 'center',
   },
   resultsTitle: {
     backgroundColor: theme.palette.secondary.light,
-    padding: '20px',
-    margin: '50px 0 0 0',
+    padding: '80px',
+    justify: 'center',
+    alignItem: 'center',
+    margin: '50px',
   },
   button: {
     backgroundColor: 'none',
@@ -31,27 +30,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const QuizResults = ({ currentQuiz, score, setDisplay }) => {
+const QuizResults = ({
+  currentQuiz, score, setScore, setDisplay,
+}) => {
   const classes = useStyles();
   const { questions } = currentQuiz;
 
+  useEffect(() => {
+  }, [score]);
+
   const percentScore = (score) => {
     const number = (score / (questions.length)) * 100;
-    const percent = number.toString().concat('%');
+    const percent = number.toFixed().toString().concat('%');
     return percent;
   };
 
   const handleClick = () => {
     setDisplay('home');
+    setScore(0);
   };
 
   return (
-    <Container className={classes.quizDiv} maxWidth="sm">
-      <Typography variant="h2" component="h2" align="center" gutterBottom="true">{currentQuiz.name}</Typography>
-      <Container className={classes.resultsTitle}>
-        <Typography variant="h3" component="h3">You Scored</Typography>
-        <Typography variant="h1" component="h1">{percentScore(score)}</Typography>
-        <Typography variant="body1" component="body1">
+    <Grid className={classes.quizDiv} component={Paper}>
+      <Typography variant="h2" component="h2" align="center" gutterBottom>{currentQuiz.name}</Typography>
+      <Grid className={classes.resultsTitle}>
+        <Typography variant="h3" component="h3" align="center">You Scored</Typography>
+        <Typography variant="h1" component="h1" align="center" margin="20px">{percentScore(score)}</Typography>
+        <Typography variant="h4" component="h4" align="center">
           (
           {score}
           {' '}
@@ -60,9 +65,9 @@ const QuizResults = ({ currentQuiz, score, setDisplay }) => {
           {currentQuiz.questions.length}
           )
         </Typography>
-      </Container>
+      </Grid>
       <button type="button" id="quiz-over-button" onClick={handleClick}>Choose another quiz</button>
-    </Container>
+    </Grid>
   );
 };
 
