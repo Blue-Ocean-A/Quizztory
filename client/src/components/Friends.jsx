@@ -1,7 +1,11 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { Container, Typography, Modal } from '@material-ui/core/';
+import {
+  Container, Typography, Modal, TextField,
+} from '@material-ui/core/';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import SearchBar from 'material-ui-search-bar';
@@ -50,14 +54,13 @@ export default function Friends({ currentUser }) {
   const [results, setResults] = useState([]);
   const [average, setAverage] = useState(0);
   const [loaded, setLoaded] = useState(false);
+  const [allUsers, setAllUsers] = useState([]);
 
   const calculateAverageScore = () => {
     let total = 0;
     results.forEach((result) => {
-      // console.log(result);
       total += Number(result.score);
     });
-    // console.log(total);
     setAverage(total / results.length);
   };
 
@@ -68,11 +71,30 @@ export default function Friends({ currentUser }) {
     setOpen(false);
   };
 
+  const userNames = [];
+  const getAllUsers = () => {
+    axios.get('/api/allUsers')
+      .then((res) => {
+        setAllUsers(res.data.map((user) => user.name));
+      });
+  };
+
   const handleSearchChange = (searchValue) => {
     setSearch(searchValue);
-    // if (searchValue.length > 2) {
-    //   axios.get();
-    // }
+  };
+
+  const sendRequest = () => {
+    if (!allUsers.includes(search)) {
+      alert('No user found by that name!');
+      return;
+    }
+    axios.put('/api/userProfile/request', {
+      requester: currentUser,
+      requestee: search,
+    })
+      .then(() => {
+        alert(`Friend request sent to ${search}`);
+      });
   };
 
   const getUserInfo = () => {
@@ -124,8 +146,13 @@ export default function Friends({ currentUser }) {
     setOpen(true);
   };
 
+  const onSearch = (e) => {
+    console.log(e.target);
+  };
+
   useEffect(() => {
     getUserInfo();
+    getAllUsers();
     calculateAverageScore();
   }, [loaded]);
 
@@ -170,6 +197,7 @@ export default function Friends({ currentUser }) {
           placeholder="Find New"
           className={classes.searchBar}
           onChange={handleSearchChange}
+          onRequestSearch={sendRequest}
         />
       </Container>
     </>
