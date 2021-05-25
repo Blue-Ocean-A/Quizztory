@@ -20,16 +20,17 @@ const useStyles = makeStyles((theme) => ({
   },
   nested: {
     paddingLeft: theme.spacing(4),
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: theme.palette.secondary.main,
     '&:hover': {
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: theme.palette.text.primary,
     },
   },
   row: {
     backgroundColor: theme.palette.primary.light,
   },
   text: {
-    color: theme.palette.primary.light,
+    color: theme.palette.text.secondary,
+    fontFamily: 'Montserrat, san-serif',
   },
 }));
 
@@ -67,11 +68,11 @@ const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
             {allQuizzes.map((row) => (
               // eslint-disable-next-line max-len
               <TableRow className={classes.nested} key={row.name} onClick={() => handleQuizClick(row.name)}>
-                <TableCell component="th" scope="row">
+                <TableCell className={classes.text} component="th" scope="row" style={{ borderBottom: 'none' }}>
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{row.topic}</TableCell>
-                <TableCell align="right">{row.difficulty}</TableCell>
+                <TableCell className={classes.text} align="right" style={{ borderBottom: 'none' }}>{row.topic}</TableCell>
+                <TableCell className={classes.text} align="right" style={{ borderBottom: 'none' }}>{row.difficulty}</TableCell>
               </TableRow>
             ))}
           </TableBody>
