@@ -2,7 +2,9 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Button } from '@material-ui/core';
+import {
+  Container, Typography, Button, Paper,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import QuizResults from './QuizResults.jsx';
@@ -96,7 +98,7 @@ const Quiz = ({
     <div>
       {display === 'quiz' && (
         <>
-          <Container className={classes.quizDiv} maxWidth="sm">
+          <Container className={classes.quizDiv} component={Paper} maxWidth="sm">
             <Typography variant="h2" component="h2" align="center" gutterBottom="true">{currentQuiz.name}</Typography>
             <Typography variant="h4" component="h4" color="textSecondary" align="center" gutterBottom="true">
               Question

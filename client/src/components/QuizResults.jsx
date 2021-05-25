@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -51,7 +51,7 @@ const QuizResults = ({
   };
 
   return (
-    <Grid className={classes.quizDiv} maxWidth="sm">
+    <Grid className={classes.quizDiv} component={Paper} maxWidth="sm">
       <Typography variant="h2" component="h2" align="center" gutterBottom="true">{currentQuiz.name}</Typography>
       <Grid className={classes.resultsTitle}>
         <Typography variant="h3" component="h3" align="center">You Scored</Typography>
