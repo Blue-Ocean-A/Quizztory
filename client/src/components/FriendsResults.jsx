@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles, Paper, Container } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,14 +7,22 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
 
-const axios = require('axios');
-
-export default function StickyHeadTable({ user, friend }) {
+export default function StickyHeadTable({user, friend}) {
+  const [comparedUser, setComparedUser] = useState({});
   const currentUser = user;
-  console.log(user);
   const comparedUserName = friend;
-  const comparedUser = axios.get(`http://localhost:3000/api/userProfile?name=${comparedUserName}`);
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/userProfile?name=${comparedUserName}`)
+      .then((response) => {
+        console.log(response.data);
+        setComparedUser(response.data[0]);
+      })
+      .catch((error) => {
+        console.log('error fetching friend: ', error);
+      });
+  });
 
   const columns = [
     { id: 'currentUserScores', label: `${name}`, minWidth: 170 },
@@ -24,9 +32,9 @@ export default function StickyHeadTable({ user, friend }) {
 
   const rows = [];
 
-  function createData(currentUser, comparedUser) {
-    currentUser.map((score) => {
-      comparedUser.map((item) => {
+  function createData(currentResults, comparedResults) {
+    currentResults.map((score) => {
+      comparedResults.map((item) => {
         if (score.quizName === item.quizName) {
           rows.push({ currentUserScores: score.score, quizName: score.quizName, comparedUserScores: item.score });
         }
