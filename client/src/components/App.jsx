@@ -13,7 +13,7 @@ import FriendsResults from './FriendsResults.jsx';
 import Quiz from './Quiz.jsx';
 import QuizList from './QuizList.jsx';
 import SignUp from './SignUp.jsx';
-import historyEasy from '../quizData/historyEasy.js';
+import historyMedium from '../quizData/historyMedium.js';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -55,7 +55,7 @@ const App = () => {
       .catch((error) => {
         console.log('Error in useEffect: ', error);
       });
-  }, [display]);
+  }, []);
 
   if (display === 'login') {
     return (
