@@ -102,7 +102,7 @@ const SignUp = ({
             Join
           </Button>
           <Grid container style={{ marginTop: 10 }}>
-            <Grid item>
+            <Grid item style={{ marginBottom: 10 }}>
               <Link className={classes.link} href="#" variant="body2" onClick={() => setDisplay('login')}>
                 Already have an account?
               </Link>
