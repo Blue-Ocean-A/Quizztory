@@ -1,6 +1,5 @@
 node_modules
 data
 bundle.js
-bundleKim.js
 bundle.js.LICENSE.txt
 /client/dist/bundle.js

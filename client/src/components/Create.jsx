@@ -128,7 +128,7 @@ const Create = ({ setDisplay }) => {
     return false;
   };
   const cancel = () => {
-    console.log(question);
+    setDisplay('home');
   };
   const next = () => {
     if (index < 10) {
@@ -171,9 +171,7 @@ const Create = ({ setDisplay }) => {
     }
   }, [submitted]);
   useEffect(() => {
-    if (questions.length > 10) {
-      setIndex(index + 1);
-    }
+    setIndex(index + 1);
   }, [questions]);
   useEffect(() => {
     clearForm();
@@ -186,17 +184,23 @@ const Create = ({ setDisplay }) => {
         <Typography variant="h4" component="h4" color="textSecondary" align="center">
           Quiz Details
         </Typography>
+        <Typography variant="h4" component="h4" color="textPrimary" align="left">
+          Question Name:
+        </Typography>
         <TextField
           className={classes.inputDiv}
-          label="Quiz Name"
+          label="Question Name"
           variant="filled"
           name="name"
           value={name}
           onChange={(e) => { setName(e.target.value); }}
         />
+        <Typography variant="h4" component="h4" color="textPrimary" align="left">
+          Topic:
+        </Typography>
         <TextField
           className={classes.inputDiv}
-          label="Quiz Topic"
+          label="Topic"
           variant="filled"
           select
           name="topic"
@@ -209,6 +213,9 @@ const Create = ({ setDisplay }) => {
             </MenuItem>
           ))}
         </TextField>
+        <Typography variant="h4" component="h4" color="textPrimary" align="left">
+          Difficulty:
+        </Typography>
         <TextField
           className={classes.inputDiv}
           label="Difficulty"
