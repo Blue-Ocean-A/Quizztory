@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable no-alert */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -7,6 +8,7 @@ import {
   Grid, Container, Typography, TextField, Button, Link,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import GoogleLogin from './GoogleLogin.jsx';
 
 const useStyles = makeStyles((theme) => ({
   login: {
@@ -15,10 +17,13 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     backgroundColor: theme.palette.primary.light,
-    color: theme.palette.primary.dark,
+    color: theme.palette.primary.main,
   },
   button: {
     backgroundColor: theme.palette.secondary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.dark,
+    },
   },
   link: {
     color: theme.palette.primary.light,
@@ -99,8 +104,9 @@ const Login = ({
           >
             Login
           </Button>
+          <GoogleLogin setDisplay={setDisplay} setCurrentUser={setCurrentUser} />
           <Grid container style={{ marginTop: 10 }}>
-            <Grid item>
+            <Grid item style={{ marginBottom: 10 }}>
               <Link className={classes.link} href="#" variant="body2" onClick={() => setDisplay('signUp')}>
                 Sign up for an account
               </Link>
