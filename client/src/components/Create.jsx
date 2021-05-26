@@ -88,6 +88,7 @@ const Create = ({ setDisplay }) => {
     setAnswerB('');
     setAnswerC('');
     setAnswerD('');
+    setIsCorrect('');
   };
 
   const validateQuiz = () => {
@@ -131,7 +132,6 @@ const Create = ({ setDisplay }) => {
   const cancel = () => {
     setDisplay('home');
   };
-
   const next = () => {
     if (index < 10) {
       const newQuestion = {
@@ -148,7 +148,6 @@ const Create = ({ setDisplay }) => {
       setQuestions(questions.concat(newQuestion));
     }
   };
-
   const submitQuiz = () => {
     axios({
       method: 'post',
@@ -167,6 +166,7 @@ const Create = ({ setDisplay }) => {
         window.alert('Failed to create new quiz:', err);
       });
   };
+
   useEffect(() => {
     if (submit) {
       console.log('This runs when it should not');
@@ -327,6 +327,7 @@ const Create = ({ setDisplay }) => {
           <RadioGroup
             aria-label="gender"
             name="correct"
+            value={isCorrect}
             onChange={(e) => {
               e.preventDefault();
               setIsCorrect(e.target.value);
