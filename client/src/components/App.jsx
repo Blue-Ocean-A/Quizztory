@@ -147,6 +147,19 @@ const App = () => {
       </>
     );
   }
+
+  if (display === 'create') {
+    return (
+      <>
+        <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
+        <Grid container spacing={2} className={classes.root}>
+          <Create
+            setDisplay={setDisplay}
+          />
+        </Grid>
+      </>
+    );
+  }
 };
 
 export default App;
