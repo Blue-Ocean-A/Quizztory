@@ -30,15 +30,15 @@ export default function FriendsResults({ user, friend }) {
       currentUser.results.forEach((result) => {
         comparedUser.results.forEach((item) => {
           if (result.quizName === item.quizName) {
-            setRows([...rows, {
-              currentUserScores: result.score,
-              quizName: result.quizName,
-              comparedUserScores: item.score,
-            }]);
+            setRows([...rows, { currentUserScores: result.score, quizName: result.quizName, comparedUserScores: item.score }]);
           }
         });
       });
+      if (rows.length < 1) {
+        setRows([{ currentUserScores: 'No scores to compare', quizName: 'No quizzes to compare', comparedUserScores: 'No scores to compare' }]);
+      }
     } else {
+      console.log('else block');
       setRows([{ currentUserScores: 'No scores to compare', quizName: 'No quizzes to compare', comparedUserScores: 'No scores to compare' }]);
     }
   }
@@ -46,6 +46,7 @@ export default function FriendsResults({ user, friend }) {
   useEffect(() => {
     axios.get(`http://localhost:3000/api/userProfile?name=${comparedUserName}`)
       .then((response) => {
+        // console.log(response.data[0]);
         setComparedUser(response.data[0]);
       })
       .catch((error) => {
@@ -89,16 +90,19 @@ export default function FriendsResults({ user, friend }) {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.length && rows.map((row) => (
-                  <TableRow key={uuidv4()} hover role="checkbox" tabIndex={-1}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={uuidv4()} align={column.align}>{value}</TableCell>
-                      );
-                    })}
-                  </TableRow>
-                ))}
+                {rows.length && rows.map((row) => {
+                  console.log('row: ', row);
+                  return (
+                    <TableRow key={uuidv4()} hover role="checkbox" tabIndex={-1}>
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={uuidv4()} align={column.align}>{value}</TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
               </TableBody>
             </Table>
           </TableContainer>
