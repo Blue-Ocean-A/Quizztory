@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 /* eslint-disable no-alert */
@@ -19,8 +20,8 @@ function GoogleLogin({ setDisplay, setCurrentUser }) {
         setDisplay('home');
         refreshTokenSetup(res);
       })
-      .catch((error) => {
-        console.log('Error logging in: ', error);
+      .catch(() => {
+        console.log('error');
       });
   };
 
