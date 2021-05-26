@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -11,7 +13,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
-export default function FriendsResults({user, friend}) {
+export default function FriendsResults({ user, friend }) {
   const [comparedUser, setComparedUser] = useState();
   const [rows, setRows] = useState([]);
   const currentUser = user;
@@ -28,7 +30,11 @@ export default function FriendsResults({user, friend}) {
       currentUser.results.forEach((result) => {
         comparedUser.results.forEach((item) => {
           if (result.quizName === item.quizName) {
-            setRows([...rows, { currentUserScores: result.score, quizName: result.quizName, comparedUserScores: item.score }]);
+            setRows([...rows, {
+              currentUserScores: result.score,
+              quizName: result.quizName,
+              comparedUserScores: item.score,
+            }]);
           }
         });
       });
@@ -40,7 +46,6 @@ export default function FriendsResults({user, friend}) {
   useEffect(() => {
     axios.get(`http://localhost:3000/api/userProfile?name=${comparedUserName}`)
       .then((response) => {
-        // console.log(response.data[0]);
         setComparedUser(response.data[0]);
       })
       .catch((error) => {
@@ -84,19 +89,16 @@ export default function FriendsResults({user, friend}) {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.length && rows.map((row) => {
-                  console.log('row: ', row);
-                  return (
-                    <TableRow key={uuidv4()} hover role="checkbox" tabIndex={-1}>
-                      {columns.map((column) => {
-                        const value = row[column.id];
-                        return (
-                          <TableCell key={uuidv4()} align={column.align}>{value}</TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  );
-                })}
+                {rows.length && rows.map((row) => (
+                  <TableRow key={uuidv4()} hover role="checkbox" tabIndex={-1}>
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={uuidv4()} align={column.align}>{value}</TableCell>
+                      );
+                    })}
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
