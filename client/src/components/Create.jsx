@@ -165,18 +165,20 @@ const Create = ({ setDisplay }) => {
       });
   };
   useEffect(() => {
-    const newQuestion = {
-      text: question,
-      answers: [
-        { text: answerA, isCorrect: false },
-        { text: answerB, isCorrect: false },
-        { text: answerC, isCorrect: false },
-        { text: answerD, isCorrect: false },
-      ],
-    };
-    const ans = 'abcd';
-    newQuestion.answers[ans.indexOf(isCorrect)].isCorrect = true;
-    setQuestions(questions.concat(newQuestion));
+    if (submit) {
+      const newQuestion = {
+        text: question,
+        answers: [
+          { text: answerA, isCorrect: false },
+          { text: answerB, isCorrect: false },
+          { text: answerC, isCorrect: false },
+          { text: answerD, isCorrect: false },
+        ],
+      };
+      const ans = 'abcd';
+      newQuestion.answers[ans.indexOf(isCorrect)].isCorrect = true;
+      setQuestions(questions.concat(newQuestion));
+    }
   }, [submit]);
   useEffect(() => {
     if (submitted) {
