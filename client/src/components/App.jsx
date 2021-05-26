@@ -130,9 +130,21 @@ const App = () => {
         <Grid container spacing={2} className={classes.root}>
           <Quiz
             currentQuiz={currentQuiz}
-            currentUser={currentUser}
             display={display}
-            setDisplay={setDisplay}
+            setDisplay={currentUser}
+          />
+        </Grid>
+      </>
+    );
+  }
+
+  if (display === 'create') {
+    return (
+      <>
+        <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
+        <Grid container spacing={2} className={classes.root}>
+          <Create
+            setDisplay={currentUser}
           />
         </Grid>
       </>
