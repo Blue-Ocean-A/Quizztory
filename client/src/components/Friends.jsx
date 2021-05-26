@@ -71,7 +71,6 @@ export default function Friends({ currentUser }) {
     setOpen(false);
   };
 
-  const userNames = [];
   const getAllUsers = () => {
     axios.get('/api/allUsers')
       .then((res) => {
