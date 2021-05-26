@@ -11,16 +11,19 @@ import refreshTokenSetup from '../utils/refreshToken.js';
 
 const clientId = '92870217008-h9091it2nl99pja28dl9rfa5lpecdeng.apps.googleusercontent.com';
 
-function GoogleLogin({ setDisplay, setCurrentUser }) {
+function GoogleSignup({ setDisplay, setCurrentUser }) {
   const onSuccess = (res) => {
-    axios.get(`/api/user?name=${res.profileObj.name}&password=${res.profileObj.googleId}`)
+    axios.post('/api/userProfile', {
+      name: res.profileObj.name,
+      password: res.profileObj.googleId,
+    })
       .then((response) => {
         setCurrentUser(response.data[0].name);
         setDisplay('home');
         refreshTokenSetup(res);
       })
       .catch((error) => {
-        console.log('Error logging in: ', error);
+        console.log('Error signing up: ', error);
       });
   };
 
@@ -53,4 +56,4 @@ function GoogleLogin({ setDisplay, setCurrentUser }) {
   );
 }
 
-export default GoogleLogin;
+export default GoogleSignup;

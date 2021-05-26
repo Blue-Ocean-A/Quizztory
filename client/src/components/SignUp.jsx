@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -7,6 +8,7 @@ import {
   Grid, Container, Typography, TextField, Button, Link,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import GoogleSignup from './GoogleSignup.jsx';
 
 const useStyles = makeStyles((theme) => ({
   login: {
@@ -101,6 +103,7 @@ const SignUp = ({
           >
             Join
           </Button>
+          <GoogleSignup setDisplay={setDisplay} setCurrentUser={setCurrentUser} />
           <Grid container style={{ marginTop: 10 }}>
             <Grid item style={{ marginBottom: 10 }}>
               <Link className={classes.link} href="#" variant="body2" onClick={() => setDisplay('login')}>
