@@ -47,6 +47,8 @@ export default function Score({ average, results, currentUser }) {
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
 
+  console.log(average);
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -103,11 +105,19 @@ export default function Score({ average, results, currentUser }) {
       <Typography variant="h1" color="primary" onClick={handleOpen}>
         {`${average}%`}
       </Typography>
-      <Typography variant="body1" color="primary" className={classes.text} onClick={handleOpen}>
-        {`${currentUser}'s`}
-        {' '}
-        average score
-      </Typography>
+      {average !== '-'
+        ? (
+          <Typography variant="body1" color="primary" className={classes.text} onClick={handleOpen}>
+            {`${currentUser}'s`}
+            {' '}
+            average score
+          </Typography>
+        )
+        : (
+          <Typography variant="body1" color="primary" className={classes}>
+            Take your first quiz!
+          </Typography>
+        )}
       <Modal
         open={open}
         onClose={handleClose}
