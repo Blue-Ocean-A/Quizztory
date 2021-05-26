@@ -1,11 +1,14 @@
+/* eslint-disable import/extensions */
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import {
-  Container, Typography, Modal, TextField,
+  Container, Typography, Modal,
 } from '@material-ui/core/';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import SearchBar from 'material-ui-search-bar';
@@ -46,11 +49,11 @@ export default function Friends({ currentUser }) {
   const [friends, setFriends] = useState([]);
   const [search, setSearch] = useState(['']);
   const [incoming, setIncoming] = useState(['sdfsd']);
+  // eslint-disable-next-line no-unused-vars
   const [outgoing, setOutgoing] = useState([]);
   const [clickedFriend, setClickedFriend] = useState([]);
   const [user, setUser] = useState({});
   const [open, setOpen] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [results, setResults] = useState([]);
   const [average, setAverage] = useState(0);
   const [loaded, setLoaded] = useState(false);
@@ -61,7 +64,7 @@ export default function Friends({ currentUser }) {
     results.forEach((result) => {
       total += Number(result.score);
     });
-    setAverage(total / results.length);
+    setAverage((total / results.length).toFixed());
   };
 
   const handleOpen = () => {
