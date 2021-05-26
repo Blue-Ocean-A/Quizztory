@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography, Container, Paper, Modal, Grid,
 } from '@material-ui/core/';
+import { v4 as uuidv4 } from 'uuid';
 
 function getModalStyle() {
   return {
@@ -53,10 +55,6 @@ export default function Score({ average, results, currentUser }) {
     setOpen(false);
   };
 
-  useEffect(() => {
-
-  });
-
   const body = (
     <Container
       component={Paper}
@@ -69,23 +67,23 @@ export default function Score({ average, results, currentUser }) {
             {`${average}%`}
           </Typography>
           <Typography variant="h3">
-            {`${currentUser}'s`} average Quizztory score
+            {`${currentUser}'s`}
+            {' '}
+            average Quizztory score
           </Typography>
         </Grid>
         <Grid item xs={6}>
           {results.map((result) => (
-            <Container className={classes.scores}>
-              <Grid container xs={12}>
+            <Container key={uuidv4()} className={classes.scores}>
+              <Grid container>
                 <Grid item xs={8} style={{ textAlign: 'left' }}>
                   <Typography variant="h4">
-                    Quiz:
                     {' '}
                     {result.quizName}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} style={{ textAlign: 'right' }}>
                   <Typography variant="h4">
-                    Score:
                     {' '}
                     {`${result.score}%`}
                   </Typography>
@@ -103,9 +101,19 @@ export default function Score({ average, results, currentUser }) {
       <Typography variant="h1" color="primary" onClick={handleOpen}>
         {`${average}%`}
       </Typography>
-      <Typography variant="body1" color="primary" className={classes.text} onClick={handleOpen}>
-        {`${currentUser}'s`} average score
-      </Typography>
+      {average !== '-'
+        ? (
+          <Typography variant="body1" color="primary" className={classes.text} onClick={handleOpen}>
+            {`${currentUser}'s`}
+            {' '}
+            average score
+          </Typography>
+        )
+        : (
+          <Typography variant="body1" color="primary" className={classes}>
+            Take your first quiz!
+          </Typography>
+        )}
       <Modal
         open={open}
         onClose={handleClose}
