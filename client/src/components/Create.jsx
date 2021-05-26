@@ -128,7 +128,7 @@ const Create = ({ setDisplay }) => {
     return false;
   };
   const cancel = () => {
-    console.log(question);
+    setDisplay('home');
   };
   const next = () => {
     if (index < 10) {
