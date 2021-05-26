@@ -9,11 +9,9 @@ import QuizztoryLogo from '../../../QuizztoryLogo.png';
 import Login from './Login.jsx';
 import Create from './Create.jsx';
 import Friends from './Friends.jsx';
-import FriendsResults from './FriendsResults.jsx';
 import Quiz from './Quiz.jsx';
 import QuizList from './QuizList.jsx';
 import SignUp from './SignUp.jsx';
-import historyMedium from '../quizData/historyMedium.js';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -36,8 +34,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const App = () => {
-  const [showBack, setShowBack] = useState(false);
-  const [allUsers, setAllUsers] = useState([]);
   const [allQuizzes, setAllQuizzes] = useState();
   const [currentQuiz, setCurrentQuiz] = useState();
   const [currentUser, setCurrentUser] = useState();
