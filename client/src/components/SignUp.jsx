@@ -55,7 +55,7 @@ const SignUp = ({
         setDisplay('home');
       })
       .catch((error) => {
-        console.log('Error signing up: ', error);
+        throw error;
       });
   };
 

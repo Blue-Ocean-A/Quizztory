@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable import/extensions */
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
@@ -60,11 +61,11 @@ const Quiz = ({
     };
 
     axios.put('/api/userProfile/score', body)
-      .then((response) => {
-        console.log(`${currentUser}'s score of ${percentScore} for ${currentQuiz.name} has been updated: `, response.data);
-      })
+      // .then((response) => {
+      //   console.log(response.data);
+      // })
       .catch((err) => {
-        console.log(`ERROR updating ${currentUser.name}'s score: `, err);
+        throw err;
       });
   };
 

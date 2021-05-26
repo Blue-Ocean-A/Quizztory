@@ -57,7 +57,7 @@ const App = () => {
         window.history.pushState({}, null, '/');
       })
       .catch((error) => {
-        console.log('Error in useEffect: ', error);
+        throw error;
       });
   }, [display]);
 
@@ -134,6 +134,7 @@ const App = () => {
             currentQuiz={currentQuiz}
             display={display}
             setDisplay={setDisplay}
+            currentUser={currentUser}
           />
         </Grid>
       </>

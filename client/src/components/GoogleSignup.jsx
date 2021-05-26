@@ -24,7 +24,7 @@ function GoogleSignup({ setDisplay, setCurrentUser }) {
         refreshTokenSetup(res);
       })
       .catch((error) => {
-        console.log('Error signing up: ', error);
+        throw error;
       });
   };
 
