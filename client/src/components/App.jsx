@@ -80,7 +80,12 @@ const App = () => {
   if (display === 'home') {
     return (
       <>
-        <GoogleLogout setDisplay={setDisplay} />
+        <GoogleLogout
+          setDisplay={setDisplay}
+          setCurrentUser={setCurrentUser}
+          setUserName={setUserName}
+          setPassword={setPassword}
+        />
         <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
         <Grid container spacing={2} className={classes.root}>
           <Grid item xs={6}>

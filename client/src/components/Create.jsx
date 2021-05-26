@@ -50,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '50px',
     lineHeight: '1.4',
+    border: 'none',
+    marginBottom: '10px',
+    borderRadius: '4px',
   },
   buttonDiv: {
     alignItems: 'center',
