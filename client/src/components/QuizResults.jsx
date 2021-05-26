@@ -51,8 +51,8 @@ const QuizResults = ({
   };
 
   return (
-    <Grid className={classes.quizDiv} component={Paper} maxWidth="sm">
-      <Typography variant="h2" component="h2" align="center" gutterBottom="true">{currentQuiz.name}</Typography>
+    <Grid className={classes.quizDiv} component={Paper}>
+      <Typography variant="h2" component="h2" align="center" gutterBottom>{currentQuiz.name}</Typography>
       <Grid className={classes.resultsTitle}>
         <Typography variant="h3" component="h3" align="center">You Scored</Typography>
         <Typography variant="h1" component="h1" align="center" margin="20px">{percentScore(score)}</Typography>

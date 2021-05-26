@@ -1,6 +1,8 @@
+/* eslint-disable no-alert */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import axios from 'axios';
 import {
   Grid, Container, Typography, TextField, Button, Link,
 } from '@material-ui/core';
@@ -40,11 +42,17 @@ const Login = ({
     setUserName(e.target.value);
   };
 
-  const submit = () => {
-    if (userName !== '' && password !== '') {
-      setCurrentUser(userName);
-      setDisplay('home');
-    }
+  const submit = (e) => {
+    e.preventDefault();
+
+    axios.get(`/api/user?name=${userName}&password=${password}`)
+      .then((response) => {
+        setCurrentUser(response.data[0].name);
+        setDisplay('home');
+      })
+      .catch(() => {
+        alert('Invalid Username or password');
+      });
   };
 
   return (
