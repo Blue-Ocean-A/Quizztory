@@ -16,7 +16,8 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
-import { CodeTwoTone } from '@material-ui/icons';
+import { CodeTwoTone, SignalCellularNoSimOutlined } from '@material-ui/icons';
+import { ConnectionBase } from 'mongoose';
 
 const useStyles = makeStyles((theme, text) => ({
   createDiv: {
@@ -44,7 +45,6 @@ const useStyles = makeStyles((theme, text) => ({
   },
   inputDiv: {
     backgroundColor: theme.palette.primary.light,
-    color: 'black',
     fontFamily: 'Montserrat, san-serif',
     width: '100%',
     height: '50px',
@@ -66,46 +66,31 @@ const page = [
 const topics = ['History', 'Nature', 'Random'];
 const difficulties = ['Easy', 'Medium', 'Hard'];
 
-
 const Create = ({ setDisplay }) => {
   const classes = useStyles();
 
   const [name, setName] = useState('');
   const [topic, setTopic] = useState('');
   const [difficulty, setDifficulty] = useState('');
-  const [index, setIndex] = useState(1);
-  const [submit, setSubmit] = useState(false);
   const [questions, setQuestions] = useState([]);
-  const [question, setQuestion] = useState({
-    text: '',
-    answers: [
-      { text: '', isCorrect: false },
-      { text: '', isCorrect: false },
-      { text: '', isCorrect: true },
-      { text: '', isCorrect: false },
-    ],
-  });
 
-  useEffect(() => {
-    if (submit) {
-      setDisplay('home');
-    }
-  }, [submit]);
-  useEffect(() => {
-    if (questions.length !== 0) {
-      setQuestion(
-        {
-          text: '',
-          answers: [
-            { text: '', isCorrect: false },
-            { text: '', isCorrect: false },
-            { text: '', isCorrect: true },
-            { text: '', isCorrect: false },
-          ],
-        },
-      );
-    }
-  }, [questions]);
+  const [index, setIndex] = useState(1);
+  const [submitted, setSubmitted] = useState(false);
+  const [question, setQuestion] = useState('');
+  const [answerA, setAnswerA] = useState('');
+  const [answerB, setAnswerB] = useState('');
+  const [answerC, setAnswerC] = useState('');
+  const [answerD, setAnswerD] = useState('');
+  const [isCorrect, setIsCorrect] = useState('');
+
+  const clearForm = () => {
+    setQuestion('');
+    setAnswerA('');
+    setAnswerB('');
+    setAnswerC('');
+    setAnswerD('');
+    // setIsCorrect('');
+  };
   const validateQuiz = () => {
     if (name.length === 0) {
       return false;
@@ -121,54 +106,87 @@ const Create = ({ setDisplay }) => {
     }
     return true;
   };
-  const correctAnswer = () => {};
-  const cancel = () => {
-    setDisplay('home');
+  const validateQuestion = () => {
+    if (question.length === 0) {
+      return false;
+    }
+    if (answerA.length === 0) {
+      return false;
+    }
+    if (answerB.length === 0) {
+      return false;
+    }
+    if (answerC.length === 0) {
+      return false;
+    }
+    if (answerD.length === 0) {
+      return false;
+    }
+    if (isCorrect === 'a' || isCorrect === 'b' || isCorrect === 'c' || isCorrect === 'd') {
+      return true;
+    }
+    return false;
   };
-  const previous = () => {};
+  const cancel = () => {
+    console.log(question);
+  };
   const next = () => {
-    if (question.text.length === 0) {
-      return;
-    }
-    let answerSelected = false;
-    for (let i = 0; i < question.answers.length; i++) {
-      const answer = question.answers[i];
-      if (answer.text.length === 0) {
-        return;
-      }
-      if (answer.isCorrect === true) {
-        answerSelected = true;
-      }
-    }
-    if (answerSelected) {
-      setQuestions(questions.concat(question));
+    if (index < 10) {
+      const newQuestion = {
+        text: question,
+        answers: [
+          { text: answerA, isCorrect: false },
+          { text: answerB, isCorrect: false },
+          { text: answerC, isCorrect: false },
+          { text: answerD, isCorrect: false },
+        ],
+      };
+      const ans = 'abcd';
+      newQuestion.answers[ans.indexOf(isCorrect)].isCorrect = true;
+      setQuestions(questions.concat(newQuestion));
     }
   };
   const submitQuiz = () => {
-    if (validateQuiz()) {
-      setSubmit(true);
-      // axios.post('/api/newQuiz')
-      //   .then(res => {
-      //     console.log("response: ", res);
-      //     setSubmit(true);
-      //   })
-      //   .catch(err => {
-      //     window.alert('Failed to create new quiz:', err);
-      //   });
-    } else {
-      window.alert('NEW QUIZ INCOMPLETE');
-    }
+    axios({
+      method: 'post',
+      url: '/api/newQuiz',
+      data: {
+        name,
+        topic,
+        difficulty,
+        questions,
+      },
+    })
+      .then(res => {
+        setSubmitted(true);
+      })
+      .catch(err => {
+        window.alert('Failed to create new quiz:', err);
+      });
   };
+
+  useEffect(() => {
+    if (submitted) {
+      setDisplay('home');
+    }
+  }, [submitted]);
+  useEffect(() => {
+    if (questions.length > 10) {
+      setIndex(index + 1);
+    }
+  }, [questions]);
+  useEffect(() => {
+    clearForm();
+  }, [index]);
 
   return (
     <Container className={classes.createDiv} maxWidth="sm">
-      <Typography variant="h2" component="h2" align="center" gutterBottom="true">Create A Quiz</Typography>
+      <Typography variant="h2" component="h2" align="center">Create A Quiz</Typography>
       <Container className={classes.detailDiv}>
-        <Typography variant="h4" component="h4" color="textSecondary" align="center" gutterBottom="true">
+        <Typography variant="h4" component="h4" color="textSecondary" align="center">
           Quiz Details
         </Typography>
         <TextField
-          color="black"
           className={classes.inputDiv}
           label="Quiz Name"
           variant="filled"
@@ -208,7 +226,7 @@ const Create = ({ setDisplay }) => {
         </TextField>
       </Container>
       <Container className={classes.questionDiv}>
-        <Typography variant="h4" component="h4" color="textPrimary" align="center" gutterBottom="true">
+        <Typography variant="h4" component="h4" color="textPrimary" align="center">
           Question
           {' '}
           {index}
@@ -217,48 +235,80 @@ const Create = ({ setDisplay }) => {
           {' '}
           10
         </Typography>
-        <TextField
-          color="black"
+        <Typography variant="h4" component="h4" color="textPrimary" align="left">
+          Question Text
+        </Typography>
+        <input
+          type="text"
           className={classes.inputDiv}
-          label="Question Text"
-          variant="filled"
-          name="text"
+          value={question}
+          onChange={(e) => {
+            e.preventDefault();
+            setQuestion(e.target.value);
+          }}
         />
-        <TextField
-          color="black"
+        <Typography variant="h4" component="h4" color="textPrimary" align="left">
+          Answer A
+        </Typography>
+        <input
+          type="text"
           className={classes.inputDiv}
-          variant="filled"
-          label="Answer A"
-          name="a"
+          value={answerA}
+          onChange={(e) => {
+            e.preventDefault();
+            setAnswerA(e.target.value);
+          }}
         />
-        <TextField
-          color="black"
+        <Typography variant="h4" component="h4" color="textPrimary" align="left">
+          Answer B
+        </Typography>
+        <input
+          type="text"
           className={classes.inputDiv}
-          label="Answer B"
-          variant="filled"
-          name="b"
+          value={answerB}
+          onChange={(e) => {
+            e.preventDefault();
+            setAnswerB(e.target.value);
+          }}
         />
-        <TextField
-          color="black"
+        <Typography variant="h4" component="h4" color="textPrimary" align="left">
+          Answer C
+        </Typography>
+        <input
+          type="text"
           className={classes.inputDiv}
-          label="Answer C"
-          variant="filled"
-          name="c"
+          value={answerC}
+          onChange={(e) => {
+            e.preventDefault();
+            setAnswerC(e.target.value);
+          }}
         />
-        <TextField
-          color="black"
+        <Typography variant="h4" component="h4" color="textPrimary" align="left">
+          Answer D
+        </Typography>
+        <input
+          type="text"
           className={classes.inputDiv}
-          label="Answer D"
-          variant="filled"
-          name="d"
+          value={answerD}
+          onChange={(e) => {
+            e.preventDefault();
+            setAnswerD(e.target.value);
+          }}
         />
       </Container>
       <Container className={classes.questionDiv}>
-        <Typography variant="h4" component="h4" color="textPrimary" align="center" gutterBottom="true">
+        <Typography variant="h4" component="h4" color="textPrimary" align="center">
           Correct Answer:
         </Typography>
         <FormControl component="fieldset">
-          <RadioGroup aria-label="gender" name="correct" onChange={correctAnswer}>
+          <RadioGroup
+            aria-label="gender"
+            name="correct"
+            onChange={(e) => {
+              e.preventDefault();
+              setIsCorrect(e.target.value);
+            }}
+          >
             <FormControlLabel label="A" control={<Radio />} value="a" />
             <FormControlLabel label="B" control={<Radio />} value="b" />
             <FormControlLabel label="C" control={<Radio />} value="c" />
@@ -276,21 +326,28 @@ const Create = ({ setDisplay }) => {
       <Button
         variant="contained"
         className={classes.createButton}
-        onClick={previous}
-      >
-        Previous
-      </Button>
-      <Button
-        variant="contained"
-        className={classes.createButton}
-        onClick={next}
+        onClick={(e) => {
+          e.preventDefault();
+          if (validateQuestion()) {
+            next();
+          } else {
+            window.alert('Please finish current question');
+          }
+        }}
       >
         Next
       </Button>
       <Button
         variant="contained"
         className={classes.createButton}
-        onClick={submitQuiz}
+        onClick={(e) => {
+          e.preventDefault();
+          if (validateQuestion() && validateQuiz()) {
+            submitQuiz();
+          } else {
+            window.alert('Please finish current question or quiz details before submitting');
+          }
+        }}
       >
         Submit
       </Button>
