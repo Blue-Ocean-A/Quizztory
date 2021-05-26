@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import {
-  Container, Typography, Modal, TextField,
+  Container, Typography, Modal,
 } from '@material-ui/core/';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import SearchBar from 'material-ui-search-bar';
