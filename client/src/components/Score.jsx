@@ -23,10 +23,12 @@ const useStyles = makeStyles((theme) => ({
     border: 'none',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    maxHeight: '60%',
   },
   container: {
     backgroundColor: theme.palette.primary.light,
     textAlign: 'center',
+    overflowX: 'scroll',
   },
   text: {
     marginTop: '-10px',

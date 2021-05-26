@@ -22,8 +22,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.light,
     dispay: 'flex',
     justifyContent: 'center',
-    flexWrap: 'wrap',
-    height: '60%',
+    height: '50%',
   },
   image: {
     display: 'flex',

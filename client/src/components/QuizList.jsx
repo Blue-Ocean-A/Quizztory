@@ -14,6 +14,10 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
+  div: {
+    height: '28rem',
+    overflowX: 'scroll',
+  },
   table: {
     backgroundColor: theme.palette.primary.dark,
     minWidth: 650,
@@ -50,7 +54,7 @@ const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
 
   return (
     <Grid>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className={classes.div}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
