@@ -38,7 +38,6 @@ export default function FriendsResults({ user, friend }) {
         setRows([{ currentUserScores: 'No scores to compare', quizName: 'No quizzes to compare', comparedUserScores: 'No scores to compare' }]);
       }
     } else {
-      console.log('else block');
       setRows([{ currentUserScores: 'No scores to compare', quizName: 'No quizzes to compare', comparedUserScores: 'No scores to compare' }]);
     }
   }
@@ -46,7 +45,6 @@ export default function FriendsResults({ user, friend }) {
   useEffect(() => {
     axios.get(`http://localhost:3000/api/userProfile?name=${comparedUserName}`)
       .then((response) => {
-        // console.log(response.data[0]);
         setComparedUser(response.data[0]);
       })
       .catch((error) => {
