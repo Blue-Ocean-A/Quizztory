@@ -36,8 +36,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const App = () => {
+<<<<<<< HEAD
   const [showBack, setShowBack] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
+=======
+>>>>>>> 8e6f03420cc6103246a01a193d918e935cce427f
   const [allQuizzes, setAllQuizzes] = useState();
   const [currentQuiz, setCurrentQuiz] = useState();
   const [currentUser, setCurrentUser] = useState();

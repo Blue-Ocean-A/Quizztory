@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  Typography, Container, Paper, Modal, Button,
+  Typography, Container, Paper, Modal, Grid,
 } from '@material-ui/core/';
 
 function getModalStyle() {
@@ -15,31 +15,35 @@ function getModalStyle() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: '20%',
+    marginTop: '5%',
     margin: '0 auto',
-    width: 370,
     backgroundColor: theme.palette.primary.main,
-    border: '1px solid #333333',
+    border: 'none',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
   container: {
-    marginTop: '-10px',
+    backgroundColor: theme.palette.primary.light,
     textAlign: 'center',
   },
   text: {
     marginTop: '-10px',
   },
   modalText: {
+    textAlign: 'center',
     color: theme.palette.primary.light,
+    height: '60vh',
+  },
+  scores: {
+    backgroundColor: theme.palette.secondary.light,
+    color: theme.palette.primary.main,
   },
 }));
 
-export default function Score({ average }) {
+export default function Score({ average, results, currentUser }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
-  const [score, setScore] = useState('');
 
   const handleOpen = () => {
     setOpen(true);
@@ -49,22 +53,58 @@ export default function Score({ average }) {
     setOpen(false);
   };
 
+  useEffect(() => {
+
+  });
+
   const body = (
-    <div
+    <Container
+      component={Paper}
       style={modalStyle}
       className={classes.paper}
     >
-      <Button className={classes.modalText} onClick={handleClose}>Back</Button>
-    </div>
+      <Grid container component={Paper} spacing={1} className={classes.container}>
+        <Grid item xs={5}>
+          <Typography variant="h1">
+            {`${average}%`}
+          </Typography>
+          <Typography variant="h3">
+            {`${currentUser}'s`} average Quizztory score
+          </Typography>
+        </Grid>
+        <Grid item xs={6}>
+          {results.map((result) => (
+            <Container className={classes.scores}>
+              <Grid container xs={12}>
+                <Grid item xs={8} style={{ textAlign: 'left' }}>
+                  <Typography variant="h4">
+                    Quiz:
+                    {' '}
+                    {result.quizName}
+                  </Typography>
+                </Grid>
+                <Grid item xs={4} style={{ textAlign: 'right' }}>
+                  <Typography variant="h4">
+                    Score:
+                    {' '}
+                    {`${result.score}%`}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Container>
+          ))}
+        </Grid>
+      </Grid>
+    </Container>
   );
 
   return (
-    <div role="button" className={classes.container}>
+    <div role="button" style={{ textAlign: 'center' }}>
       <Typography variant="h1" color="primary" onClick={handleOpen}>
-        {average + "%"}
+        {`${average}%`}
       </Typography>
       <Typography variant="body1" color="primary" className={classes.text} onClick={handleOpen}>
-        Your Average Score
+        {`${currentUser}'s`} average score
       </Typography>
       <Modal
         open={open}

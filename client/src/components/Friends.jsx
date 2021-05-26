@@ -1,7 +1,14 @@
+/* eslint-disable import/extensions */
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { Container, Typography, Modal } from '@material-ui/core/';
+import {
+  Container, Typography, Modal,
+} from '@material-ui/core/';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import SearchBar from 'material-ui-search-bar';
@@ -42,23 +49,22 @@ export default function Friends({ currentUser }) {
   const [friends, setFriends] = useState([]);
   const [search, setSearch] = useState(['']);
   const [incoming, setIncoming] = useState(['sdfsd']);
+  // eslint-disable-next-line no-unused-vars
   const [outgoing, setOutgoing] = useState([]);
   const [clickedFriend, setClickedFriend] = useState([]);
   const [user, setUser] = useState({});
   const [open, setOpen] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [results, setResults] = useState([]);
   const [average, setAverage] = useState(0);
   const [loaded, setLoaded] = useState(false);
+  const [allUsers, setAllUsers] = useState([]);
 
   const calculateAverageScore = () => {
     let total = 0;
     results.forEach((result) => {
-      // console.log(result);
-      total = total + Number(result.score);
+      total += Number(result.score);
     });
-    // console.log(total);
-    setAverage(total / results.length);
+    setAverage((total / results.length).toFixed());
   };
 
   const handleOpen = () => {
@@ -68,11 +74,29 @@ export default function Friends({ currentUser }) {
     setOpen(false);
   };
 
+  const getAllUsers = () => {
+    axios.get('/api/allUsers')
+      .then((res) => {
+        setAllUsers(res.data.map((user) => user.name));
+      });
+  };
+
   const handleSearchChange = (searchValue) => {
     setSearch(searchValue);
-    // if (searchValue.length > 2) {
-    //   axios.get();
-    // }
+  };
+
+  const sendRequest = () => {
+    if (!allUsers.includes(search)) {
+      alert('No user found by that name!');
+      return;
+    }
+    axios.put('/api/userProfile/request', {
+      requester: currentUser,
+      requestee: search,
+    })
+      .then(() => {
+        alert(`Friend request sent to ${search}`);
+      });
   };
 
   const getUserInfo = () => {
@@ -126,14 +150,13 @@ export default function Friends({ currentUser }) {
 
   useEffect(() => {
     getUserInfo();
+    getAllUsers();
     calculateAverageScore();
   }, [loaded]);
 
   return (
     <>
-      <Container>
-        <Score average={average}/>
-      </Container>
+      <Score average={average} results={results} currentUser={currentUser} />
       <Container component={Paper} className={classes.container}>
         <div>
           <Typography variant="h3" onClick={handleFriendClick}>
@@ -172,6 +195,7 @@ export default function Friends({ currentUser }) {
           placeholder="Find New"
           className={classes.searchBar}
           onChange={handleSearchChange}
+          onRequestSearch={sendRequest}
         />
       </Container>
     </>

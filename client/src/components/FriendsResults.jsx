@@ -38,7 +38,6 @@ export default function FriendsResults({user, friend}) {
   }
 
   useEffect(() => {
-    console.log(comparedUserName);
     axios.get(`http://localhost:3000/api/userProfile?name=${comparedUserName}`)
       .then((response) => {
         // console.log(response.data[0]);
