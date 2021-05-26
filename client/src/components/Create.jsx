@@ -3,7 +3,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-import { 
+import {
   Container,
   Typography,
   Button,
@@ -91,6 +91,7 @@ const Create = ({ setDisplay }) => {
     setAnswerD('');
     // setIsCorrect('');
   };
+
   const validateQuiz = () => {
     if (name.length === 0) {
       return false;
@@ -106,6 +107,7 @@ const Create = ({ setDisplay }) => {
     }
     return true;
   };
+
   const validateQuestion = () => {
     if (question.length === 0) {
       return false;
@@ -127,9 +129,11 @@ const Create = ({ setDisplay }) => {
     }
     return false;
   };
+
   const cancel = () => {
     console.log(question);
   };
+
   const next = () => {
     if (index < 10) {
       const newQuestion = {
@@ -146,6 +150,7 @@ const Create = ({ setDisplay }) => {
       setQuestions(questions.concat(newQuestion));
     }
   };
+
   const submitQuiz = () => {
     axios({
       method: 'post',
@@ -157,10 +162,10 @@ const Create = ({ setDisplay }) => {
         questions,
       },
     })
-      .then(res => {
+      .then((res) => {
         setSubmitted(true);
       })
-      .catch(err => {
+      .catch((err) => {
         window.alert('Failed to create new quiz:', err);
       });
   };
