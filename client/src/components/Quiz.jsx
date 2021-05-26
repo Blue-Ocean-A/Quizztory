@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable import/extensions */
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
@@ -60,7 +61,9 @@ const Quiz = ({
     };
 
     axios.put('/api/userProfile/score', body)
-      .then()
+      // .then((response) => {
+      //   console.log(response.data);
+      // })
       .catch((err) => {
         throw err;
       });
