@@ -50,7 +50,7 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState();
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [display, setDisplay] = useState('create');
+  const [display, setDisplay] = useState('login');
   const classes = useStyles();
 
   useEffect(() => {
