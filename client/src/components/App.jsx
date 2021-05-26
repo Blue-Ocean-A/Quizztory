@@ -74,6 +74,7 @@ const App = () => {
   }
 
   if (display === 'home') {
+    console.log(currentUser);
     return (
       <>
         <GoogleLogout setDisplay={setDisplay} />

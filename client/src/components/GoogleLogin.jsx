@@ -2,6 +2,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-alert */
 import React from 'react';
+import axios from 'axios';
 import { useGoogleLogin } from 'react-google-login';
 import { Button } from '@material-ui/core';
 import image from '../../../btn_google_signin_light_normal_web.png';
@@ -10,13 +11,23 @@ import refreshTokenSetup from '../utils/refreshToken.js';
 
 const clientId = '92870217008-h9091it2nl99pja28dl9rfa5lpecdeng.apps.googleusercontent.com';
 
-function GoogleLogin({ setDisplay }) {
+function GoogleLogin({ setDisplay, setCurrentUser }) {
   const onSuccess = (res) => {
-    setDisplay('home');
-    alert(
-      `Logged in successfully welcome ${res.profileObj.name}.`,
-    );
-    refreshTokenSetup(res);
+    axios.post('/api/userProfile', {
+      name: res.profileObj.name,
+      password: res.profileObj.googleId,
+    })
+      .then(() => {
+        axios.get(`/api/user?name=${res.profileObj.name}&password=${res.profileObj.googleId}`)
+          .then((response) => {
+            setCurrentUser(response.data[0].name);
+            setDisplay('home');
+            refreshTokenSetup(res);
+          });
+      })
+      .catch((error) => {
+        console.log('Error signing up: ', error);
+      });
   };
 
   const onFailure = () => {

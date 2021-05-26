@@ -104,7 +104,7 @@ const Login = ({
           >
             Login
           </Button>
-          <GoogleLogin setDisplay={setDisplay} />
+          <GoogleLogin setDisplay={setDisplay} setCurrentUser={setCurrentUser} />
           <Grid container style={{ marginTop: 10 }}>
             <Grid item style={{ marginBottom: 10 }}>
               <Link className={classes.link} href="#" variant="body2" onClick={() => setDisplay('signUp')}>
