@@ -26,7 +26,6 @@
     "@material-ui/styles": "^4.11.4",
     "axios": "^0.21.1",
     "cors": "^2.8.5",
-    "enzyme-adapter-react-15": "^1.4.3",
     "express": "^4.17.1",
     "jest": "^26.6.3",
     "material-ui-search-bar": "^1.0.0",
