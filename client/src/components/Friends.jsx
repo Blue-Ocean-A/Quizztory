@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Friend from './Friend.jsx';
 import Score from './Score.jsx';
 import FriendRequest from './FriendRequest.jsx';
-import StickyHeadTable from './FriendsResults.jsx';
+import FriendsResults from './FriendsResults.jsx';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -134,7 +134,7 @@ export default function Friends({ currentUser }) {
       <Container>
         <Score average={average}/>
       </Container>
-      <Container component={Paper} className={classes.container} onClick={() => console.log(user)}>
+      <Container component={Paper} className={classes.container}>
         <div>
           <Typography variant="h3" onClick={handleFriendClick}>
             FRIENDS
@@ -154,7 +154,7 @@ export default function Friends({ currentUser }) {
                 open={open}
                 onClose={handleClose}
               >
-                <StickyHeadTable
+                <FriendsResults
                   user={user}
                   friend={clickedFriend}
                 />
