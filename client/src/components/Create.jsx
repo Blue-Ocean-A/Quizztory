@@ -189,6 +189,7 @@ const Create = ({ setDisplay }) => {
         </Typography>
         <TextField
           className={classes.inputDiv}
+          label="Question Name"
           variant="filled"
           name="name"
           value={name}
@@ -199,6 +200,7 @@ const Create = ({ setDisplay }) => {
         </Typography>
         <TextField
           className={classes.inputDiv}
+          label="Topic"
           variant="filled"
           select
           name="topic"
@@ -216,6 +218,7 @@ const Create = ({ setDisplay }) => {
         </Typography>
         <TextField
           className={classes.inputDiv}
+          label="Difficulty"
           variant="filled"
           select
           value={difficulty}
