@@ -1,16 +1,16 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable import/extensions */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import {
-  Container, Typography, Modal, TextField,
+  Container, Typography, Modal,
 } from '@material-ui/core/';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import SearchBar from 'material-ui-search-bar';
 import { v4 as uuidv4 } from 'uuid';
-
 import Friend from './Friend.jsx';
 import Score from './Score.jsx';
 import FriendRequest from './FriendRequest.jsx';
@@ -50,7 +50,6 @@ export default function Friends({ currentUser }) {
   const [clickedFriend, setClickedFriend] = useState([]);
   const [user, setUser] = useState({});
   const [open, setOpen] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [results, setResults] = useState([]);
   const [average, setAverage] = useState(0);
   const [loaded, setLoaded] = useState(false);

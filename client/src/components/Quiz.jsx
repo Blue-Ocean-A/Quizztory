@@ -123,7 +123,6 @@ const Quiz = ({
                 </Button>
               ))}
             </Container>
-
           </Container>
           <button type="button" id="quiz-back-button" onClick={handleBack}>Back to Home</button>
         </>
