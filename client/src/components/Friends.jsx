@@ -2,6 +2,10 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
+/* eslint-disable react/prop-types */
+/* eslint-disable import/extensions */
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -16,7 +20,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Friend from './Friend.jsx';
 import Score from './Score.jsx';
 import FriendRequest from './FriendRequest.jsx';
-import StickyHeadTable from './FriendsResults.jsx';
+import FriendsResults from './FriendsResults.jsx';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -47,7 +51,8 @@ export default function Friends({ currentUser }) {
 
   const [friends, setFriends] = useState([]);
   const [search, setSearch] = useState(['']);
-  const [incoming, setIncoming] = useState(['sdfsd']);
+  const [incoming, setIncoming] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [outgoing, setOutgoing] = useState([]);
   const [clickedFriend, setClickedFriend] = useState([]);
   const [user, setUser] = useState({});
@@ -62,7 +67,11 @@ export default function Friends({ currentUser }) {
     results.forEach((result) => {
       total += Number(result.score);
     });
-    setAverage(total / results.length);
+    if (total) {
+      setAverage((total / results.length).toFixed());
+    } else {
+      setAverage('-');
+    }
   };
 
   const handleOpen = () => {
@@ -75,7 +84,7 @@ export default function Friends({ currentUser }) {
   const getAllUsers = () => {
     axios.get('/api/allUsers')
       .then((res) => {
-        setAllUsers(res.data.map((user) => user.name));
+        setAllUsers(res.data.map((resUser) => resUser.name));
       });
   };
 
@@ -175,7 +184,7 @@ export default function Friends({ currentUser }) {
                 open={open}
                 onClose={handleClose}
               >
-                <StickyHeadTable
+                <FriendsResults
                   user={user}
                   friend={clickedFriend}
                 />
