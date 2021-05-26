@@ -12,7 +12,6 @@ import QuizResults from './QuizResults.jsx';
 const useStyles = makeStyles((theme) => ({
   quizDiv: {
     backgroundColor: theme.palette.primary.dark,
-    margin: '5rem',
     padding: '30px',
   },
   questionDiv: {
@@ -109,8 +108,8 @@ const Quiz = ({
               {' '}
               {questions.length}
             </Typography>
-            <Container className={classes.questionDiv}>
-              <Container className={classes.questionTitle}>
+            <Container className={classes.questionDiv} component={Paper}>
+              <Container className={classes.questionTitle} component={Paper}>
                 <Typography variant="h3" component="h3">{questions[index].text}</Typography>
               </Container>
               {questions[index].answers.map((answer) => (
@@ -123,7 +122,6 @@ const Quiz = ({
                 </Button>
               ))}
             </Container>
-
           </Container>
           <button type="button" id="quiz-back-button" onClick={handleBack}>Back to Home</button>
         </>

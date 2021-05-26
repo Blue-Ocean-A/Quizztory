@@ -1,3 +1,7 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
+/* eslint-disable import/extensions */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 /* eslint-disable no-console */
@@ -9,12 +13,10 @@ import axios from 'axios';
 import {
   Container, Typography, Modal,
 } from '@material-ui/core/';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import SearchBar from 'material-ui-search-bar';
 import { v4 as uuidv4 } from 'uuid';
-
 import Friend from './Friend.jsx';
 import Score from './Score.jsx';
 import FriendRequest from './FriendRequest.jsx';
