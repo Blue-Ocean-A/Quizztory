@@ -179,7 +179,7 @@ export default function Friends({ currentUser }) {
         ) : null}
         <div className={classes.fullList}>
           {friends.map((friend) => (
-            <div key={uuidv4()}>
+            <div key={uuidv4()} id="modal-div">
               <Modal
                 open={open}
                 onClose={handleClose}
