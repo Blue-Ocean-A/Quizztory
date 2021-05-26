@@ -188,9 +188,6 @@ const Create = ({ setDisplay }) => {
         <Typography variant="h4" component="h4" color="textSecondary" align="center">
           Quiz Details
         </Typography>
-        <Typography variant="h4" component="h4" color="textPrimary" align="left">
-          Question Name:
-        </Typography>
         <TextField
           className={classes.inputDiv}
           label="Question Name"
@@ -199,9 +196,6 @@ const Create = ({ setDisplay }) => {
           value={name}
           onChange={(e) => { setName(e.target.value); }}
         />
-        <Typography variant="h4" component="h4" color="textPrimary" align="left">
-          Topic:
-        </Typography>
         <TextField
           className={classes.inputDiv}
           label="Topic"
@@ -217,9 +211,6 @@ const Create = ({ setDisplay }) => {
             </MenuItem>
           ))}
         </TextField>
-        <Typography variant="h4" component="h4" color="textPrimary" align="left">
-          Difficulty:
-        </Typography>
         <TextField
           className={classes.inputDiv}
           label="Difficulty"
