@@ -7,12 +7,14 @@ import {
   Container,
   Typography,
   Button,
+  ButtonGroup,
   TextField,
   MenuItem,
   RadioGroup,
   Radio,
   FormControlLabel,
   FormControl,
+  Paper,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
@@ -171,16 +173,18 @@ const Create = ({ setDisplay }) => {
     }
   }, [submitted]);
   useEffect(() => {
-    setIndex(index + 1);
+    if (questions.length > 0) {
+      setIndex(index + 1);
+    }
   }, [questions]);
   useEffect(() => {
     clearForm();
   }, [index]);
 
   return (
-    <Container className={classes.createDiv} maxWidth="sm">
+    <Container className={classes.createDiv} maxWidth="sm" component={Paper}>
       <Typography variant="h2" component="h2" align="center">Create A Quiz</Typography>
-      <Container className={classes.detailDiv}>
+      <Container className={classes.detailDiv} component={Paper}>
         <Typography variant="h4" component="h4" color="textSecondary" align="center">
           Quiz Details
         </Typography>
@@ -232,7 +236,7 @@ const Create = ({ setDisplay }) => {
           ))}
         </TextField>
       </Container>
-      <Container className={classes.questionDiv}>
+      <Container className={classes.questionDiv} component={Paper}>
         <Typography variant="h4" component="h4" color="textPrimary" align="center">
           Question
           {' '}
@@ -303,7 +307,7 @@ const Create = ({ setDisplay }) => {
           }}
         />
       </Container>
-      <Container className={classes.questionDiv}>
+      <Container className={classes.questionDiv} component={Paper}>
         <Typography variant="h4" component="h4" color="textPrimary" align="center">
           Correct Answer:
         </Typography>
@@ -323,41 +327,43 @@ const Create = ({ setDisplay }) => {
           </RadioGroup>
         </FormControl>
       </Container>
-      <Button
-        className={classes.createButton}
-        variant="contained"
-        onClick={cancel}
-      >
-        Cancel
-      </Button>
-      <Button
-        variant="contained"
-        className={classes.createButton}
-        onClick={(e) => {
-          e.preventDefault();
-          if (validateQuestion()) {
-            next();
-          } else {
-            window.alert('Please finish current question');
-          }
-        }}
-      >
-        Next
-      </Button>
-      <Button
-        variant="contained"
-        className={classes.createButton}
-        onClick={(e) => {
-          e.preventDefault();
-          if (validateQuestion() && validateQuiz()) {
-            submitQuiz();
-          } else {
-            window.alert('Please finish current question or quiz details before submitting');
-          }
-        }}
-      >
-        Submit
-      </Button>
+      <ButtonGroup>
+        <Button
+          className={classes.createButton}
+          variant="contained"
+          onClick={cancel}
+        >
+          Cancel
+        </Button>
+        <Button
+          variant="contained"
+          className={classes.createButton}
+          onClick={(e) => {
+            e.preventDefault();
+            if (validateQuestion()) {
+              next();
+            } else {
+              window.alert('Please finish current question');
+            }
+          }}
+        >
+          Next
+        </Button>
+        <Button
+          variant="contained"
+          className={classes.createButton}
+          onClick={(e) => {
+            e.preventDefault();
+            if (validateQuestion() && validateQuiz()) {
+              submitQuiz();
+            } else {
+              window.alert('Please finish current question or quiz details before submitting');
+            }
+          }}
+        >
+          Submit
+        </Button>
+      </ButtonGroup>
     </Container>
   );
 };
