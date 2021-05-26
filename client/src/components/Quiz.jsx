@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable import/extensions */
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
@@ -59,7 +60,6 @@ const Quiz = ({
       score: percentScore,
     };
 
-    console.log('This is body ', body);
     axios.put('/api/userProfile/score', body)
       .then((response) => {
         console.log(response.data);
