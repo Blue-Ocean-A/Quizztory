@@ -20,8 +20,8 @@ function GoogleLogin({ setDisplay, setCurrentUser }) {
         setDisplay('home');
         refreshTokenSetup(res);
       })
-      .catch(() => {
-        console.log('error');
+      .catch((error) => {
+        throw error;
       });
   };
 

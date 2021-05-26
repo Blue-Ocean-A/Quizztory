@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 const express = require('express');
 const db = require('../db/index.js');
+
 const app = express();
 const cors = require('cors');
 const queries = require('../db/controllers.js');
@@ -19,7 +20,7 @@ app.use(cors());
 app.get('/api/user', (req, res) => {
   queries.getUser(req.query.name, req.query.password, (err, data) => {
     if (err) {
-      console.log('err: ', err);
+      throw err;
       res.status(404).send(err);
     } else {
       // console.log(data);
@@ -32,7 +33,7 @@ app.get('/api/user', (req, res) => {
 app.get('/api/userProfile', (req, res) => {
   queries.getUserProfile(req.query.name, (err, data) => {
     if (err) {
-      console.log('error: ', err);
+      throw err;
       res.status(404).send(err);
     } else {
       // console.log(data);
@@ -71,7 +72,7 @@ app.get('/api/allUsers', (req, res) => {
     if (err) {
       res.status(404).send(err);
     } else {
-      console.log(data);
+      // console.log(data);
       res.send(data);
     }
   });
@@ -84,7 +85,7 @@ app.post('/api/userProfile', (req, res) => {
     if (err) {
       res.status(404).send(err);
     } else {
-      console.log(response);
+      // console.log(response);
       res.end('Successfully added user!');
     }
   });
@@ -96,7 +97,7 @@ app.post('/api/newQuiz', (req, res) => {
     if (err) {
       res.status(404).send(err);
     } else {
-      console.log(response);
+      // console.log(response);
       res.end('Successfully added new quiz!');
     }
   });
@@ -109,7 +110,7 @@ app.put('/api/userProfile/score', (req, res) => {
     if (err) {
       res.status(404).send(err);
     } else {
-      console.log(response);
+      // console.log(response);
       res.end('Successfully added quiz score!');
     }
   });
@@ -121,7 +122,7 @@ app.put('/api/userProfile/request', (req, res) => {
     if (err) {
       res.status(404).send(err);
     } else {
-      console.log(response);
+      // console.log(response);
       res.end('Successfully added friend request!');
     }
   });
@@ -133,7 +134,7 @@ app.put('/api/userProfile/accept', (req, res) => {
     if (err) {
       res.status(404).send(err);
     } else {
-      console.log(response);
+      // console.log(response);
       res.end('Successfully added friend!');
     }
   });
@@ -145,7 +146,7 @@ app.put('/api/userProfile/deny', (req, res) => {
     if (err) {
       res.status(404).send(err);
     } else {
-      console.log(response);
+      // console.log(response);
       res.end('Successfully deleted friend request!');
     }
   });

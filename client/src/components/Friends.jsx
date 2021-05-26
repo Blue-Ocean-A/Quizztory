@@ -117,7 +117,7 @@ export default function Friends({ currentUser }) {
         setLoaded(true);
       })
       .catch((err) => {
-        console.log('err:', err);
+        throw err;
       });
   };
 
@@ -132,7 +132,7 @@ export default function Friends({ currentUser }) {
         setIncoming(incomingRequests);
       })
       .catch((err) => {
-        console.log('err accept incoming req:', err);
+        throw err;
       });
   };
 
@@ -146,7 +146,7 @@ export default function Friends({ currentUser }) {
         setIncoming(incomingRequests);
       })
       .catch((err) => {
-        console.log('err denying req', err);
+        throw err;
       });
   };
 

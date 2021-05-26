@@ -49,7 +49,7 @@ export default function FriendsResults({ user, friend }) {
         setComparedUser(response.data[0]);
       })
       .catch((error) => {
-        console.log('error fetching friend: ', error);
+        throw error;
       });
   }, []);
 
