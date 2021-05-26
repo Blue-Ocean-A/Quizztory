@@ -134,6 +134,7 @@ const App = () => {
             currentQuiz={currentQuiz}
             display={display}
             setDisplay={setDisplay}
+            currentUser={currentUser}
           />
         </Grid>
       </>

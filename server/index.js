@@ -36,7 +36,7 @@ app.get('/api/userProfile', (req, res) => {
       throw err;
       res.status(404).send(err);
     } else {
-      // console.log(data);
+      console.log(data);
       res.send(data);
     }
   });

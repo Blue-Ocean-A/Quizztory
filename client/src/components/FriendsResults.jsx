@@ -61,7 +61,8 @@ export default function FriendsResults({ user, friend }) {
 
   const useStyles = makeStyles({
     root: {
-      width: '100%',
+      width: '80%',
+      marginTop: '20rem',
     },
     container: {
       maxHeight: 440,

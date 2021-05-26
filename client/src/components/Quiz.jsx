@@ -59,8 +59,11 @@ const Quiz = ({
       score: percentScore,
     };
 
+    console.log('This is body ', body);
     axios.put('/api/userProfile/score', body)
-      .then()
+      .then((response) => {
+        console.log(response.data);
+      })
       .catch((err) => {
         throw err;
       });
