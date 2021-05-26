@@ -99,8 +99,8 @@ const Quiz = ({
       {display === 'quiz' && (
         <>
           <Container className={classes.quizDiv} component={Paper} maxWidth="sm">
-            <Typography variant="h2" component="h2" align="center" gutterBottom="true">{currentQuiz.name}</Typography>
-            <Typography variant="h4" component="h4" color="textSecondary" align="center" gutterBottom="true">
+            <Typography variant="h2" component="h2" align="center" gutterBottom>{currentQuiz.name}</Typography>
+            <Typography variant="h4" component="h4" color="textSecondary" align="center" gutterBottom>
               Question
               {' '}
               {index + 1}

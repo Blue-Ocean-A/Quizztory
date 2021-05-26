@@ -88,7 +88,7 @@ const App = () => {
             />
           </Grid>
           <Grid item xs={2}>
-            <Friends />
+            <Friends currentUser={currentUser} />
           </Grid>
         </Grid>
       </>
