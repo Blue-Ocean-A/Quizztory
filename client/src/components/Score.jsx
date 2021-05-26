@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Score({ average, results }) {
+export default function Score({ average, results, currentUser }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
@@ -69,7 +69,7 @@ export default function Score({ average, results }) {
             {`${average}%`}
           </Typography>
           <Typography variant="h3">
-            Your average Quizztory score
+            {`${currentUser}'s`} average Quizztory score
           </Typography>
         </Grid>
         <Grid item xs={6}>
@@ -104,7 +104,7 @@ export default function Score({ average, results }) {
         {`${average}%`}
       </Typography>
       <Typography variant="body1" color="primary" className={classes.text} onClick={handleOpen}>
-        Your Average Score
+        {`${currentUser}'s`} average score
       </Typography>
       <Modal
         open={open}

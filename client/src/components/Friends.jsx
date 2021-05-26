@@ -146,10 +146,6 @@ export default function Friends({ currentUser }) {
     setOpen(true);
   };
 
-  const onSearch = (e) => {
-    console.log(e.target);
-  };
-
   useEffect(() => {
     getUserInfo();
     getAllUsers();
@@ -158,7 +154,7 @@ export default function Friends({ currentUser }) {
 
   return (
     <>
-      <Score average={average} results={results} />
+      <Score average={average} results={results} currentUser={currentUser} />
       <Container component={Paper} className={classes.container}>
         <div>
           <Typography variant="h3" onClick={handleFriendClick}>
