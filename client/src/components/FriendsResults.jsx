@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
@@ -26,6 +27,8 @@ export default function FriendsResults({ user, friend }) {
   ];
 
   function createData() {
+    console.log('This is currentUser ', currentUser);
+    console.log('This is comparedUser ', comparedUser);
     if (currentUser.results.length > 0 && comparedUser.results.length > 0) {
       currentUser.results.forEach((result) => {
         comparedUser.results.forEach((item) => {
@@ -34,9 +37,10 @@ export default function FriendsResults({ user, friend }) {
           }
         });
       });
-      if (rows.length < 1) {
-        setRows([{ currentUserScores: 'No scores to compare', quizName: 'No quizzes to compare', comparedUserScores: 'No scores to compare' }]);
-      }
+      // console.log('Rows on line 40 ', rows);
+      // if (rows.length < 1) {
+      //   setRows([{ currentUserScores: 'No scores to compare', quizName: 'No quizzes to compare', comparedUserScores: 'No scores to compare' }]);
+      // }
     } else {
       setRows([{ currentUserScores: 'No scores to compare', quizName: 'No quizzes to compare', comparedUserScores: 'No scores to compare' }]);
     }

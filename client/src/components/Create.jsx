@@ -165,18 +165,21 @@ const Create = ({ setDisplay }) => {
       });
   };
   useEffect(() => {
-    const newQuestion = {
-      text: question,
-      answers: [
-        { text: answerA, isCorrect: false },
-        { text: answerB, isCorrect: false },
-        { text: answerC, isCorrect: false },
-        { text: answerD, isCorrect: false },
-      ],
-    };
-    const ans = 'abcd';
-    newQuestion.answers[ans.indexOf(isCorrect)].isCorrect = true;
-    setQuestions(questions.concat(newQuestion));
+    if (submit) {
+      console.log('This runs when it should not');
+      const newQuestion = {
+        text: question,
+        answers: [
+          { text: answerA, isCorrect: false },
+          { text: answerB, isCorrect: false },
+          { text: answerC, isCorrect: false },
+          { text: answerD, isCorrect: false },
+        ],
+      };
+      const ans = 'abcd';
+      newQuestion.answers[ans.indexOf(isCorrect)].isCorrect = true;
+      setQuestions(questions.concat(newQuestion));
+    }
   }, [submit]);
   useEffect(() => {
     if (submitted) {
@@ -187,6 +190,8 @@ const Create = ({ setDisplay }) => {
     if (submit) {
       submitQuiz();
     } else if (questions.length > 0) {
+      console.log('Index changed');
+      console.log('This is questions ', questions);
       setIndex(index + 1);
     }
   }, [questions]);
