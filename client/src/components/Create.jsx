@@ -15,6 +15,7 @@ import {
   Radio,
   FormControlLabel,
   FormControl,
+  Paper,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
@@ -22,7 +23,6 @@ import axios from 'axios';
 const useStyles = makeStyles((theme) => ({
   createDiv: {
     backgroundColor: theme.palette.primary.dark,
-    margin: '5rem',
     padding: '30px',
   },
   pageDiv: {
@@ -125,7 +125,7 @@ const Create = ({ setDisplay }) => {
   };
 
   const cancel = () => {
-    console.log(question);
+    setDisplay('home');
   };
 
   const next = () => {
@@ -170,7 +170,7 @@ const Create = ({ setDisplay }) => {
     }
   }, [submitted]);
   useEffect(() => {
-    if (questions.length > 10) {
+    if (questions.length > 0) {
       setIndex(index + 1);
     }
   }, [questions]);
@@ -179,15 +179,15 @@ const Create = ({ setDisplay }) => {
   }, [index]);
 
   return (
-    <Container className={classes.createDiv} maxWidth="sm">
+    <Container className={classes.createDiv} maxWidth="sm" component={Paper}>
       <Typography variant="h2" component="h2" align="center">Create A Quiz</Typography>
-      <Container className={classes.detailDiv}>
-        <Typography variant="h4" component="h4" color="textSecondary" align="center">
+      <Container className={classes.detailDiv} component={Paper}>
+        <Typography variant="h4" component="h4" color="textSecondary" align="center" style={{ marginBottom: '20px' }}>
           Quiz Details
         </Typography>
         <TextField
           className={classes.inputDiv}
-          label="Quiz Name"
+          label="Question Name"
           variant="filled"
           name="name"
           value={name}
@@ -195,7 +195,7 @@ const Create = ({ setDisplay }) => {
         />
         <TextField
           className={classes.inputDiv}
-          label="Quiz Topic"
+          label="Topic"
           variant="filled"
           select
           name="topic"
@@ -224,8 +224,8 @@ const Create = ({ setDisplay }) => {
           ))}
         </TextField>
       </Container>
-      <Container className={classes.questionDiv}>
-        <Typography variant="h4" component="h4" color="textPrimary" align="center">
+      <Container className={classes.questionDiv} component={Paper}>
+        <Typography variant="h4" component="h4" color="textPrimary" align="center" style={{ marginBottom: '20px' }}>
           Question
           {' '}
           {index}
@@ -295,7 +295,7 @@ const Create = ({ setDisplay }) => {
           }}
         />
       </Container>
-      <Container className={classes.questionDiv}>
+      <Container className={classes.questionDiv} component={Paper}>
         <Typography variant="h4" component="h4" color="textPrimary" align="center">
           Correct Answer:
         </Typography>

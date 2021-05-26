@@ -12,7 +12,6 @@ import QuizResults from './QuizResults.jsx';
 const useStyles = makeStyles((theme) => ({
   quizDiv: {
     backgroundColor: theme.palette.primary.dark,
-    margin: '5rem',
     padding: '30px',
   },
   questionDiv: {

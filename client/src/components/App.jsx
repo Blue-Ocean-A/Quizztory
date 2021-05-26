@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Button } from '@material-ui/core';
+import { Grid, Box, Button } from '@material-ui/core';
 import QuizztoryLogo from '../../../QuizztoryLogo.png';
 import Login from './Login.jsx';
 import Create from './Create.jsx';
@@ -59,7 +59,7 @@ const App = () => {
       .catch((error) => {
         console.log('Error in useEffect: ', error);
       });
-  }, []);
+  }, [display]);
 
   if (display === 'login') {
     return (
@@ -90,14 +90,17 @@ const App = () => {
               setCurrentQuiz={setCurrentQuiz}
               setDisplay={setDisplay}
             />
-            <Button
-              variant="contained"
-              aria-label="create"
-              className={classes.createButton}
-              onClick={() => { setDisplay('create'); }}
-            >
-              Create A Quiz
-            </Button>
+            <Box style={{ textAlign: 'center' }}>
+              <Button
+                variant="contained"
+                aria-label="create"
+                className={classes.createButton}
+                style={{ width: '200px', marginTop: '30px' }}
+                onClick={() => { setDisplay('create'); }}
+              >
+                Create A Quiz
+              </Button>
+            </Box>
           </Grid>
           <Grid item xs={2}>
             <Friends currentUser={currentUser} />
@@ -144,7 +147,7 @@ const App = () => {
         <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
         <Grid container spacing={2} className={classes.root}>
           <Create
-            setDisplay={currentUser}
+            setDisplay={setDisplay}
           />
         </Grid>
       </>

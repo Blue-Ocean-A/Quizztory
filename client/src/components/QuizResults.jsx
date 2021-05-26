@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.dark,
     height: '450px',
     padding: '30px',
-    margin: '5rem',
     alignItems: 'center',
     justify: 'center',
   },

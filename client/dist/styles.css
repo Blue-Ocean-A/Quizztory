@@ -38,3 +38,9 @@ body {
 .MuiRadio-root {
   color: #5B685E !important;
 }
+
+.makeStyles-inputDiv-35 {
+  border: none 0 !important;
+  margin-bottom: 10px !important;
+  border-radius: 4px !important;
+}
