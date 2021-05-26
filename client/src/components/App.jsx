@@ -1,16 +1,10 @@
 /* eslint-disable no-console */
 /* eslint-disable consistent-return */
 /* eslint-disable import/extensions */
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
-import { Grid, Box, Button } from '@material-ui/core';
-=======
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
->>>>>>> f7a4ef915b734acb330ed82f39e867ec0fd685f4
+import { Grid, Button } from '@material-ui/core';
 import QuizztoryLogo from '../../../QuizztoryLogo.png';
 import Login from './Login.jsx';
 import Create from './Create.jsx';
@@ -49,22 +43,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const App = () => {
-  const [showBack, setShowBack] = useState(false);
-  const [allUsers, setAllUsers] = useState([]);
-<<<<<<< HEAD
   const [allQuizzes, setAllQuizzes] = useState([historyEasy]);
   const [currentQuiz, setCurrentQuiz] = useState(historyEasy);
-=======
-  const [allQuizzes, setAllQuizzes] = useState();
-  const [currentQuiz, setCurrentQuiz] = useState();
->>>>>>> f7a4ef915b734acb330ed82f39e867ec0fd685f4
   const [currentUser, setCurrentUser] = useState();
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [display, setDisplay] = useState('login');
   const classes = useStyles();
-<<<<<<< HEAD
-=======
 
   useEffect(() => {
     axios.get('/api/quizzes')
@@ -75,9 +60,8 @@ const App = () => {
       .catch((error) => {
         console.log('Error in useEffect: ', error);
       });
-  }, [display]);
+  }, []);
 
->>>>>>> f7a4ef915b734acb330ed82f39e867ec0fd685f4
   if (display === 'login') {
     return (
       <>
@@ -100,8 +84,11 @@ const App = () => {
         <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
         <Grid container spacing={2} className={classes.root}>
           <Grid item xs={6}>
-<<<<<<< HEAD
-            <QuizList allQuizzes={allQuizzes} />
+            <QuizList
+              allQuizzes={allQuizzes}
+              setCurrentQuiz={setCurrentQuiz}
+              setDisplay={setDisplay}
+            />
             <Button
               variant="contained"
               aria-label="create"
@@ -110,16 +97,9 @@ const App = () => {
             >
               Create A Quiz
             </Button>
-=======
-            <QuizList
-              allQuizzes={allQuizzes}
-              setCurrentQuiz={setCurrentQuiz}
-              setDisplay={setDisplay}
-            />
->>>>>>> f7a4ef915b734acb330ed82f39e867ec0fd685f4
           </Grid>
           <Grid item xs={2}>
-            <Friends />
+            <Friends currentUser={currentUser} />
           </Grid>
         </Grid>
       </>

@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
-import { Container, Typography } from '@material-ui/core/';
+/* eslint-disable import/extensions */
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+import {
+  Container, Typography, Modal,
+} from '@material-ui/core/';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import SearchBar from 'material-ui-search-bar';
+import { v4 as uuidv4 } from 'uuid';
 
 import Friend from './Friend.jsx';
 import Score from './Score.jsx';
 import FriendRequest from './FriendRequest.jsx';
+import StickyHeadTable from './FriendsResults.jsx';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -32,60 +43,159 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Friends() {
+export default function Friends({ currentUser }) {
   const classes = useStyles();
 
-  const [friends, setFriends] = useState(['Jenna', 'Tamir', 'Kim', 'Julian', 'Matthew']);
+  const [friends, setFriends] = useState([]);
   const [search, setSearch] = useState(['']);
-  const [pending, setPending] = useState(['Esteban', 'Bob', 'Sara']);
+  const [incoming, setIncoming] = useState(['sdfsd']);
+  // eslint-disable-next-line no-unused-vars
+  const [outgoing, setOutgoing] = useState([]);
+  const [clickedFriend, setClickedFriend] = useState([]);
+  const [user, setUser] = useState({});
+  const [open, setOpen] = useState(false);
+  const [results, setResults] = useState([]);
+  const [average, setAverage] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+  const [allUsers, setAllUsers] = useState([]);
+
+  const calculateAverageScore = () => {
+    let total = 0;
+    results.forEach((result) => {
+      total += Number(result.score);
+    });
+    setAverage((total / results.length).toFixed());
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const getAllUsers = () => {
+    axios.get('/api/allUsers')
+      .then((res) => {
+        setAllUsers(res.data.map((user) => user.name));
+      });
+  };
 
   const handleSearchChange = (searchValue) => {
     setSearch(searchValue);
   };
 
+  const sendRequest = () => {
+    if (!allUsers.includes(search)) {
+      alert('No user found by that name!');
+      return;
+    }
+    axios.put('/api/userProfile/request', {
+      requester: currentUser,
+      requestee: search,
+    })
+      .then(() => {
+        alert(`Friend request sent to ${search}`);
+      });
+  };
+
+  const getUserInfo = () => {
+    axios.get(`/api/userProfile?name=${currentUser}`)
+      .then((res) => {
+        setUser(res.data[0]);
+        setResults(res.data[0].results);
+        setFriends(res.data[0].friends);
+        setIncoming(res.data[0].incoming);
+        setOutgoing(res.data[0].outgoing);
+        setLoaded(true);
+      })
+      .catch((err) => {
+        console.log('err:', err);
+      });
+  };
+
   const handleAcceptClick = () => {
-    friends.push(pending[0]);
-    const pendingRequests = pending.slice(1);
-    setPending(pendingRequests);
-    // console.log(pending.length);
+    axios.put('/api/userProfile/accept', {
+      requester: incoming[0],
+      requestee: currentUser,
+    })
+      .then(() => {
+        friends.push(incoming[0]);
+        const incomingRequests = incoming.slice(1);
+        setIncoming(incomingRequests);
+      })
+      .catch((err) => {
+        console.log('err accept incoming req:', err);
+      });
   };
 
   const handleDenyClick = () => {
-    const pendingRequests = pending.slice(1);
-    setPending(pendingRequests);
+    axios.put(('/api/userProfile/deny'), {
+      requester: incoming[0],
+      requestee: currentUser,
+    })
+      .then(() => {
+        const incomingRequests = incoming.slice(1);
+        setIncoming(incomingRequests);
+      })
+      .catch((err) => {
+        console.log('err denying req', err);
+      });
   };
+
+  const handleFriendClick = (e) => {
+    setClickedFriend(e.target.outerText);
+    setOpen(true);
+  };
+
+  useEffect(() => {
+    getUserInfo();
+    getAllUsers();
+    calculateAverageScore();
+  }, [loaded]);
 
   return (
     <>
-      <Container>
-        <Score />
-      </Container>
-      <Container className={classes.container}>
+      <Score average={average} results={results} currentUser={currentUser} />
+      <Container component={Paper} className={classes.container}>
         <div>
-          <Typography variant="h3">
+          <Typography variant="h3" onClick={handleFriendClick}>
             FRIENDS
           </Typography>
         </div>
-        {pending.length ? (
-          <>
-            <FriendRequest
-              request={pending[0]}
-              handleAcceptClick={handleAcceptClick}
-              handleDenyClick={handleDenyClick}
-            />
-            <div className={classes.fullList}>
-              {friends.sort().map((friend, index) => <Friend key={index} name={friend} />)}
+        {incoming.length ? (
+          <FriendRequest
+            request={incoming[0]}
+            handleAcceptClick={handleAcceptClick}
+            handleDenyClick={handleDenyClick}
+          />
+        ) : null}
+        <div className={classes.fullList}>
+          {friends.map((friend) => (
+            <div key={uuidv4()}>
+              <Modal
+                open={open}
+                onClose={handleClose}
+              >
+                <StickyHeadTable
+                  user={user}
+                  friend={clickedFriend}
+                />
+              </Modal>
+              <Friend
+                key={uuidv4()}
+                name={friend}
+                onClick={handleOpen}
+                handleFriendClick={handleFriendClick}
+              />
             </div>
-          </>
-        ) : (
-          <div className={classes.fullList}>
-            {friends.sort().map((friend, index) => <Friend key={index} name={friend} />)}
-          </div>
-        )}
+          ))}
+        </div>
         <SearchBar
           placeholder="Find New"
           className={classes.searchBar}
           onChange={handleSearchChange}
+          onRequestSearch={sendRequest}
         />
       </Container>
     </>
