@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 import QuizztoryLogo from '../../../QuizztoryLogo.png';
 import Login from './Login.jsx';
 import Create from './Create.jsx';
@@ -31,6 +31,13 @@ const useStyles = makeStyles((theme) => ({
     margin: '25 auto 20 auto',
   },
   quizzList: {
+  },
+  createButton: {
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.primary.light,
+    dispay: 'flex',
+    justifyContent: 'center',
+    width: '100%',
   },
 }));
 
@@ -83,6 +90,14 @@ const App = () => {
               setCurrentQuiz={setCurrentQuiz}
               setDisplay={setDisplay}
             />
+            <Button
+              variant="contained"
+              aria-label="create"
+              className={classes.createButton}
+              onClick={() => { setDisplay('create'); }}
+            >
+              Create A Quiz
+            </Button>
           </Grid>
           <Grid item xs={2}>
             <Friends currentUser={currentUser} />
@@ -117,6 +132,19 @@ const App = () => {
             currentQuiz={currentQuiz}
             currentUser={currentUser}
             display={display}
+            setDisplay={setDisplay}
+          />
+        </Grid>
+      </>
+    );
+  }
+
+  if (display === 'create') {
+    return (
+      <>
+        <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
+        <Grid container spacing={2} className={classes.root}>
+          <Create
             setDisplay={setDisplay}
           />
         </Grid>
