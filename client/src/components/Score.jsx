@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography, Container, Paper, Modal, Grid,
 } from '@material-ui/core/';
+import { v4 as uuidv4 } from 'uuid';
 
 function getModalStyle() {
   return {
@@ -53,10 +55,6 @@ export default function Score({ average, results, currentUser }) {
     setOpen(false);
   };
 
-  useEffect(() => {
-
-  });
-
   const body = (
     <Container
       component={Paper}
@@ -69,12 +67,14 @@ export default function Score({ average, results, currentUser }) {
             {`${average}%`}
           </Typography>
           <Typography variant="h3">
-            {`${currentUser}'s`} average Quizztory score
+            {`${currentUser}'s`}
+            {' '}
+            average Quizztory score
           </Typography>
         </Grid>
         <Grid item xs={6}>
           {results.map((result) => (
-            <Container className={classes.scores}>
+            <Container key={uuidv4} className={classes.scores}>
               <Grid container xs={12}>
                 <Grid item xs={8} style={{ textAlign: 'left' }}>
                   <Typography variant="h4">
@@ -104,7 +104,9 @@ export default function Score({ average, results, currentUser }) {
         {`${average}%`}
       </Typography>
       <Typography variant="body1" color="primary" className={classes.text} onClick={handleOpen}>
-        {`${currentUser}'s`} average score
+        {`${currentUser}'s`}
+        {' '}
+        average score
       </Typography>
       <Modal
         open={open}

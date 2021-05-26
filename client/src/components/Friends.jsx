@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
@@ -48,7 +49,7 @@ export default function Friends({ currentUser }) {
 
   const [friends, setFriends] = useState([]);
   const [search, setSearch] = useState(['']);
-  const [incoming, setIncoming] = useState(['sdfsd']);
+  const [incoming, setIncoming] = useState([]);
   // eslint-disable-next-line no-unused-vars
   const [outgoing, setOutgoing] = useState([]);
   const [clickedFriend, setClickedFriend] = useState([]);
@@ -64,7 +65,11 @@ export default function Friends({ currentUser }) {
     results.forEach((result) => {
       total += Number(result.score);
     });
-    setAverage((total / results.length).toFixed());
+    if (total) {
+      setAverage((total / results.length).toFixed());
+    } else {
+      setAverage('-');
+    }
   };
 
   const handleOpen = () => {
@@ -77,7 +82,7 @@ export default function Friends({ currentUser }) {
   const getAllUsers = () => {
     axios.get('/api/allUsers')
       .then((res) => {
-        setAllUsers(res.data.map((user) => user.name));
+        setAllUsers(res.data.map((resUser) => resUser.name));
       });
   };
 
