@@ -47,8 +47,6 @@ export default function Score({ average, results, currentUser }) {
   const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
 
-  console.log(average);
-
   const handleOpen = () => {
     setOpen(true);
   };
@@ -76,18 +74,16 @@ export default function Score({ average, results, currentUser }) {
         </Grid>
         <Grid item xs={6}>
           {results.map((result) => (
-            <Container key={uuidv4} className={classes.scores}>
-              <Grid container xs={12}>
+            <Container key={uuidv4()} className={classes.scores}>
+              <Grid container>
                 <Grid item xs={8} style={{ textAlign: 'left' }}>
                   <Typography variant="h4">
-                    Quiz:
                     {' '}
                     {result.quizName}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} style={{ textAlign: 'right' }}>
                   <Typography variant="h4">
-                    Score:
                     {' '}
                     {`${result.score}%`}
                   </Typography>
