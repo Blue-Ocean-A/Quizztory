@@ -53,7 +53,7 @@ const QuizResults = ({
   return (
     <Grid className={classes.quizDiv} component={Paper}>
       <Typography variant="h2" component="h2" align="center" gutterBottom>{currentQuiz.name}</Typography>
-      <Grid className={classes.resultsTitle}>
+      <Grid className={classes.resultsTitle} component={Paper}>
         <Typography variant="h3" component="h3" align="center">You Scored</Typography>
         <Typography variant="h1" component="h1" align="center" margin="20px">{percentScore(score)}</Typography>
         <Typography variant="h4" component="h4" align="center">

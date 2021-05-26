@@ -6,7 +6,9 @@ import React, { useState, useEffect } from 'react';
 import {
   Container,
   Typography,
+  Box,
   Button,
+  ButtonGroup,
   TextField,
   MenuItem,
   RadioGroup,
@@ -16,10 +18,8 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
-import { CodeTwoTone, SignalCellularNoSimOutlined } from '@material-ui/icons';
-import { ConnectionBase } from 'mongoose';
 
-const useStyles = makeStyles((theme, text) => ({
+const useStyles = makeStyles((theme) => ({
   createDiv: {
     backgroundColor: theme.palette.primary.dark,
     margin: '5rem',
@@ -45,24 +45,19 @@ const useStyles = makeStyles((theme, text) => ({
   },
   inputDiv: {
     backgroundColor: theme.palette.primary.light,
+    color: '#5B685E',
     fontFamily: 'Montserrat, san-serif',
     width: '100%',
     height: '50px',
     lineHeight: '1.4',
   },
+  buttonDiv: {
+    alignItems: 'center',
+    justify: 'center',
+    margin: '20px',
+  },
 }));
-const page = [
-  'Question 1 / 10',
-  'Question 2 / 10',
-  'Question 3 / 10',
-  'Question 4 / 10',
-  'Question 5 / 10',
-  'Question 6 / 10',
-  'Question 7 / 10',
-  'Question 8 / 10',
-  'Question 9 / 10',
-  'Question 10 / 10',
-];
+
 const topics = ['History', 'Nature', 'Random'];
 const difficulties = ['Easy', 'Medium', 'Hard'];
 
@@ -89,7 +84,6 @@ const Create = ({ setDisplay }) => {
     setAnswerB('');
     setAnswerC('');
     setAnswerD('');
-    // setIsCorrect('');
   };
 
   const validateQuiz = () => {
@@ -162,7 +156,7 @@ const Create = ({ setDisplay }) => {
         questions,
       },
     })
-      .then((res) => {
+      .then(() => {
         setSubmitted(true);
       })
       .catch((err) => {
@@ -321,41 +315,45 @@ const Create = ({ setDisplay }) => {
           </RadioGroup>
         </FormControl>
       </Container>
-      <Button
-        className={classes.createButton}
-        variant="contained"
-        onClick={cancel}
-      >
-        Cancel
-      </Button>
-      <Button
-        variant="contained"
-        className={classes.createButton}
-        onClick={(e) => {
-          e.preventDefault();
-          if (validateQuestion()) {
-            next();
-          } else {
-            window.alert('Please finish current question');
-          }
-        }}
-      >
-        Next
-      </Button>
-      <Button
-        variant="contained"
-        className={classes.createButton}
-        onClick={(e) => {
-          e.preventDefault();
-          if (validateQuestion() && validateQuiz()) {
-            submitQuiz();
-          } else {
-            window.alert('Please finish current question or quiz details before submitting');
-          }
-        }}
-      >
-        Submit
-      </Button>
+      <Box className={classes.buttonDiv} style={{ textAlign: 'center' }}>
+        <ButtonGroup>
+          <Button
+            className={classes.buttons}
+            variant="contained"
+            onClick={cancel}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="contained"
+            className={classes.buttons}
+            onClick={(e) => {
+              e.preventDefault();
+              if (validateQuestion()) {
+                next();
+              } else {
+                window.alert('Please finish current question');
+              }
+            }}
+          >
+            Next
+          </Button>
+          <Button
+            variant="contained"
+            className={classes.buttons}
+            onClick={(e) => {
+              e.preventDefault();
+              if (validateQuestion() && validateQuiz()) {
+                submitQuiz();
+              } else {
+                window.alert('Please finish current question or quiz details before submitting');
+              }
+            }}
+          >
+            Submit
+          </Button>
+        </ButtonGroup>
+      </Box>
     </Container>
   );
 };

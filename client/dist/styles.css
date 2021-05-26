@@ -31,6 +31,10 @@ body {
   width: 100%;
 }
 
-.MuiTextField-root {
-  color: #5B685E;
+.MuiFormLabel-root {
+  color: #5B685E !important;
+}
+
+.MuiRadio-root {
+  color: #5B685E !important;
 }
