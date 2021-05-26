@@ -70,6 +70,7 @@ const Create = ({ setDisplay }) => {
   const [questions, setQuestions] = useState([]);
 
   const [index, setIndex] = useState(1);
+  const [submit, setSubmit] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [question, setQuestion] = useState('');
   const [answerA, setAnswerA] = useState('');
@@ -163,14 +164,29 @@ const Create = ({ setDisplay }) => {
         window.alert('Failed to create new quiz:', err);
       });
   };
-
+  useEffect(() => {
+    const newQuestion = {
+      text: question,
+      answers: [
+        { text: answerA, isCorrect: false },
+        { text: answerB, isCorrect: false },
+        { text: answerC, isCorrect: false },
+        { text: answerD, isCorrect: false },
+      ],
+    };
+    const ans = 'abcd';
+    newQuestion.answers[ans.indexOf(isCorrect)].isCorrect = true;
+    setQuestions(questions.concat(newQuestion));
+  }, [submit]);
   useEffect(() => {
     if (submitted) {
       setDisplay('home');
     }
   }, [submitted]);
   useEffect(() => {
-    if (questions.length > 0) {
+    if (submit) {
+      submitQuiz();
+    } else if (questions.length > 0) {
       setIndex(index + 1);
     }
   }, [questions]);
@@ -187,7 +203,7 @@ const Create = ({ setDisplay }) => {
         </Typography>
         <TextField
           className={classes.inputDiv}
-          label="Question Name"
+          label="Quiz Name"
           variant="filled"
           name="name"
           value={name}
@@ -344,7 +360,7 @@ const Create = ({ setDisplay }) => {
             onClick={(e) => {
               e.preventDefault();
               if (validateQuestion() && validateQuiz()) {
-                submitQuiz();
+                setSubmit(true);
               } else {
                 window.alert('Please finish current question or quiz details before submitting');
               }
