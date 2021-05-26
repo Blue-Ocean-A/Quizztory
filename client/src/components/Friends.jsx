@@ -17,7 +17,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Friend from './Friend.jsx';
 import Score from './Score.jsx';
 import FriendRequest from './FriendRequest.jsx';
-import StickyHeadTable from './FriendsResults.jsx';
+import FriendsResults from './FriendsResults.jsx';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -177,7 +177,7 @@ export default function Friends({ currentUser }) {
                 open={open}
                 onClose={handleClose}
               >
-                <StickyHeadTable
+                <FriendsResults
                   user={user}
                   friend={clickedFriend}
                 />
