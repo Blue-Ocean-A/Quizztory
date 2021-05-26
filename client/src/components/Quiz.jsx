@@ -61,9 +61,9 @@ const Quiz = ({
     };
 
     axios.put('/api/userProfile/score', body)
-      .then((response) => {
-        console.log(response.data);
-      })
+      // .then((response) => {
+      //   console.log(response.data);
+      // })
       .catch((err) => {
         throw err;
       });
