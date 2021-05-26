@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/extensions */
 const express = require('express');
@@ -35,7 +36,6 @@ app.get('/api/userProfile', (req, res) => {
     if (err) {
       res.status(404).send(err);
     } else {
-      console.log(data);
       res.send(data);
     }
   });
