@@ -51,8 +51,8 @@ const Login = ({
     e.preventDefault();
 
     axios.get(`/api/user?name=${userName}&password=${password}`)
-      .then((response) => {
-        setCurrentUser(response.data[0].name);
+      .then(() => {
+        setCurrentUser(userName);
         setDisplay('home');
       })
       .catch(() => {

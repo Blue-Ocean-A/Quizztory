@@ -23,13 +23,17 @@ import FriendRequest from './FriendRequest.jsx';
 import FriendsResults from './FriendsResults.jsx';
 
 const useStyles = makeStyles((theme) => ({
+  scoreContainer: {
+    margin: '0 50 0 50px',
+  },
   container: {
     backgroundColor: theme.palette.secondary.light,
     display: 'flex',
     flexDirection: 'column',
-    height: '100%',
+    height: '25rem',
     textAlign: 'center',
     padding: '10px',
+    margin: '20 50 50 50px',
   },
   searchBar: {
     backgroundColor: theme.palette.primary.light,
@@ -163,7 +167,9 @@ export default function Friends({ currentUser }) {
 
   return (
     <>
-      <Score average={average} results={results} currentUser={currentUser} />
+      <Container className={classes.scoreContainer}>
+        <Score average={average} results={results} currentUser={currentUser} />
+      </Container>
       <Container component={Paper} className={classes.container}>
         <div>
           <Typography variant="h3" onClick={handleFriendClick}>

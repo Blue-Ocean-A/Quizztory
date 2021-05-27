@@ -22,8 +22,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.light,
     dispay: 'flex',
     justifyContent: 'center',
-    flexWrap: 'wrap',
-    height: '60%',
+    height: '50%',
   },
   image: {
     display: 'flex',
@@ -80,7 +79,12 @@ const App = () => {
   if (display === 'home') {
     return (
       <>
-        <GoogleLogout setDisplay={setDisplay} />
+        <GoogleLogout
+          setDisplay={setDisplay}
+          setCurrentUser={setCurrentUser}
+          setUserName={setUserName}
+          setPassword={setPassword}
+        />
         <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
         <Grid container spacing={2} className={classes.root}>
           <Grid item xs={6}>
