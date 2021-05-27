@@ -86,7 +86,7 @@ const App = () => {
           setPassword={setPassword}
         />
         <img className={classes.image} src={QuizztoryLogo} alt="Quizztory" />
-        <Grid container direction="row" justify="center" alignItems="stretch" spacing={8} className={classes.root}>
+        <Grid container spacing={2} className={classes.root}>
           <Grid item xs={6}>
             <QuizList
               allQuizzes={allQuizzes}
