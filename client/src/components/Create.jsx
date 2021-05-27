@@ -50,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '50px',
     lineHeight: '1.4',
+    border: 'none',
+    marginBottom: '10px',
+    borderRadius: '4px',
   },
   buttonDiv: {
     alignItems: 'center',
@@ -70,6 +73,7 @@ const Create = ({ setDisplay }) => {
   const [questions, setQuestions] = useState([]);
 
   const [index, setIndex] = useState(1);
+  const [submit, setSubmit] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [question, setQuestion] = useState('');
   const [answerA, setAnswerA] = useState('');
@@ -84,6 +88,7 @@ const Create = ({ setDisplay }) => {
     setAnswerB('');
     setAnswerC('');
     setAnswerD('');
+    setIsCorrect('');
   };
 
   const validateQuiz = () => {
@@ -127,7 +132,6 @@ const Create = ({ setDisplay }) => {
   const cancel = () => {
     setDisplay('home');
   };
-
   const next = () => {
     if (index < 10) {
       const newQuestion = {
@@ -144,7 +148,6 @@ const Create = ({ setDisplay }) => {
       setQuestions(questions.concat(newQuestion));
     }
   };
-
   const submitQuiz = () => {
     axios({
       method: 'post',
@@ -165,12 +168,33 @@ const Create = ({ setDisplay }) => {
   };
 
   useEffect(() => {
+    if (submit) {
+      console.log('This runs when it should not');
+      const newQuestion = {
+        text: question,
+        answers: [
+          { text: answerA, isCorrect: false },
+          { text: answerB, isCorrect: false },
+          { text: answerC, isCorrect: false },
+          { text: answerD, isCorrect: false },
+        ],
+      };
+      const ans = 'abcd';
+      newQuestion.answers[ans.indexOf(isCorrect)].isCorrect = true;
+      setQuestions(questions.concat(newQuestion));
+    }
+  }, [submit]);
+  useEffect(() => {
     if (submitted) {
       setDisplay('home');
     }
   }, [submitted]);
   useEffect(() => {
-    if (questions.length > 0) {
+    if (submit) {
+      submitQuiz();
+    } else if (questions.length > 0) {
+      console.log('Index changed');
+      console.log('This is questions ', questions);
       setIndex(index + 1);
     }
   }, [questions]);
@@ -187,7 +211,7 @@ const Create = ({ setDisplay }) => {
         </Typography>
         <TextField
           className={classes.inputDiv}
-          label="Question Name"
+          label="Quiz Name"
           variant="filled"
           name="name"
           value={name}
@@ -303,6 +327,7 @@ const Create = ({ setDisplay }) => {
           <RadioGroup
             aria-label="gender"
             name="correct"
+            value={isCorrect}
             onChange={(e) => {
               e.preventDefault();
               setIsCorrect(e.target.value);
@@ -344,7 +369,7 @@ const Create = ({ setDisplay }) => {
             onClick={(e) => {
               e.preventDefault();
               if (validateQuestion() && validateQuiz()) {
-                submitQuiz();
+                setSubmit(true);
               } else {
                 window.alert('Please finish current question or quiz details before submitting');
               }
