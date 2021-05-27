@@ -101,9 +101,6 @@ const Create = ({ setDisplay }) => {
     if (difficulty.length === 0) {
       return false;
     }
-    if (questions.length === 0) {
-      return false;
-    }
     return true;
   };
 
