@@ -26,7 +26,11 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '60%',
   },
   container: {
+    display: 'flex',
+    // flexDirection: 'column',
+    justifyContent: 'center',
     backgroundColor: theme.palette.primary.light,
+    margin: '30px',
     textAlign: 'center',
     overflowX: 'scroll',
   },
@@ -63,8 +67,8 @@ export default function Score({ average, results, currentUser }) {
       style={modalStyle}
       className={classes.paper}
     >
-      <Grid container component={Paper} spacing={1} className={classes.container}>
-        <Grid item xs={5}>
+      <Grid container component={Paper} className={classes.container}>
+        <Grid item xs={8}>
           <Typography variant="h1">
             {`${average}%`}
           </Typography>
@@ -74,9 +78,9 @@ export default function Score({ average, results, currentUser }) {
             average Quizztory score
           </Typography>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={8} style={{ margin: '20px' }}>
           {results.map((result) => (
-            <Container key={uuidv4()} className={classes.scores}>
+            <Container key={uuidv4()} className={classes.scores} style={{ margin: '5px', padding: '8 8', height: '30px' }}>
               <Grid container>
                 <Grid item xs={8} style={{ textAlign: 'left' }}>
                   <Typography variant="h4">

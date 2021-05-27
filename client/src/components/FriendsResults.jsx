@@ -19,6 +19,8 @@ export default function FriendsResults({ user, friend }) {
   const [rows, setRows] = useState([]);
   const currentUser = user;
   const comparedUserName = friend;
+  const resultsObj = {};
+  const arrayOfRows = [];
 
   const columns = [
     { id: 'currentUserScores', label: `${currentUser.name}`, minWidth: 170 },
@@ -27,23 +29,27 @@ export default function FriendsResults({ user, friend }) {
   ];
 
   function createData() {
-    console.log('This is currentUser ', currentUser);
-    console.log('This is comparedUser ', comparedUser);
+    // console.log('This is currentUser ', currentUser);
+    // console.log('This is comparedUser ', comparedUser);
     if (currentUser.results.length > 0 && comparedUser.results.length > 0) {
-      currentUser.results.forEach((result) => {
-        comparedUser.results.forEach((item) => {
-          if (result.quizName === item.quizName) {
-            setRows([...rows, { currentUserScores: result.score, quizName: result.quizName, comparedUserScores: item.score }]);
-          }
-        });
+      currentUser.results.map((result) => {
+        resultsObj[result.quizName] = { current: result.score, compared: 'no score yet' };
       });
-      // console.log('Rows on line 40 ', rows);
-      // if (rows.length < 1) {
-      //   setRows([{ currentUserScores: 'No scores to compare', quizName: 'No quizzes to compare', comparedUserScores: 'No scores to compare' }]);
-      // }
+      comparedUser.results.map((result) => {
+        if (resultsObj[result.quizName]) {
+          resultsObj[result.quizName].compared = result.score;
+        } else {
+          resultsObj[result.quizName] = { current: 'no score yet', compared: result.score };
+        }
+      });
     } else {
-      setRows([{ currentUserScores: 'No scores to compare', quizName: 'No quizzes to compare', comparedUserScores: 'No scores to compare' }]);
+      resultsObj['No quizzes to compare'] = { current: 'No results to compare', compared: 'No results to compare' };
     }
+    // console.log('resultsObj: ', resultsObj);
+    for (var quiz in resultsObj) {
+      arrayOfRows.push({ currentUserScores: resultsObj[quiz].current, quizName: quiz, comparedUserScores: resultsObj[quiz].compared });
+    }
+    return arrayOfRows;
   }
 
   useEffect(() => {
@@ -59,6 +65,7 @@ export default function FriendsResults({ user, friend }) {
   useEffect(() => {
     if (comparedUser) {
       createData();
+      setRows(arrayOfRows);
     }
   }, [comparedUser]);
 
@@ -93,19 +100,17 @@ export default function FriendsResults({ user, friend }) {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.length && rows.map((row) => {
-                  console.log('row: ', row);
-                  return (
-                    <TableRow key={uuidv4()} hover role="checkbox" tabIndex={-1}>
-                      {columns.map((column) => {
-                        const value = row[column.id];
-                        return (
-                          <TableCell key={uuidv4()} align={column.align}>{value}</TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  );
-                })}
+                {rows.length && rows.map((row) => (
+                  // console.log('row: ', row);
+                  <TableRow key={uuidv4()} hover role="checkbox" tabIndex={-1}>
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={uuidv4()} align={column.align}>{value}</TableCell>
+                      );
+                    })}
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
