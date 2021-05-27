@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   div: {
     height: '28rem',
     overflowX: 'scroll',
+    backgroundColor: theme.palette.secondary.dark,
   },
   table: {
     backgroundColor: theme.palette.primary.dark,
@@ -47,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
   const [anchorElTopic, setAnchorElTopic] = useState(null);
+  const [anchorElDifficult, setAnchorElDifficult] = useState(null);
   const [topic, setTopic] = useState('');
   const classes = useStyles();
 
@@ -65,8 +67,13 @@ const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
     setAnchorElTopic(event.currentTarget);
   };
 
+  const handleDifficultClick = (event) => {
+    setAnchorElDifficult(event.currentTarget);
+  };
+
   const handleClose = () => {
     setAnchorElTopic(null);
+    setAnchorElDifficult(null);
   };
 
   return (
@@ -96,12 +103,26 @@ const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
                   <MenuItem value="Random" onClick={() => setTopic('Random')}>Random</MenuItem>
                 </Menu>
               </TableCell>
-              <TableCell style={{ borderBottom: 'none' }} align="right">Difficulty</TableCell>
+              <TableCell style={{ borderBottom: 'none' }} align="right">
+                <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleDifficultClick}>Difficulty</Button>
+                <Menu
+                  id="simple-menu"
+                  select
+                  anchorEl={anchorElDifficult}
+                  open={Boolean(anchorElDifficult)}
+                  onClose={handleClose}
+                >
+                  <MenuItem value="All" onClick={() => setTopic('')}>All</MenuItem>
+                  <MenuItem value="History" onClick={() => setTopic('Easy')}>Easy</MenuItem>
+                  <MenuItem value="Nature" onClick={() => setTopic('Medium')}>Medium</MenuItem>
+                  <MenuItem value="Random" onClick={() => setTopic('Hard')}>Hard</MenuItem>
+                </Menu>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {allQuizzes.map((row) => (
-              (row.topic === topic || topic === '' ? (
+              (row.topic === topic || row.difficulty === topic || topic === '' ? (
                 <TableRow className={classes.nested} key={row.name} onClick={() => handleQuizClick(row.name)}>
                   <TableCell className={classes.text} component="th" scope="row" style={{ borderBottom: 'none' }}>
                     {row.name}
