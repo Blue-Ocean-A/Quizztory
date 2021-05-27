@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
 
 const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
   const [anchorElTopic, setAnchorElTopic] = useState(null);
-  const [anchorElDifficult, setAnchorElDifficult] = useState(null);
   const [topic, setTopic] = useState('');
   const classes = useStyles();
 
@@ -62,13 +61,8 @@ const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
     setAnchorElTopic(event.currentTarget);
   };
 
-  const handleDifficultClick = (event) => {
-    setAnchorElDifficult(event.currentTarget);
-  };
-
   const handleClose = () => {
     setAnchorElTopic(null);
-    setAnchorElDifficult(null);
   };
 
   return (
@@ -98,20 +92,7 @@ const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
                   <MenuItem value="Random" onClick={() => setTopic('Random')}>Random</MenuItem>
                 </Menu>
               </TableCell>
-              <TableCell style={{ borderBottom: 'none' }} align="right">
-                <Button aria-controls="menu" aria-haspopup="true" onClick={handleDifficultClick}>Difficulty</Button>
-                <Menu
-                  id="button2"
-                  anchorEl={anchorElDifficult}
-                  keepMounted
-                  open={Boolean(anchorElDifficult)}
-                  onClose={handleClose}
-                >
-                  <MenuItem value="Easy">Easy</MenuItem>
-                  <MenuItem value="Medium">Medium</MenuItem>
-                  <MenuItem value="Hard">Hard</MenuItem>
-                </Menu>
-              </TableCell>
+              <TableCell style={{ borderBottom: 'none' }} align="right">Difficulty</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
