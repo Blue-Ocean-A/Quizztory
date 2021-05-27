@@ -1,8 +1,11 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { Grid } from '@material-ui/core';
+import {
+  Grid, Button, MenuItem, Menu,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -32,9 +35,16 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     fontFamily: 'Montserrat, san-serif',
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
 }));
 
 const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
+  const [anchorElTopic, setAnchorElTopic] = useState(null);
+  const [anchorElDifficult, setAnchorElDifficult] = useState(null);
+  const [topic, setTopic] = useState('');
   const classes = useStyles();
 
   const handleQuizClick = (quizName) => {
@@ -46,6 +56,19 @@ const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
       .catch((error) => {
         console.log('Error getting quiz data: ', error);
       });
+  };
+
+  const handleTopicClick = (event) => {
+    setAnchorElTopic(event.currentTarget);
+  };
+
+  const handleDifficultClick = (event) => {
+    setAnchorElDifficult(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorElTopic(null);
+    setAnchorElDifficult(null);
   };
 
   return (
@@ -60,20 +83,48 @@ const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell style={{ borderBottom: 'none' }}>Quiz Name</TableCell>
-              <TableCell style={{ borderBottom: 'none' }} align="right">Topic</TableCell>
-              <TableCell style={{ borderBottom: 'none' }} align="right">Difficulty</TableCell>
+              <TableCell style={{ borderBottom: 'none' }} align="right">
+                <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleTopicClick}>Topic</Button>
+                <Menu
+                  id="simple-menu"
+                  select
+                  anchorEl={anchorElTopic}
+                  open={Boolean(anchorElTopic)}
+                  onClose={handleClose}
+                >
+                  <MenuItem value="All" onClick={() => setTopic('')}>All</MenuItem>
+                  <MenuItem value="History" onClick={() => setTopic('History')}>History</MenuItem>
+                  <MenuItem value="Nature" onClick={() => setTopic('Nature')}>Nature</MenuItem>
+                  <MenuItem value="Random" onClick={() => setTopic('Random')}>Random</MenuItem>
+                </Menu>
+              </TableCell>
+              <TableCell style={{ borderBottom: 'none' }} align="right">
+                <Button aria-controls="menu" aria-haspopup="true" onClick={handleDifficultClick}>Difficulty</Button>
+                <Menu
+                  id="button2"
+                  anchorEl={anchorElDifficult}
+                  keepMounted
+                  open={Boolean(anchorElDifficult)}
+                  onClose={handleClose}
+                >
+                  <MenuItem value="Easy">Easy</MenuItem>
+                  <MenuItem value="Medium">Medium</MenuItem>
+                  <MenuItem value="Hard">Hard</MenuItem>
+                </Menu>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {allQuizzes.map((row) => (
-              // eslint-disable-next-line max-len
-              <TableRow className={classes.nested} key={row.name} onClick={() => handleQuizClick(row.name)}>
-                <TableCell className={classes.text} component="th" scope="row" style={{ borderBottom: 'none' }}>
-                  {row.name}
-                </TableCell>
-                <TableCell className={classes.text} align="right" style={{ borderBottom: 'none' }}>{row.topic}</TableCell>
-                <TableCell className={classes.text} align="right" style={{ borderBottom: 'none' }}>{row.difficulty}</TableCell>
-              </TableRow>
+              (row.topic === topic || topic === '' ? (
+                <TableRow className={classes.nested} key={row.name} onClick={() => handleQuizClick(row.name)}>
+                  <TableCell className={classes.text} component="th" scope="row" style={{ borderBottom: 'none' }}>
+                    {row.name}
+                  </TableCell>
+                  <TableCell className={classes.text} align="right" style={{ borderBottom: 'none' }}>{row.topic}</TableCell>
+                  <TableCell className={classes.text} align="right" style={{ borderBottom: 'none' }}>{row.difficulty}</TableCell>
+                </TableRow>
+              ) : null)
             ))}
           </TableBody>
         </Table>
