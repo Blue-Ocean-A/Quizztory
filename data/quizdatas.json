@@ -1,0 +1,289 @@
+[
+  {
+    "name": "The easiest history quiz in the world",
+    "topic": "History",
+    "difficulty": "Easy",
+    "questions": [
+      {
+        "text": "What happened in 1066?",
+        "answers": [
+          { "text": "WWII", "isCorrect": false },
+          { "text": "The discovery of the Americas", "isCorrect": false },
+          { "text": "The Battle of Hastings", "isCorrect": true },
+          { "text": "Nothing of importance", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "Which of these was NOT a Roman leader?",
+        "answers": [
+          { "text": "Julian Ceaser", "isCorrect": false },
+          { "text": "Nero", "isCorrect": false },
+          { "text": "Ceaser Salad", "isCorrect": true },
+          { "text": "Augustus", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "Where was the Titantic headed to before it sank?",
+        "answers": [
+          { "text": "Japan", "isCorrect": false },
+          { "text": "A leisure loop in the ocean and then back home", "isCorrect": false },
+          { "text": "Mars", "isCorrect": false },
+          { "text": "USA", "isCorrect": true }
+        ]
+      },
+      {
+        "text": "Who did Henry VIII first marry?",
+        "answers": [
+          { "text": "Catherine of Aragon", "isCorrect": true },
+          { "text": "Meghan Merkel", "isCorrect": false },
+          { "text": "Kate Middleton", "isCorrect": false },
+          { "text": "Grace Kelly", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "What color was the Statue of Liberty originally?",
+        "answers": [
+          { "text": "Pink", "isCorrect": false },
+          { "text": "White", "isCorrect": false },
+          { "text": "Copper", "isCorrect": true },
+          { "text": "Blue", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "The history quiz only a teacher can pass",
+    "topic": "History",
+    "difficulty": "Hard",
+    "questions": [
+      {
+        "text": "What country was Alexander the Great the king of?",
+        "answers": [
+          { "text": "Macedonia", "isCorrect": true },
+          { "text": "Greece", "isCorrect": false },
+          { "text": "Ukraine", "isCorrect": false },
+          { "text": "Germany", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "In which year did the US Civil War begin?",
+        "answers": [
+          { "text": "1861", "isCorrect": true },
+          { "text": "1876", "isCorrect": false },
+          { "text": "1865", "isCorrect": false },
+          { "text": "1881", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "Who was the first monarch to reside in Buckingham Palace?",
+        "answers": [
+          { "text": "King Willam IV", "isCorrect": false },
+          { "text": "Queen Elizabeth I", "isCorrect": false },
+          { "text": "Queen Victoria", "isCorrect": true },
+          { "text": "King George", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "Which President of the United States was John F. Kennedy?",
+        "answers": [
+          { "text": "20th", "isCorrect": false },
+          { "text": "30th", "isCorrect": false },
+          { "text": "35th", "isCorrect": true },
+          { "text": "40th", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "Who was the founder of the Ottaman Empire?",
+        "answers": [
+          { "text": "Mehmed II", "isCorrect": false },
+          { "text": "Murad I", "isCorrect": false },
+          { "text": "Orhan", "isCorrect": false },
+          { "text": "Osman I", "isCorrect": true }
+        ]
+      },
+      {
+        "text": "Which was the first country to allow women to vote?",
+        "answers": [
+          { "text": "New Zealand", "isCorrect": true },
+          { "text": "Finland", "isCorrect": false },
+          { "text": "Switzerland", "isCorrect": false },
+          { "text": "Malaysia", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "In which year did Napolean Bonaparte become the first Emperor of France?",
+        "answers": [
+          { "text": "1704", "isCorrect": false },
+          { "text": "1804", "isCorrect": true },
+          { "text": "1814", "isCorrect": false },
+          { "text": "1894", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "American History Quiz",
+    "topic": "History",
+    "difficulty": "Medium",
+    "questions": [
+      {
+        "text": "Indepenence day was first established as a holiday by Congress in what year?",
+        "answers": [
+          { "text": "1853", "isCorrect": false },
+          { "text": "1776", "isCorrect": false },
+          { "text": "1870", "isCorrect": true },
+          { "text": "1938", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "Who was the first President to live in the White House?",
+        "answers": [
+          { "text": "John Adams", "isCorrect": true },
+          { "text": "Thomas Jefferson", "isCorrect": false },
+          { "text": "George Washington", "isCorrect": false },
+          { "text": "James Madison", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "What do the colors of the american flag symbolize?",
+        "answers": [
+          { "text": "Nothing, they're just pretty", "isCorrect": false },
+          { "text": "Red: hardiness, White: purity, Blue: perseverence", "isCorrect": true },
+          { "text": "Red: compassion, White: peace and unity, Blue: rememberance", "isCorrect": false },
+          { "text": "Red: revolution, White: stability, Blue: integrity", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "Which three Presidents died on the 4th of July?",
+        "answers": [
+          { "text": "George Washington, Chester Arthur, and James Monroe", "isCorrect": false },
+          { "text": "Abraham Lincoln, Thomas Jefferson, and Richard Nixon", "isCorrect": false },
+          { "text": "Johan Adams, Thomas Jefferson, and James Monroe", "isCorrect": true },
+          { "text": "Harry Truman, Franklin Pierce, and John Tyler", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "Where did John Philip Sousa compose The Stars and Stripes Forever, the official march of the United States?",
+        "answers": [
+          { "text": "In an army bunker in the Civil War", "isCorrect": false },
+          { "text": "In Washington D.C. after visiting the White House for the first time", "isCorrect": true },
+          { "text": "In his living room, after a particularly good dinner", "isCorrect": false },
+          { "text": "On a boat, en route from a European vacation with his wife", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "Where was the first 4th of July celebration with fireworks display held?",
+        "answers": [
+          { "text": "Washington D.C.", "isCorrect": false },
+          { "text": "New York, NY", "isCorrect": false },
+          { "text": "Boston, MA", "isCorrect": true },
+          { "text": "Atlanta, GA", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Animals for the whole family quiz",
+    "topic": "Nature",
+    "difficult": "Easy",
+    "questions": [
+      {
+        "text": "What is the fastest animal in the world?",
+        "answers": [
+          { "text": "peregrine falcon", "isCorrect": true },
+          { "text": "cheetah", "isCorrect": false },
+          { "text": "ant", "isCorrect": false },
+          { "text": "human", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "What sea creature is a blue whale's favorite meal?",
+        "answers": [
+          { "text": "seaweed", "isCorrect": false },
+          { "text": "dolphin", "isCorrect": false },
+          { "text": "fish", "isCorrect": false },
+          { "text": "krill", "isCorrect": true }
+        ]
+      },
+      {
+        "text": "Which mamal has the most powerful bite in the world?",
+        "answers": [
+          { "text": "baboon", "isCorrect": false },
+          { "text": "wolf", "isCorrect": false },
+          { "text": "hippopotamous", "isCorrect": true },
+          { "text": "lion", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "What nickname do adult male gorrilas have due to their hair?",
+        "answers": [
+          { "text": "redheads", "isCorrect": false },
+          { "text": "silverback", "isCorrect": true },
+          { "text": "baldy", "isCorrect": false },
+          { "text": "blue bonnets", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "How many wolves did the largest recorded pack have?",
+        "answers": [
+          { "text": "up to 20", "isCorrect": false },
+          { "text": "up to 100", "isCorrect": false },
+          { "text": "up to 200", "isCorrect": false },
+          { "text": "up to 400", "isCorrect": true }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Name that country",
+    "topic": "Random",
+    "difficult": "Hard",
+    "questions": [
+      {
+        "text": "Which country is brie cheese from originally?",
+        "answers": [
+          { "text": "Switzerland", "isCorrect": false },
+          { "text": "France", "isCorrect": true },
+          { "text": "Gernmany", "isCorrect": false },
+          { "text": "Netherlands", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "Who came second in the FIFA Women's World Cup in 2019?",
+        "answers": [
+          { "text": "USA", "isCorrect": false },
+          { "text": "France", "isCorrect": false },
+          { "text": "Costa Rica", "isCorrect": false },
+          { "text": "Netherlands", "isCorrect": true }
+        ]
+      },
+      {
+        "text": "Where was the mojito cocktail created?",
+        "answers": [
+          { "text": "Costa Rica", "isCorrect": false },
+          { "text": "Cuba", "isCorrect": true },
+          { "text": "Puerto Rico", "isCorrect": false },
+          { "text": "Spain", "isCorrect": false }
+        ]
+      },
+      {
+        "text": "Which country hosted the first even fashion week?",
+        "answers": [
+          { "text": "Paris, France", "isCorrect": false },
+          { "text": "Milan, Italy", "isCorrect": false },
+          { "text": "London, England", "isCorrect": false },
+          { "text": "New York, USA", "isCorrect": true }
+        ]
+      },
+      {
+        "text": "What is the largest country in the world?",
+        "answers": [
+          { "text": "Canada", "isCorrect": false },
+          { "text": "USA", "isCorrect": false },
+          { "text": "Australia", "isCorrect": false },
+          { "text": "Russia", "isCorrect": true }
+        ]
+      }
+    ]
+  }
+]
