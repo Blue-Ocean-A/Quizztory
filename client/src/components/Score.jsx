@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
     // flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: theme.palette.primary.light,
-    margin: '30px',
     textAlign: 'center',
     overflowX: 'scroll',
   },
