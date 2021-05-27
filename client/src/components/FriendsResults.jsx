@@ -43,12 +43,12 @@ export default function FriendsResults({ user, friend }) {
         }
       });
     } else {
-      setRows([{ currentUserScores: 'No scores to compare', quizName: 'No quizzes to compare', comparedUserScores: 'No scores to compare' }]);
+      resultsObj['No quizzes to compare'] = { current: 'No results to compare', compared: 'No results to compare' };
     }
     // console.log('resultsObj: ', resultsObj);
     for (var quiz in resultsObj) {
-      arrayOfRows.push({ currentUserScores: resultsObj[quiz].current, quizName: quiz, comparedUserScores: resultsObj[quiz].compared })
-    };
+      arrayOfRows.push({ currentUserScores: resultsObj[quiz].current, quizName: quiz, comparedUserScores: resultsObj[quiz].compared });
+    }
     return arrayOfRows;
   }
 
