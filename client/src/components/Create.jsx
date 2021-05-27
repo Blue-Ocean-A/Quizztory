@@ -50,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '50px',
     lineHeight: '1.4',
+    border: 'none',
+    marginBottom: '10px',
+    borderRadius: '4px',
   },
   buttonDiv: {
     alignItems: 'center',
@@ -166,6 +169,7 @@ const Create = ({ setDisplay }) => {
 
   useEffect(() => {
     if (submit) {
+      console.log('This runs when it should not');
       const newQuestion = {
         text: question,
         answers: [
@@ -189,6 +193,8 @@ const Create = ({ setDisplay }) => {
     if (submit) {
       submitQuiz();
     } else if (questions.length > 0) {
+      console.log('Index changed');
+      console.log('This is questions ', questions);
       setIndex(index + 1);
     }
   }, [questions]);
