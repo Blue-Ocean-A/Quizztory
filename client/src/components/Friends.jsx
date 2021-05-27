@@ -71,6 +71,10 @@ export default function Friends({ currentUser }) {
     results.forEach((result) => {
       total += Number(result.score);
     });
+    if (total === 0) {
+      setAverage(0);
+      return;
+    }
     if (total) {
       setAverage((total / results.length).toFixed());
     } else {
