@@ -1,0 +1,27 @@
+[
+  {
+    "name": "The easiest history quiz in the world",
+    "topic": "History",
+    "difficulty": "Easy"
+  },
+  {
+    "name": "The history quiz only a teacher can pass",
+    "topic": "History",
+    "difficulty": "Hard"
+  },
+  {
+    "name": "American History Quiz",
+    "topic": "History",
+    "difficulty": "Medium"
+  },
+  {
+    "name": "Animals for the whole family quiz",
+    "topic": "Nature",
+    "difficulty": "Easy"
+  },
+  {
+    "name": "Name that country",
+    "topic": "Random",
+    "difficulty": "Hard"
+  }
+]
