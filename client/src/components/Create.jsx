@@ -166,7 +166,6 @@ const Create = ({ setDisplay }) => {
 
   useEffect(() => {
     if (submit) {
-      console.log('This runs when it should not');
       const newQuestion = {
         text: question,
         answers: [
@@ -190,8 +189,6 @@ const Create = ({ setDisplay }) => {
     if (submit) {
       submitQuiz();
     } else if (questions.length > 0) {
-      console.log('Index changed');
-      console.log('This is questions ', questions);
       setIndex(index + 1);
     }
   }, [questions]);
