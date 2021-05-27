@@ -50,7 +50,7 @@ const SignUp = ({
       name: userName,
       password,
     })
-      .then(() => {
+      .then((res) => {
         setCurrentUser(userName);
         setDisplay('home');
       })
