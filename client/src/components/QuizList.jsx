@@ -59,7 +59,7 @@ const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
         setDisplay('quiz');
       })
       .catch((error) => {
-        throw error;
+        console.log('Error getting quiz data: ', error);
       });
   };
 
