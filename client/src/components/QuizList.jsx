@@ -53,7 +53,7 @@ const QuizList = ({ allQuizzes, setCurrentQuiz, setDisplay }) => {
   const classes = useStyles();
 
   const handleQuizClick = (quizName) => {
-    axios.get(`/api/quizzData?name=${quizName}`)
+    axios.get(`http://3.143.204.61/api/quizzData?name=${quizName}`)
       .then((response) => {
         setCurrentQuiz(response.data[0]);
         setDisplay('quiz');

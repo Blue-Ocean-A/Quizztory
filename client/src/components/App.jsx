@@ -50,7 +50,7 @@ const App = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    axios.get('/api/quizzes')
+    axios.get('http://3.143.204.61/api/quizzes')
       .then((response) => {
         setAllQuizzes(response.data);
         window.history.pushState({}, null, '/');

@@ -46,14 +46,14 @@ export default function FriendsResults({ user, friend }) {
       resultsObj['No quizzes to compare'] = { current: 'No results to compare', compared: 'No results to compare' };
     }
     // console.log('resultsObj: ', resultsObj);
-    for (var quiz in resultsObj) {
+    for (const quiz in resultsObj) {
       arrayOfRows.push({ currentUserScores: resultsObj[quiz].current, quizName: quiz, comparedUserScores: resultsObj[quiz].compared });
     }
     return arrayOfRows;
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/userProfile?name=${comparedUserName}`)
+    axios.get(`http://3.143.204.61/api/userProfile?name=${comparedUserName}`)
       .then((response) => {
         setComparedUser(response.data[0]);
       })

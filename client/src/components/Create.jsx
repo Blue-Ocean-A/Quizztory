@@ -148,7 +148,7 @@ const Create = ({ setDisplay }) => {
   const submitQuiz = () => {
     axios({
       method: 'post',
-      url: '/api/newQuiz',
+      url: 'http://3.143.204.61/api/newQuiz',
       data: {
         name,
         topic,

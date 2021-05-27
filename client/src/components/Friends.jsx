@@ -90,7 +90,7 @@ export default function Friends({ currentUser }) {
   };
 
   const getAllUsers = () => {
-    axios.get('/api/allUsers')
+    axios.get('http://3.143.204.61/api/allUsers')
       .then((res) => {
         setAllUsers(res.data.map((resUser) => resUser.name));
       });
@@ -105,7 +105,7 @@ export default function Friends({ currentUser }) {
       alert('No user found by that name!');
       return;
     }
-    axios.put('/api/userProfile/request', {
+    axios.put('http://3.143.204.61/api/userProfile/request', {
       requester: currentUser,
       requestee: search,
     })
@@ -115,7 +115,7 @@ export default function Friends({ currentUser }) {
   };
 
   const getUserInfo = () => {
-    axios.get(`/api/userProfile?name=${currentUser}`)
+    axios.get(`http://3.143.204.61/api/userProfile?name=${currentUser}`)
       .then((res) => {
         setUser(res.data[0]);
         setResults(res.data[0].results);
@@ -130,7 +130,7 @@ export default function Friends({ currentUser }) {
   };
 
   const handleAcceptClick = () => {
-    axios.put('/api/userProfile/accept', {
+    axios.put('http://3.143.204.61/api/userProfile/accept', {
       requester: incoming[0],
       requestee: currentUser,
     })
@@ -145,7 +145,7 @@ export default function Friends({ currentUser }) {
   };
 
   const handleDenyClick = () => {
-    axios.put(('/api/userProfile/deny'), {
+    axios.put(('http://3.143.204.61/api/userProfile/deny'), {
       requester: incoming[0],
       requestee: currentUser,
     })

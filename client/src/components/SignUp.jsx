@@ -46,7 +46,7 @@ const SignUp = ({
   const submit = (e) => {
     e.preventDefault();
 
-    axios.post('/api/userProfile', {
+    axios.post('http://3.143.204.61/api/userProfile', {
       name: userName,
       password,
     })

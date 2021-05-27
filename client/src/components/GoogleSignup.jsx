@@ -14,7 +14,7 @@ const clientId = '92870217008-h9091it2nl99pja28dl9rfa5lpecdeng.apps.googleuserco
 
 function GoogleSignup({ setDisplay, setCurrentUser }) {
   const onSuccess = (res) => {
-    axios.post('/api/userProfile', {
+    axios.post('http://3.143.204.61/api/userProfile', {
       name: res.profileObj.name,
       password: res.profileObj.googleId,
     })

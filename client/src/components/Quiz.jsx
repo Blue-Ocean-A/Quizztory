@@ -60,7 +60,7 @@ const Quiz = ({
       score: percentScore,
     };
 
-    axios.put('/api/userProfile/score', body)
+    axios.put('http://3.143.204.61/api/userProfile/score', body)
       // .then((response) => {
       //   console.log(response.data);
       // })

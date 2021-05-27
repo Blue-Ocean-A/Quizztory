@@ -50,7 +50,7 @@ const Login = ({
   const submit = (e) => {
     e.preventDefault();
 
-    axios.get(`/api/user?name=${userName}&password=${password}`)
+    axios.get(`http://3.143.204.61/api/user?name=${userName}&password=${password}`)
       .then((response) => {
         setCurrentUser(response.data[0].name);
         setDisplay('home');
