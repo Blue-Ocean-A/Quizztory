@@ -6,9 +6,14 @@ import { Button } from '@material-ui/core';
 
 const clientId = '92870217008-h9091it2nl99pja28dl9rfa5lpecdeng.apps.googleusercontent.com';
 
-function Logout({ setDisplay }) {
+function Logout({
+  setDisplay, setCurrentUser, setUserName, setPassword,
+}) {
   const onLogoutSuccess = () => {
     setDisplay('login');
+    setCurrentUser();
+    setUserName('');
+    setPassword('');
   };
 
   const { signOut } = useGoogleLogout({
